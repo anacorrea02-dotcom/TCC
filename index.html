@@ -606,14 +606,15 @@ main{
     padding:0 22px 22px;
     color:var(--ink-2);
     font-size:0.94rem;
-    max-width:820px;
 }
 
 .edu-body-grid{
     display:grid;
-    grid-template-columns:1fr 220px;
+    grid-template-columns:minmax(0,1fr) 340px;
     gap:26px;
     align-items:start;
+    justify-items:end;
+    width:100%;
 }
 
 .edu-media{
@@ -621,6 +622,8 @@ main{
     border-radius:var(--radius);
     overflow:hidden;
     background:var(--paper-2);
+    width:100%;
+    margin-left:auto;
 }
 
 .edu-media img{
@@ -634,10 +637,13 @@ main{
 
     .edu-body-grid{
         grid-template-columns:1fr;
+        justify-items:stretch;
     }
 
     .edu-media{
-        max-width:320px;
+        max-width:100%;
+        margin-left:auto;
+        margin-right:auto;
     }
 
 }
@@ -781,6 +787,9 @@ main{
     border-radius:20px;
     color:var(--ink-2);
     transition:transform .12s ease, background .15s, color .15s, border-color .15s;
+    display:inline-block;
+    text-decoration:none;
+    cursor:pointer;
 }
 
 .course-badge:hover{
@@ -1419,7 +1428,7 @@ footer{
                     </div>
 
                     <div class="edu-media">
-                        <img src="img curriculo.jpeg" alt="Currículo — guia rápido">
+                        <img src="img curriculo.jfif" alt="Currículo — guia rápido">
                     </div>
 
                 </div>
@@ -1456,7 +1465,7 @@ footer{
                     </div>
 
                     <div class="edu-media">
-                        <img src="img comportamento.jpeg" alt="Comportamento Profissional">
+                        <img src="img comportamento.jpg" alt="Comportamento Profissional">
                     </div>
 
                 </div>
@@ -1683,7 +1692,7 @@ footer{
                     <h4>Técnico em Desenvolvimento de Sistemas</h4>
                     <div class="school">SENAI</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://novo.senaipr.org.br/pt/cursos-tecnicos/desenvolvimento-de-sistemas" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -1691,7 +1700,7 @@ footer{
                     <h4>Técnico em Informática para Internet</h4>
                     <div class="school">Etec</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -1699,7 +1708,7 @@ footer{
                     <h4>Técnico em Redes de Computadores</h4>
                     <div class="school">Instituto Federal (IF)</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -1709,7 +1718,7 @@ footer{
                         Plataformas livres (ex: Fundação Bradesco)
                     </div>
                 </div>
-                <button type="button" class="course-badge is-online">Online · Gratuito</button>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
             </div>
 
         </div>
@@ -1976,7 +1985,7 @@ footer{
                     <h4>Técnico em Cozinha</h4>
                     <div class="school">SENAC</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -1984,7 +1993,7 @@ footer{
                     <h4>Técnico em Confeitaria</h4>
                     <div class="school">SENAC</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -1992,7 +2001,7 @@ footer{
                     <h4>Técnico em Nutrição e Dietética</h4>
                     <div class="school">Etec</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2002,7 +2011,7 @@ footer{
                         Vigilância Sanitária / SENAI
                     </div>
                 </div>
-                <button type="button" class="course-badge is-online">Online · Gratuito</button>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
             </div>
 
         </div>
@@ -2269,7 +2278,7 @@ footer{
                     <h4>Técnico em Administração</h4>
                     <div class="school">Etec / SENAC</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2277,7 +2286,7 @@ footer{
                     <h4>Técnico em Recursos Humanos</h4>
                     <div class="school">SENAC</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2285,7 +2294,7 @@ footer{
                     <h4>Técnico em Finanças</h4>
                     <div class="school">Etec</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2293,7 +2302,7 @@ footer{
                     <h4>Formação MEI — como abrir seu negócio</h4>
                     <div class="school">Sebrae</div>
                 </div>
-                <button type="button" class="course-badge is-online">Online · Gratuito</button>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
             </div>
 
         </div>
@@ -2562,7 +2571,7 @@ footer{
                     <h4>Técnico em Eletromecânica</h4>
                     <div class="school">Etec / SENAI</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2570,7 +2579,7 @@ footer{
                     <h4>Técnico em Eletrotécnica</h4>
                     <div class="school">SENAI</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2578,7 +2587,7 @@ footer{
                     <h4>Técnico em Automação Industrial</h4>
                     <div class="school">SENAI</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2586,7 +2595,7 @@ footer{
                     <h4>Segurança em Instalações Elétricas — NR10</h4>
                     <div class="school">SENAI</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial · Certificado</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial · Certificado</a>
             </div>
 
         </div>
@@ -2855,7 +2864,7 @@ footer{
                     <h4>Técnico em Farmácia</h4>
                     <div class="school">Etec / SENAC</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2863,7 +2872,7 @@ footer{
                     <h4>Boas Práticas de Manipulação Farmacêutica</h4>
                     <div class="school">SENAC</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2871,7 +2880,7 @@ footer{
                     <h4>Técnico em Farmácia — ênfase Hospitalar</h4>
                     <div class="school">Etec</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -2879,7 +2888,7 @@ footer{
                     <h4>Atendimento ao Cliente em Farmácias</h4>
                     <div class="school">Sebrae</div>
                 </div>
-                <button type="button" class="course-badge is-online">Online · Gratuito</button>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
             </div>
 
         </div>
@@ -3148,7 +3157,7 @@ footer{
                     <h4>Técnico em Meio Ambiente</h4>
                     <div class="school">Etec / SENAI</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -3156,7 +3165,7 @@ footer{
                     <h4>Gestão de Resíduos Sólidos</h4>
                     <div class="school">SENAI</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -3164,7 +3173,7 @@ footer{
                     <h4>Técnico em Saneamento</h4>
                     <div class="school">Etec</div>
                 </div>
-                <button type="button" class="course-badge is-presencial">Presencial</button>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
@@ -3172,7 +3181,7 @@ footer{
                     <h4>Educação Ambiental — introdução</h4>
                     <div class="school">Plataformas online</div>
                 </div>
-                <button type="button" class="course-badge is-online">Online · Gratuito</button>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
             </div>
 
         </div>
