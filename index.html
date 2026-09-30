@@ -12,6 +12,7 @@
 
 <style>
 
+
 :root{
     --ink:#14293D;
     --ink-2:#1E3A56;
@@ -176,14 +177,7 @@ main{
     padding:0 24px;
 }
 
-.view{
-    display:none;
-    animation:fade .25s ease;
-}
 
-.view.active{
-    display:block;
-}
 
 @keyframes fade{
     from{
@@ -369,129 +363,24 @@ main{
     margin-bottom:8px;
 }
 
-.path-track{
-    margin:60px 0 40px;
-    position:relative;
-    padding-left:20px;
-    border-left:2px dashed var(--line);
-}
 
-.path-step{
-    padding:0 0 34px 22px;
-    position:relative;
-}
 
-.path-step:last-child{
-    padding-bottom:0;
-}
 
-.path-step::before{
-    content:"";
-    position:absolute;
-    left:-29px;
-    top:2px;
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    background:var(--paper);
-    border:2px solid var(--gold);
-}
 
-.path-step h3{
-    font-size:1.05rem;
-    margin-bottom:4px;
-}
 
-.path-step p{
-    margin:0;
-    color:var(--ink-2);
-    font-size:0.92rem;
-    max-width:520px;
-}
 
-.area-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:16px;
-    margin:24px 0 64px;
-}
 
-.area-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:26px 22px;
-    text-align:left;
-    transition:border-color .15s, transform .15s;
-    position:relative;
-    overflow:hidden;
-}
 
-.area-card:hover{
-    border-color:var(--gold);
-    transform:translateY(-2px);
-}
 
-.area-card .tag{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.7rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--gold-dark);
-}
 
-.area-card h3{
-    font-size:1.35rem;
-    margin-top:8px;
-}
 
-.area-card p{
-    color:var(--ink-2);
-    font-size:0.9rem;
-    margin-top:8px;
-}
 
-.area-card .go{
-    margin-top:16px;
-    font-size:0.85rem;
-    font-weight:600;
-    color:var(--ink);
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
 
 /* ---------- Educational band ---------- */
 
-.edu-band{
-    background:var(--ink);
-    color:var(--paper);
-    padding:40px 0;
-    margin:0 0 64px;
-}
 
-.edu-band-inner{
-    max-width:1080px;
-    margin:0 auto;
-    padding:0 24px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:24px;
-    flex-wrap:wrap;
-}
 
-.edu-band h2{
-    color:var(--paper);
-    font-size:1.6rem;
-}
 
-.edu-band p{
-    color:rgba(245,244,239,0.75);
-    max-width:440px;
-    margin-top:8px;
-    font-size:0.92rem;
-}
 
 .about-block{
     padding:0 0 70px;
@@ -512,11 +401,6 @@ main{
 
 /* ---------- Generic page header ---------- */
 
-.page-head{
-    padding:48px 0 28px;
-    border-bottom:1px solid var(--line);
-    margin-bottom:36px;
-}
 
 .breadcrumb{
     font-family:'IBM Plex Mono',monospace;
@@ -528,15 +412,7 @@ main{
     margin-bottom:14px;
 }
 
-.page-head h1{
-    font-size:clamp(1.9rem,4vw,2.8rem);
-}
 
-.page-head p{
-    color:var(--ink-2);
-    max-width:600px;
-    margin-top:12px;
-}
 
 /* ---------- Banner das páginas de área ---------- */
 
@@ -667,39 +543,10 @@ main{
 
 /* ---------- Área profissional ---------- */
 
-.area-tabs{
-    display:flex;
-    gap:6px;
-    border-bottom:1px solid var(--line);
-    margin-bottom:34px;
-    overflow-x:auto;
-}
 
-.area-tab{
-    padding:12px 4px;
-    margin-right:22px;
-    background:none;
-    border:none;
-    border-bottom:2px solid transparent;
-    font-size:0.92rem;
-    font-weight:600;
-    color:var(--sage);
-    white-space:nowrap;
-}
 
-.area-tab.active{
-    color:var(--ink);
-    border-bottom-color:var(--gold);
-}
 
-.area-panel{
-    display:none;
-    padding-bottom:70px;
-}
 
-.area-panel.active{
-    display:block;
-}
 
 .prof-grid{
     display:grid;
@@ -914,21 +761,927 @@ main{
 
 /* ---------- Footer ---------- */
 
-footer{
-    border-top:1px solid var(--line);
-    padding:30px 0 40px;
-    margin-top:60px;
-    color:var(--sage);
-    font-size:0.82rem;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-}
 
 ::selection{
     background:var(--gold);
     color:var(--ink);
+}
+
+/* =====================================================
+   LAYOUT NOVO — página única + quiz
+   ===================================================== */
+
+a{
+    text-decoration:none;
+}
+
+.brand{
+    color:var(--paper);
+}
+
+.nav-btn{
+    display:inline-block;
+}
+
+/* barra fininha que mostra o quanto da página já foi lido */
+.scroll-progress{
+    position:fixed;
+    top:64px;
+    left:0;
+    height:3px;
+    width:0;
+    background:var(--gold);
+    z-index:60;
+    transition:width .1s linear;
+}
+
+.topbar{
+    border-bottom:none;
+}
+
+/* compensa a barra fixa quando rola até uma âncora */
+.page-section{
+    scroll-margin-top:72px;
+    padding:72px 0;
+    border-bottom:1px solid var(--line);
+}
+
+#inicio{
+    padding-top:24px;
+}
+
+.section-title{
+    font-size:clamp(1.6rem,3.2vw,2.2rem);
+    margin-bottom:8px;
+}
+
+.section-sub{
+    color:var(--ink-2);
+    max-width:600px;
+    margin:0 0 32px;
+}
+
+.btn-gold{
+    background:var(--gold);
+    color:var(--ink);
+}
+
+.btn-gold:hover{
+    background:var(--paper);
+}
+
+.hero-overlay .btn-ghost{
+    background:transparent;
+    border-color:rgba(245,244,239,0.7);
+    color:var(--paper);
+}
+
+/* ---------- Como funciona (trilha horizontal) ---------- */
+
+.how{
+    padding-top:64px;
+}
+
+.how-steps{
+    list-style:none;
+    margin:32px 0 0;
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    position:relative;
+}
+
+.how-steps::before{
+    content:"";
+    position:absolute;
+    top:17px;
+    left:18px;
+    right:18px;
+    border-top:2px dashed var(--line);
+}
+
+.how-steps li{
+    position:relative;
+    padding-right:20px;
+}
+
+.how-n{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:500;
+    position:relative;
+    margin-bottom:16px;
+}
+
+.how-steps li:first-child .how-n{
+    background:var(--gold);
+}
+
+.how-steps h3{
+    font-size:1.05rem;
+    margin-bottom:6px;
+}
+
+.how-steps p{
+    margin:0;
+    font-size:0.9rem;
+    color:var(--ink-2);
+}
+
+@media (max-width:880px){
+
+    .how-steps{
+        grid-template-columns:1fr;
+        gap:22px;
+    }
+
+    .how-steps::before{
+        top:18px;
+        bottom:18px;
+        left:17px;
+        right:auto;
+        border-top:none;
+        border-left:2px dashed var(--line);
+    }
+
+    .how-steps li{
+        display:grid;
+        grid-template-columns:36px 1fr;
+        column-gap:16px;
+        padding-right:0;
+    }
+
+    .how-n{
+        grid-row:span 2;
+        margin-bottom:0;
+    }
+}
+
+/* ---------- Quiz ---------- */
+
+.quiz-wrap{
+    display:grid;
+    grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:48px;
+    align-items:start;
+}
+
+.quiz-intro p{
+    color:var(--ink-2);
+    margin-top:12px;
+}
+
+@media (max-width:880px){
+    .quiz-wrap{
+        grid-template-columns:1fr;
+        gap:24px;
+    }
+}
+
+.quiz-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:28px;
+    box-shadow:0 18px 40px -24px rgba(20,41,61,0.35);
+    min-height:380px;
+    animation:fade .25s ease;
+}
+
+.quiz-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem;
+    color:var(--sage);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+}
+
+.quiz-back{
+    background:none;
+    border:none;
+    color:var(--sage);
+    font:inherit;
+    padding:0;
+}
+
+.quiz-back:hover{
+    color:var(--ink);
+}
+
+.quiz-bar{
+    height:6px;
+    background:var(--paper-2);
+    border-radius:6px;
+    margin:12px 0 24px;
+    overflow:hidden;
+}
+
+.quiz-bar span{
+    display:block;
+    height:100%;
+    background:var(--gold);
+    border-radius:6px;
+    transition:width .3s ease;
+}
+
+.quiz-q{
+    font-family:'Fraunces',serif;
+    font-size:1.4rem;
+    font-weight:600;
+    margin:0 0 18px;
+}
+
+.quiz-options{
+    display:grid;
+    gap:10px;
+}
+
+.quiz-opt{
+    text-align:left;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:0.95rem;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    transition:border-color .15s, background .15s, transform .12s;
+}
+
+.quiz-opt:hover{
+    border-color:var(--gold);
+    background:var(--white);
+    transform:translateX(3px);
+}
+
+.quiz-opt .key{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem;
+    width:24px;
+    height:24px;
+    flex-shrink:0;
+    border:1px solid var(--line);
+    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--sage);
+}
+
+/* resultado */
+
+.quiz-result .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--gold-dark);
+}
+
+.quiz-result h3{
+    font-size:2rem;
+    margin:6px 0 10px;
+}
+
+.quiz-result p{
+    color:var(--ink-2);
+    margin:0 0 18px;
+}
+
+.match-list{
+    display:grid;
+    gap:8px;
+    margin:0 0 24px;
+}
+
+.match-row{
+    display:grid;
+    grid-template-columns:150px 1fr 56px;
+    gap:12px;
+    align-items:center;
+    font-size:0.85rem;
+}
+
+.match-row .bar{
+    height:8px;
+    background:var(--paper-2);
+    border-radius:8px;
+    overflow:hidden;
+}
+
+.match-row .bar span{
+    display:block;
+    height:100%;
+    background:var(--sage);
+    border-radius:8px;
+}
+
+.match-row.top .bar span{
+    background:var(--gold);
+}
+
+.match-row .pct{
+    font-family:'IBM Plex Mono',monospace;
+    text-align:right;
+    white-space:nowrap;
+    color:var(--sage);
+}
+
+.quiz-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn-line{
+    border-color:var(--ink);
+    color:var(--ink);
+    background:none;
+}
+
+.btn-line:hover{
+    background:var(--paper-2);
+}
+
+@media (max-width:520px){
+    .quiz-card{ padding:20px; }
+    .match-row{ grid-template-columns:110px 1fr 52px; }
+}
+
+/* ---------- Saiba mais (janela com os detalhes de cada área) ---------- */
+
+.saiba-dialog{
+    width:min(1100px, calc(100vw - 32px));
+    max-width:none;
+    max-height:calc(100vh - 32px);
+    max-height:calc(100dvh - 32px);
+    padding:0;
+    border:none;
+    border-radius:var(--radius);
+    background:var(--paper);
+    color:var(--ink);
+    overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(20,41,61,0.55);
+}
+
+.saiba-dialog[open]{
+    display:flex;
+    flex-direction:column;
+    animation:fade .2s ease;
+}
+
+.saiba-dialog::backdrop{
+    background:rgba(20,41,61,0.68);
+}
+
+.saiba-head{
+    flex-shrink:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding:14px 14px 14px 28px;
+    background:var(--ink);
+    color:var(--paper);
+}
+
+.saiba-head h2{
+    margin:0;
+    font-size:1.15rem;
+    color:var(--paper);
+}
+
+.saiba-close{
+    flex-shrink:0;
+    width:44px;
+    height:44px;
+    border:1px solid rgba(245,244,239,0.35);
+    border-radius:var(--radius);
+    background:none;
+    color:var(--paper);
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:background .15s, color .15s;
+}
+
+.saiba-close:hover{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--ink);
+}
+
+.saiba-close:focus-visible,
+.saiba-btn:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+}
+
+.saiba-body{
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto;
+    padding:32px 28px 40px;
+}
+
+body.saiba-open{
+    overflow:hidden;
+}
+
+@media (max-width:640px){
+    .saiba-dialog{
+        width:calc(100vw - 16px);
+        max-height:calc(100vh - 16px);
+        max-height:calc(100dvh - 16px);
+    }
+    .saiba-head{ padding-left:18px; }
+    .saiba-body{ padding:24px 16px 32px; }
+}
+
+/* ---------- Seletor de áreas ---------- */
+
+.area-picker{
+    position:sticky;
+    top:64px;
+    z-index:20;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:14px 0;
+    margin:18px 0 8px;
+    background:var(--paper);
+    scrollbar-width:thin;
+}
+
+.pick{
+    flex:0 0 auto;
+    text-align:left;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 16px;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1rem;
+    color:var(--ink);
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    transition:border-color .15s, background .15s;
+}
+
+.pick .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:400;
+    font-size:0.65rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--gold-dark);
+}
+
+.pick:hover{
+    border-color:var(--gold);
+}
+
+.pick.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:var(--paper);
+}
+
+.pick.active .tag{
+    color:var(--gold);
+}
+
+/* ---------- Conteúdo da área ---------- */
+
+.area-view{
+    display:none;
+    animation:fade .25s ease;
+}
+
+.area-view.active{
+    display:block;
+}
+
+.area-banner{
+    margin-top:16px;
+}
+
+.area-panel{
+    padding:8px 0 48px;
+}
+
+.area-panel:last-child{
+    padding-bottom:0;
+}
+
+.panel-title{
+    font-size:1.35rem;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:20px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+}
+
+.panel-title .mono{
+    font-size:0.8rem;
+    color:var(--gold-dark);
+}
+
+/* trilha na horizontal no computador */
+@media (min-width:881px){
+
+    .trilha-track{
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+        gap:20px;
+        padding-left:0;
+        padding-top:44px;
+        border-left:none;
+        border-top:2px dashed var(--gold-dark);
+        margin-top:13px;
+    }
+
+    .trilha-step{
+        padding-bottom:0;
+    }
+
+    .trilha-step::before{
+        left:0;
+        top:-58px;
+    }
+}
+
+/* ---------- Área Educativa (faixa) ---------- */
+
+.band{
+    background:var(--paper-2);
+    box-shadow:0 0 0 100vmax var(--paper-2);
+    clip-path:inset(0 -100vmax);
+    border-bottom:none;
+}
+
+.edu-list{
+    padding-bottom:0;
+}
+
+/* ---------- Sobre ---------- */
+
+.about-block{
+    padding:0;
+}
+
+.about-block h2{
+    font-size:clamp(1.6rem,3.2vw,2.2rem);
+}
+
+/* ---------- Rodapé ---------- */
+
+footer{
+    background:var(--ink);
+    color:rgba(245,244,239,0.7);
+    font-size:0.85rem;
+    margin-top:0;
+}
+
+.footer-inner{
+    max-width:1200px;
+    margin:0 auto;
+    padding:28px 24px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+footer a:hover{
+    color:var(--gold);
+}
+
+/* =====================================================
+   ADAPTAÇÃO PARA DISPOSITIVOS (celular, tablet, desktop)
+   ===================================================== */
+
+html{
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+}
+
+img{
+    max-width:100%;
+}
+
+/* banners: altura se ajusta ao texto (nunca corta o conteúdo) */
+.hero-banner{
+    height:auto;
+    min-height:520px;
+    display:flex;
+    align-items:flex-end;
+}
+
+.hero-banner img{
+    position:absolute;
+    inset:0;
+}
+
+.hero-overlay{
+    position:relative;
+}
+
+.area-banner{
+    min-height:320px;
+}
+
+/* áreas de toque confortáveis (mínimo ~44px) */
+.brand{
+    min-height:44px;
+}
+
+.nav-toggle{
+    min-height:44px;
+    min-width:44px;
+    display:none;
+    align-items:center;
+    gap:8px;
+    font-size:0.9rem;
+}
+
+.course-badge{
+    min-height:40px;
+    display:inline-flex;
+    align-items:center;
+}
+
+.edu-card summary{
+    min-height:56px;
+    gap:16px;
+}
+
+.prof-stats{
+    flex-wrap:wrap;
+}
+
+/* respeita o "notch" de iPhones */
+.topbar{
+    padding-left:max(24px, env(safe-area-inset-left));
+    padding-right:max(24px, env(safe-area-inset-right));
+}
+
+/* ----- guia de profissões: colunas por tamanho de tela ----- */
+
+@media (min-width:600px){
+    .prof-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media (min-width:1100px){
+    .prof-grid{ grid-template-columns:repeat(4,1fr); }
+}
+
+/* ----- tablet e celular: menu em gaveta ----- */
+
+@media (max-width:880px){
+
+    .nav-toggle{
+        display:inline-flex;
+    }
+
+    nav.mainnav{
+        max-height:calc(100vh - 64px);
+        overflow-y:auto;
+        gap:2px;
+    }
+
+    nav.mainnav .nav-btn{
+        width:100%;
+        padding:14px 16px;
+        font-size:1rem;
+    }
+}
+
+/* ----- celular ----- */
+
+@media (max-width:640px){
+
+    main{
+        padding:0 16px;
+    }
+
+    .topbar{
+        padding-left:max(16px, env(safe-area-inset-left));
+        padding-right:max(16px, env(safe-area-inset-right));
+    }
+
+    .page-section{
+        padding:48px 0;
+    }
+
+    #inicio{
+        padding-top:16px;
+    }
+
+    .hero-banner{
+        min-height:480px;
+        margin-top:0;
+    }
+
+    .hero-overlay{
+        padding:88px 22px 30px;
+    }
+
+    .hero-actions .btn{
+        width:100%;
+        justify-content:center;
+    }
+
+    .area-banner{
+        min-height:260px;
+    }
+
+    .how{
+        padding-top:44px;
+    }
+
+    /* os 3 destaques da área ficam lado a lado e compactos */
+    .exploracao-stats{
+        grid-template-columns:repeat(3,1fr);
+        gap:8px;
+    }
+
+    .xstat{
+        padding:14px 10px;
+    }
+
+    .xstat .num{
+        font-size:1.5rem;
+    }
+
+    .xstat .lab{
+        font-size:0.6rem;
+        letter-spacing:0.03em;
+    }
+
+    .course-card{
+        padding:16px;
+    }
+
+    .edu-card summary{
+        padding:16px;
+        font-size:1.05rem;
+    }
+
+    .edu-card .body{
+        padding:0 16px 16px;
+    }
+
+    .quiz-card{
+        min-height:0;
+    }
+
+    .quiz-actions .btn{
+        flex:1 1 100%;
+        justify-content:center;
+    }
+
+    .panel-title{
+        font-size:1.2rem;
+    }
+
+    /* seletor de áreas: rola de lado com "encaixe" e dica visual */
+    .area-picker{
+        scroll-snap-type:x mandatory;
+        margin-left:-16px;
+        margin-right:-16px;
+        padding-left:16px;
+        padding-right:16px;
+        scroll-padding:0 16px;
+        -webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);
+        mask-image:linear-gradient(90deg,#000 88%,transparent);
+    }
+
+    .pick{
+        scroll-snap-align:start;
+    }
+}
+
+/* ----- celulares bem pequenos (ex.: 320px) ----- */
+
+@media (max-width:380px){
+
+    .hero h1,
+    .hero-overlay h1{
+        font-size:2rem;
+    }
+
+    .hero-eyebrow{
+        font-size:0.68rem;
+    }
+
+    .quiz-card{
+        padding:16px;
+    }
+
+    .quiz-q{
+        font-size:1.2rem;
+    }
+
+    .match-row{
+        grid-template-columns:1fr 52px;
+        row-gap:4px;
+    }
+
+    .match-row > span:first-child{
+        grid-column:1 / -1;
+    }
+
+    .exploracao-stats{
+        grid-template-columns:1fr;
+    }
+
+    .xstat{
+        display:flex;
+        align-items:center;
+        gap:14px;
+    }
+
+    .xstat .lab{
+        margin-top:0;
+    }
+}
+
+/* ----- celular deitado (paisagem) ----- */
+
+@media (max-height:500px) and (orientation:landscape){
+
+    .hero-banner{
+        min-height:0;
+    }
+
+    .hero-overlay{
+        padding-top:40px;
+    }
+
+    .area-picker{
+        position:static;
+    }
+}
+
+/* ----- telas de toque: sem efeito de "levantar" ao passar o dedo ----- */
+
+@media (hover:none){
+    .btn:hover,
+    .xstat:hover,
+    .course-badge:hover,
+    .quiz-opt:hover{
+        transform:none;
+    }
+}
+
+/* ----- quem prefere menos animação ----- */
+
+@media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{
+        animation:none !important;
+        transition:none !important;
+    }
+}
+
+/* ----- impressão: mostra todas as áreas e esconde o que é interativo ----- */
+
+@media print{
+    .topbar, .scroll-progress, .area-picker, #quiz, footer a{ display:none !important; }
+    .area-view{ display:block !important; page-break-before:always; }
+    .saiba-dialog{ display:block !important; position:static; width:auto; max-height:none; box-shadow:none; overflow:visible; }
+    .saiba-head, .saiba-btn{ display:none !important; }
+    .saiba-body{ overflow:visible; padding:0; }
+    .edu-card .body{ display:block; }
+    body{ background:#fff; }
+    .band{ box-shadow:none; clip-path:none; background:none; }
+}
+
+.footer-inner{
+    align-items:center;
+}
+
+.footer-inner a{
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
 }
 
 </style>
@@ -938,347 +1691,1791 @@ footer{
 
 <div class="topbar">
 
-    <div class="brand" onclick="goTo('home')" role="button" aria-label="Voltar para o início" title="Voltar para o início">
+    <a class="brand" href="#inicio" aria-label="Voltar para o início" title="Voltar para o início">
         <span class="brand-mark"></span>
         INTEGRA
-    </div>
+    </a>
 
-    <button
-        class="nav-toggle"
-        onclick="document.querySelector('nav.mainnav').classList.toggle('open')">
-        Menu
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mainnav" aria-label="Abrir menu">
+        <span class="nav-icon" aria-hidden="true">☰</span> Menu
     </button>
 
-    <nav class="mainnav">
-
-        <button class="nav-btn" data-view="home" onclick="goTo('home')">
-            Início
-        </button>
-
-        <button class="nav-btn" data-view="educativa" onclick="goTo('educativa')">
-            Área Educativa
-        </button>
-
-        <button class="nav-btn" data-view="sistemas" onclick="goTo('sistemas')">
-            Desenvolvimento de Sistemas
-        </button>
-
-        <button class="nav-btn" data-view="alimentacao" onclick="goTo('alimentacao')">
-            Alimentação
-        </button>
-
-        <button class="nav-btn" data-view="administracao" onclick="goTo('administracao')">
-            Administração
-        </button>
-
-        <button class="nav-btn" data-view="eletromecanica" onclick="goTo('eletromecanica')">
-            Eletromecânica
-        </button>
-
-        <button class="nav-btn" data-view="farmacia" onclick="goTo('farmacia')">
-            Farmácia
-        </button>
-
-        <button class="nav-btn" data-view="meioambiente" onclick="goTo('meioambiente')">
-            Meio Ambiente
-        </button>
-
+    <nav class="mainnav" id="mainnav">
+        <a class="nav-btn" href="#inicio" data-section="inicio">Início</a>
+        <a class="nav-btn" href="#quiz" data-section="quiz">Quiz</a>
+        <a class="nav-btn" href="#areas" data-section="areas">Áreas profissionais</a>
+        <a class="nav-btn" href="#educativa" data-section="educativa">Área Educativa</a>
+        <a class="nav-btn" href="#sobre" data-section="sobre">Sobre</a>
     </nav>
 
 </div>
 
+<!-- barra de progresso da rolagem -->
+<div class="scroll-progress" id="scroll-progress"></div>
+
 
 <main>
 
-<!-- ===================== HOME ===================== -->
+<!-- ===================== INÍCIO ===================== -->
 
-<section class="view active" id="view-home">
+<section class="page-section" id="inicio">
 
-    <!-- BANNER ÚNICO -->
     <div class="hero-banner">
 
-        <img
-            src="img inicio2.jpeg"
-            alt="INTEGRA - Orientação Profissional">
+        <img src="img inicio2.jpeg" alt="INTEGRA - Orientação Profissional">
 
         <div class="hero-overlay">
 
-            <h1>
-                Orientação profissional em um só lugar.
-            </h1>
+            <div class="hero-eyebrow">Orientação profissional · Ensino Médio</div>
+
+            <h1>Orientação profissional em um só lugar.</h1>
 
             <p class="lede">
                 O INTEGRA reúne cursos, profissões, escolas técnicas e oportunidades para ajudar estudantes do Ensino Médio a decidir sua trajetória acadêmica e profissional com mais segurança.
             </p>
 
             <div class="hero-actions">
-
-                <button
-                    class="btn btn-primary"
-                    onclick="goTo('sistemas')">
-                    Explorar áreas profissionais →
-                </button>
-
-                <button
-                    class="btn btn-ghost"
-                    onclick="goTo('educativa')">
-                    Ir para Área Educativa
-                </button>
-
+                <a class="btn btn-primary btn-gold" href="#quiz">Descobrir minha área →</a>
+                <a class="btn btn-ghost" href="#areas">Ver todas as áreas</a>
             </div>
 
         </div>
 
     </div>
 
+    <!-- Como funciona: trilha horizontal -->
+    <div class="how">
 
-    <div style="padding:56px 0 8px;">
+        <div class="section-label">Como o INTEGRA funciona:</div>
+        <h2 class="section-title">Uma trilha, não uma lista de links</h2>
 
-        <div class="section-label">
-            Como o INTEGRA funciona
-        </div>
-
-        <h2 style="font-size:1.6rem;">
-            Uma trilha, não uma lista de links
-        </h2>
-
-        <div class="path-track">
-
-            <div class="path-step">
-                <h3>1. Escolha uma área profissional</h3>
-                <p>
-                    Desenvolvimento de Sistemas, Alimentação, Administração, Eletromecânica, Farmácia ou Meio Ambiente — cada uma com sua própria página completa.
-                </p>
-            </div>
-
-            <div class="path-step">
-                <h3>2. Explore a carreira</h3>
-                <p>
-                    Entenda o panorama da área: o que ela envolve, para quem é indicada e como o mercado está hoje.
-                </p>
-            </div>
-
-            <div class="path-step">
-                <h3>3. Veja profissões específicas</h3>
-                <p>
-                    Faixa salarial, tempo de formação e o que cada profissão faz no dia a dia.
-                </p>
-            </div>
-
-            <div class="path-step">
-                <h3>4. Encontre onde estudar</h3>
-                <p>
-                    Cursos técnicos e escolas que oferecem formação para aquela área.
-                </p>
-            </div>
-
-            <div class="path-step">
-                <h3>5. Siga a trilha de desenvolvimento</h3>
-                <p>
-                    Passo a passo prático, do Ensino Médio até o primeiro emprego.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div style="padding-bottom:8px;">
-
-        <div class="section-label">
-            Áreas profissionais
-        </div>
-
-        <h2 style="font-size:1.6rem; margin-bottom:6px;">
-            Escolha por onde começar
-        </h2>
-
-    </div>
-
-
-    <div class="area-grid">
-
-        <button class="area-card" onclick="goTo('sistemas')">
-
-            <div class="tag">
-                Tecnologia
-            </div>
-
-            <h3>
-                Desenvolvimento de Sistemas
-            </h3>
-
-            <p>
-                Programação, suporte técnico, dados e produtos digitais.
-            </p>
-
-            <div class="go">
-                Ver área completa →
-            </div>
-
-        </button>
-
-
-        <button class="area-card" onclick="goTo('alimentacao')">
-
-            <div class="tag">
-                Gastronomia & Nutrição
-            </div>
-
-            <h3>
-                Alimentação
-            </h3>
-
-            <p>
-                Cozinha, confeitaria, nutrição e segurança alimentar.
-            </p>
-
-            <div class="go">
-                Ver área completa →
-            </div>
-
-        </button>
-
-
-        <button class="area-card" onclick="goTo('administracao')">
-
-            <div class="tag">
-                Gestão & Negócios
-            </div>
-
-            <h3>
-                Administração
-            </h3>
-
-            <p>
-                Rotinas administrativas, finanças, RH e empreendedorismo.
-            </p>
-
-            <div class="go">
-                Ver área completa →
-            </div>
-
-        </button>
-
-
-        <button class="area-card" onclick="goTo('eletromecanica')">
-
-            <div class="tag">
-                Tecnologia Industrial
-            </div>
-
-            <h3>
-                Eletromecânica
-            </h3>
-
-            <p>
-                Instalação, manutenção elétrica e mecânica de máquinas e equipamentos.
-            </p>
-
-            <div class="go">
-                Ver área completa →
-            </div>
-
-        </button>
-
-
-        <button class="area-card" onclick="goTo('farmacia')">
-
-            <div class="tag">
-                Saúde
-            </div>
-
-            <h3>
-                Farmácia
-            </h3>
-
-            <p>
-                Dispensação de medicamentos, manipulação farmacêutica e atendimento ao público.
-            </p>
-
-            <div class="go">
-                Ver área completa →
-            </div>
-
-        </button>
-
-
-        <button class="area-card" onclick="goTo('meioambiente')">
-
-            <div class="tag">
-                Sustentabilidade
-            </div>
-
-            <h3>
-                Meio Ambiente
-            </h3>
-
-            <p>
-                Gestão ambiental, resíduos e conservação de recursos naturais.
-            </p>
-
-            <div class="go">
-                Ver área completa →
-            </div>
-
-        </button>
+        <ol class="how-steps">
+            <li><span class="how-n">1</span><h3>Faça o quiz</h3><p>Responda 4 perguntas rápidas e descubra qual área combina com você.</p></li>
+            <li><span class="how-n">2</span><h3>Explore a carreira</h3><p>Entenda o que a área envolve e para quem ela é indicada.</p></li>
+            <li><span class="how-n">3</span><h3>Veja as profissões</h3><p>Faixa salarial, tempo de formação e o dia a dia de cada uma.</p></li>
+            <li><span class="how-n">4</span><h3>Encontre onde estudar</h3><p>Cursos técnicos e escolas que oferecem formação na área.</p></li>
+            <li><span class="how-n">5</span><h3>Siga a trilha</h3><p>Do Ensino Médio até o primeiro emprego, passo a passo.</p></li>
+        </ol>
 
     </div>
 
 </section>
 
-<div class="about-block" id="home-about">
 
-    <div class="section-label">
-        Sobre o projeto:
-    </div>
+<!-- ===================== QUIZ ===================== -->
 
-    <h2 style="font-size:1.5rem;">
-        Por que o INTEGRA existe
-    </h2>
+<section class="page-section" id="quiz">
 
-    <p>
-        Somos estudantes do Colégio Estadual Euzébio da Mota. O projeto nasceu da observação de um problema real: muitos estudantes enfrentam dificuldades para escolher uma profissão, encontrar cursos e acessar oportunidades. Antes de pensar na tecnologia, buscamos entender essas necessidades através de pesquisa.
-    </p>
+    <div class="quiz-wrap">
 
-    <p>
-        O INTEGRA une tecnologia, criatividade e trabalho em equipe para oferecer uma ferramenta prática, acessível e eficiente — pensada para estudantes do Ensino Médio e dos Cursos Técnicos tomarem decisões com mais segurança sobre sua trajetória acadêmica e profissional.
-    </p>
-
-    <div class="credit">
-        Miguel · Ana Carolina · Lucca · Thauane · Anthony · Nicolas
-    </div>
-
-</div>
-
-
-<!-- ===================== ÁREA EDUCATIVA ===================== -->
-
-<section class="view" id="view-educativa">
-
-    <div class="page-head">
-
-        <div class="breadcrumb">
-            <span onclick="goTo('home')" style="cursor:pointer;">
-                Início
-            </span>
-            /
-            Área Educativa
+        <div class="quiz-intro">
+            <div class="section-label">Quiz vocacional:</div>
+            <h2 class="section-title">Qual área combina mais com você?</h2>
+            <p>
+                Não existe resposta certa ou errada. Escolha a opção que mais parece com você — no final, recomendamos uma área para você começar a explorar.
+            </p>
         </div>
 
-        <h1>
-            Área Educativa
-        </h1>
+        <div class="quiz-card" id="quiz-card">
+            <!-- preenchido pelo JavaScript -->
+        </div>
 
-        <p>
-            Conteúdo transversal sobre o mercado de trabalho — útil para qualquer área profissional que você escolher.
+    </div>
+
+</section>
+
+
+<!-- ===================== ÁREAS PROFISSIONAIS ===================== -->
+
+<section class="page-section" id="areas">
+
+    <div class="section-label">Áreas profissionais:</div>
+    <h2 class="section-title">Escolha uma área para explorar</h2>
+
+    <div class="area-picker" role="tablist" aria-label="Áreas profissionais">
+        <button class="pick active" data-area="sistemas" onclick="showArea('sistemas')"><span class="tag">Tecnologia</span>Desenvolvimento de Sistemas</button>
+        <button class="pick" data-area="alimentacao" onclick="showArea('alimentacao')"><span class="tag">Gastronomia & Nutrição</span>Alimentação</button>
+        <button class="pick" data-area="administracao" onclick="showArea('administracao')"><span class="tag">Gestão & Negócios</span>Administração</button>
+        <button class="pick" data-area="eletromecanica" onclick="showArea('eletromecanica')"><span class="tag">Tecnologia Industrial</span>Eletromecânica</button>
+        <button class="pick" data-area="farmacia" onclick="showArea('farmacia')"><span class="tag">Saúde</span>Farmácia</button>
+        <button class="pick" data-area="meioambiente" onclick="showArea('meioambiente')"><span class="tag">Sustentabilidade</span>Meio Ambiente</button>
+    </div>
+
+    <div id="area-conteudo">
+
+<!-- ===================== DESENVOLVIMENTO DE SISTEMAS ===================== -->
+
+<section class="area-view active" id="view-sistemas">
+
+    <div class="hero-banner area-banner">
+
+        <img
+            src="img informatica.jpeg"
+            alt="Desenvolvimento de Sistemas">
+
+        <div class="hero-overlay">
+
+            <div class="hero-eyebrow">Área profissional</div>
+
+            <h1>
+                Desenvolvimento de Sistemas
+            </h1>
+
+            <p class="lede">
+                Programação, suporte técnico, dados e produtos digitais — uma das áreas com maior demanda de profissionais no Brasil.
+            </p>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-sistemas')" aria-haspopup="dialog">Saiba mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <dialog class="saiba-dialog" id="saiba-sistemas" aria-labelledby="saiba-sistemas-titulo">
+        <div class="saiba-head">
+            <h2 id="saiba-sistemas-titulo">Desenvolvimento de Sistemas</h2>
+            <button type="button" class="saiba-close" onclick="this.closest('dialog').close()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="saiba-body">
+
+    <div class="area-panel" id="sistemas-exploracao">
+
+        <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
+
+        <p class="exploracao-intro">
+            A área de Desenvolvimento de Sistemas envolve criar, manter e dar suporte a softwares, sites, aplicativos e sistemas de dados. É uma das áreas técnicas que mais permite entrada rápida no mercado através de cursos técnicos, com boas oportunidades de trabalho remoto.
+        </p>
+
+        <div class="exploracao-stats">
+
+            <div class="xstat">
+                <div class="num">4</div>
+                <div class="lab">Profissões mapeadas</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">+</div>
+                <div class="lab">Alta empregabilidade técnica</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">R</div>
+                <div class="lab">Trabalho remoto comum</div>
+            </div>
+
+        </div>
+
+        <p style="color:var(--ink-2); max-width:600px;">
+            Indicada para quem gosta de resolver problemas de forma lógica, tem paciência para testar e corrigir erros, e se interessa por tecnologia no dia a dia.
         </p>
 
     </div>
 
 
-    <div class="edu-list">
+    <div class="area-panel" id="sistemas-guia">
+
+        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
+
+        <div class="prof-grid">
+
+            <div class="prof-card">
+                <h3>Desenvolvedor(a) Front-end</h3>
+
+                <p>
+                    Constrói as telas e interações que o usuário vê e usa em sites e aplicativos.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.800 – 4.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 a 2 anos</div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Desenvolvedor(a) Back-end</h3>
+
+                <p>
+                    Cuida da lógica, banco de dados e servidores que fazem o sistema funcionar por trás das telas.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 2.200 – 5.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1,5 a 3 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Suporte</h3>
+
+                <p>
+                    Resolve problemas de hardware, software e redes para usuários e empresas.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.500 – 2.800</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">6 meses a 1 ano</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Analista de Dados Jr.</h3>
+
+                <p>
+                    Organiza e interpreta dados para ajudar empresas a tomar decisões.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 2.000 – 4.800</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">2 a 3 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="sistemas-biblioteca">
+
+        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+
+        <div class="course-list">
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Desenvolvimento de Sistemas</h4>
+                    <div class="school">SENAI</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://novo.senaipr.org.br/pt/cursos-tecnicos/desenvolvimento-de-sistemas" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Informática para Internet</h4>
+                    <div class="school">Etec</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Redes de Computadores</h4>
+                    <div class="school">Instituto Federal (IF)</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Fundamentos de Programação</h4>
+                    <div class="school">
+                        Plataformas livres (ex: Fundação Bradesco)
+                    </div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="sistemas-trilha">
+
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+
+        <div class="trilha-track">
+
+            <div class="trilha-step" data-n="1">
+                <h4>Ensino Médio</h4>
+                <p>
+                    Se possível, escolha matérias e projetos com contato com lógica e tecnologia.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="2">
+                <h4>Curso técnico ou introdutório</h4>
+                <p>
+                    Comece com um curso técnico ou cursos gratuitos de lógica de programação.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="3">
+                <h4>Projetos práticos</h4>
+                <p>
+                    Monte um portfólio simples: um site, um app pequeno, ou análise de dados de exemplo.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="4">
+                <h4>Estágio ou Jovem Aprendiz</h4>
+                <p>
+                    Busque a primeira experiência prática em empresa — veja a Área Educativa para entender as regras.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="5">
+                <h4>Primeiro emprego</h4>
+                <p>
+                    Cargos júnior de suporte, front-end ou dados são as portas de entrada mais comuns.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
+    </dialog>
+
+</section>
+
+
+<!-- ===================== ALIMENTAÇÃO ===================== -->
+
+<section class="area-view" id="view-alimentacao">
+
+    <div class="hero-banner area-banner">
+
+        <img
+            src="img alimentos.jpeg"
+            alt="Alimentação">
+
+        <div class="hero-overlay">
+
+            <div class="hero-eyebrow">Área profissional</div>
+
+            <h1>Alimentação</h1>
+
+            <p class="lede">
+                Cozinha, confeitaria, nutrição e segurança alimentar — uma área com demanda constante em restaurantes, indústrias e serviços de saúde.
+            </p>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-alimentacao')" aria-haspopup="dialog">Saiba mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <dialog class="saiba-dialog" id="saiba-alimentacao" aria-labelledby="saiba-alimentacao-titulo">
+        <div class="saiba-head">
+            <h2 id="saiba-alimentacao-titulo">Alimentação</h2>
+            <button type="button" class="saiba-close" onclick="this.closest('dialog').close()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="saiba-body">
+
+    <div class="area-panel" id="alimentacao-exploracao">
+
+        <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
+
+        <p class="exploracao-intro">
+            A área de Alimentação vai da produção de pratos e doces até o controle de qualidade e a orientação nutricional. É uma área prática, com entrada no mercado geralmente mais rápida do que outras áreas técnicas.
+        </p>
+
+        <div class="exploracao-stats">
+
+            <div class="xstat">
+                <div class="num">4</div>
+                <div class="lab">Profissões mapeadas</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">+</div>
+                <div class="lab">Demanda constante</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">P</div>
+                <div class="lab">Forte caráter prático</div>
+            </div>
+
+        </div>
+
+        <p style="color:var(--ink-2); max-width:600px;">
+            Indicada para quem gosta de trabalho manual, tem atenção a detalhes e higiene, e se interessa por nutrição ou gastronomia.
+        </p>
+
+    </div>
+
+
+    <div class="area-panel" id="alimentacao-guia">
+
+        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
+
+        <div class="prof-grid">
+
+            <div class="prof-card">
+
+                <h3>Cozinheiro(a)</h3>
+
+                <p>
+                    Prepara pratos seguindo receitas e padrões de qualidade em restaurantes e cozinhas industriais.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.500 – 2.800</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">6 meses a 1 ano</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Confeiteiro(a)</h3>
+
+                <p>
+                    Produz doces, bolos e sobremesas para eventos, padarias e confeitarias.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.500 – 3.200</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">6 meses a 1 ano</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Nutrição</h3>
+
+                <p>
+                    Auxilia nutricionistas no planejamento de cardápios e no acompanhamento nutricional.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.800 – 3.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 a 2 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Gestor(a) de Segurança Alimentar</h3>
+
+                <p>
+                    Garante que a produção de alimentos siga normas de higiene e qualidade.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 2.200 – 4.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">2 a 3 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="alimentacao-biblioteca">
+
+        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+
+        <div class="course-list">
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Cozinha</h4>
+                    <div class="school">SENAC</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Confeitaria</h4>
+                    <div class="school">SENAC</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Nutrição e Dietética</h4>
+                    <div class="school">Etec</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Boas Práticas de Manipulação de Alimentos</h4>
+                    <div class="school">
+                        Vigilância Sanitária / SENAI
+                    </div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="alimentacao-trilha">
+
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+
+        <div class="trilha-track">
+
+            <div class="trilha-step" data-n="1">
+                <h4>Ensino Médio</h4>
+                <p>
+                    Interesse por biologia, química e prática são um bom ponto de partida.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="2">
+                <h4>Curso técnico</h4>
+                <p>
+                    Escolha entre cozinha, confeitaria ou nutrição conforme seu interesse.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="3">
+                <h4>Prática supervisionada</h4>
+                <p>
+                    Cozinhas-escola e eventos são boas oportunidades de treino real.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="4">
+                <h4>Estágio ou Jovem Aprendiz</h4>
+                <p>
+                    Restaurantes, padarias e redes de alimentação costumam abrir vagas de entrada.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="5">
+                <h4>Primeiro emprego</h4>
+                <p>
+                    Auxiliar de cozinha, confeiteiro júnior ou técnico de nutrição são portas de entrada comuns.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
+    </dialog>
+
+</section>
+
+
+<!-- ===================== ADMINISTRAÇÃO ===================== -->
+
+<section class="area-view" id="view-administracao">
+
+    <div class="hero-banner area-banner">
+
+        <img
+            src="img administração.jpeg"
+            alt="Administração">
+
+        <div class="hero-overlay">
+
+            <div class="hero-eyebrow">Área profissional</div>
+
+            <h1>Administração</h1>
+
+            <p class="lede">
+                Rotinas administrativas, finanças, recursos humanos e empreendedorismo — a área que sustenta o funcionamento de qualquer empresa.
+            </p>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-administracao')" aria-haspopup="dialog">Saiba mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <dialog class="saiba-dialog" id="saiba-administracao" aria-labelledby="saiba-administracao-titulo">
+        <div class="saiba-head">
+            <h2 id="saiba-administracao-titulo">Administração</h2>
+            <button type="button" class="saiba-close" onclick="this.closest('dialog').close()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="saiba-body">
+
+    <div class="area-panel" id="administracao-exploracao">
+
+        <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
+
+        <p class="exploracao-intro">
+            A área de Administração cobre a organização de processos, pessoas e recursos dentro de uma empresa. É uma área versátil, presente em qualquer setor, e também é a base para quem quer empreender.
+        </p>
+
+        <div class="exploracao-stats">
+
+            <div class="xstat">
+                <div class="num">4</div>
+                <div class="lab">Profissões mapeadas</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">+</div>
+                <div class="lab">Presente em todo setor</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">E</div>
+                <div class="lab">Base para empreender</div>
+            </div>
+
+        </div>
+
+        <p style="color:var(--ink-2); max-width:600px;">
+            Indicada para quem é organizado, gosta de lidar com pessoas e números, e quer entender como uma empresa funciona por dentro.
+        </p>
+
+    </div>
+
+
+    <div class="area-panel" id="administracao-guia">
+
+        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
+
+        <div class="prof-grid">
+
+            <div class="prof-card">
+
+                <h3>Assistente Administrativo(a)</h3>
+
+                <p>
+                    Organiza documentos, agendas e rotinas do dia a dia de um setor ou empresa.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.500 – 2.600</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">6 meses a 1 ano</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Auxiliar de RH</h3>
+
+                <p>
+                    Apoia processos de recrutamento, folha de pagamento e benefícios dos funcionários.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.600 – 3.000</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 ano</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Analista Financeiro(a) Jr.</h3>
+
+                <p>
+                    Acompanha contas, pagamentos e relatórios financeiros da empresa.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 2.000 – 4.200</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">2 a 3 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Empreendedor(a) / MEI</h3>
+
+                <p>
+                    Conduz seu próprio pequeno negócio, cuidando de vendas, custos e clientes.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">Variável</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">Sem exigência formal</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="administracao-biblioteca">
+
+        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+
+        <div class="course-list">
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Administração</h4>
+                    <div class="school">Etec / SENAC</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Recursos Humanos</h4>
+                    <div class="school">SENAC</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Finanças</h4>
+                    <div class="school">Etec</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Formação MEI — como abrir seu negócio</h4>
+                    <div class="school">Sebrae</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="administracao-trilha">
+
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+
+        <div class="trilha-track">
+
+            <div class="trilha-step" data-n="1">
+                <h4>Ensino Médio</h4>
+                <p>
+                    Organização, comunicação e noções básicas de matemática financeira ajudam bastante.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="2">
+                <h4>Curso técnico</h4>
+                <p>
+                    Administração, RH ou Finanças, conforme o que mais te interessa.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="3">
+                <h4>Ferramentas do dia a dia</h4>
+                <p>
+                    Aprenda planilhas e noções de atendimento — usadas em praticamente qualquer função administrativa.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="4">
+                <h4>Estágio ou Jovem Aprendiz</h4>
+                <p>
+                    Empresas de todos os portes costumam abrir vagas administrativas de entrada.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="5">
+                <h4>Primeiro emprego</h4>
+                <p>
+                    Assistente administrativo ou auxiliar de RH são as portas de entrada mais comuns.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
+    </dialog>
+
+</section>
+
+
+<!-- ===================== ELETROMECÂNICA ===================== -->
+
+<section class="area-view" id="view-eletromecanica">
+
+    <div class="hero-banner area-banner">
+
+        <img
+            src="img engenharia.jpeg"
+            alt="Eletromecânica">
+
+        <div class="hero-overlay">
+
+            <div class="hero-eyebrow">Área profissional</div>
+
+            <h1>
+                Eletromecânica
+            </h1>
+
+            <p class="lede">
+                Instalação, manutenção elétrica e mecânica de máquinas e equipamentos — a área que mantém a indústria funcionando.
+            </p>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-eletromecanica')" aria-haspopup="dialog">Saiba mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <dialog class="saiba-dialog" id="saiba-eletromecanica" aria-labelledby="saiba-eletromecanica-titulo">
+        <div class="saiba-head">
+            <h2 id="saiba-eletromecanica-titulo">Eletromecânica</h2>
+            <button type="button" class="saiba-close" onclick="this.closest('dialog').close()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="saiba-body">
+
+    <div class="area-panel" id="eletromecanica-exploracao">
+
+        <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
+
+        <p class="exploracao-intro">
+            A área de Eletromecânica reúne conhecimentos de eletricidade e mecânica aplicados à instalação, operação e manutenção de máquinas, motores e equipamentos industriais. É uma área essencial para fábricas, usinas e qualquer setor que dependa de maquinário.
+        </p>
+
+        <div class="exploracao-stats">
+
+            <div class="xstat">
+                <div class="num">4</div>
+                <div class="lab">Profissões mapeadas</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">+</div>
+                <div class="lab">Alta demanda industrial</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">S</div>
+                <div class="lab">Foco em segurança do trabalho</div>
+            </div>
+
+        </div>
+
+        <p style="color:var(--ink-2); max-width:600px;">
+            Indicada para quem gosta de trabalhar com as mãos, tem raciocínio lógico para entender circuitos e mecanismos, e se interessa por como as máquinas funcionam por dentro.
+        </p>
+
+    </div>
+
+
+    <div class="area-panel" id="eletromecanica-guia">
+
+        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
+
+        <div class="prof-grid">
+
+            <div class="prof-card">
+
+                <h3>Eletricista Industrial</h3>
+
+                <p>
+                    Instala, testa e repara sistemas elétricos de máquinas e instalações industriais.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 2.000 – 4.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 a 2 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Mecânico(a) de Manutenção</h3>
+
+                <p>
+                    Realiza manutenção preventiva e corretiva em motores, correias e peças mecânicas.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.800 – 3.800</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 ano</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Eletromecânica</h3>
+
+                <p>
+                    Une eletricidade e mecânica para instalar, operar e dar manutenção em equipamentos industriais.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 2.200 – 5.000</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">2 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Automação Industrial</h3>
+
+                <p>
+                    Programa e mantém sistemas automatizados que controlam linhas de produção.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 2.500 – 5.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">2 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="eletromecanica-biblioteca">
+
+        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+
+        <div class="course-list">
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Eletromecânica</h4>
+                    <div class="school">Etec / SENAI</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Eletrotécnica</h4>
+                    <div class="school">SENAI</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Automação Industrial</h4>
+                    <div class="school">SENAI</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Segurança em Instalações Elétricas — NR10</h4>
+                    <div class="school">SENAI</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial · Certificado</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="eletromecanica-trilha">
+
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+
+        <div class="trilha-track">
+
+            <div class="trilha-step" data-n="1">
+                <h4>Ensino Médio</h4>
+                <p>
+                    Física e matemática ajudam bastante a entender circuitos e mecanismos.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="2">
+                <h4>Curso técnico</h4>
+                <p>
+                    Eletromecânica, Eletrotécnica ou Automação Industrial, conforme o que mais te interessa.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="3">
+                <h4>Ferramentas do dia a dia</h4>
+                <p>
+                    Aprenda leitura de diagramas elétricos e normas de segurança — usadas em qualquer função da área.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="4">
+                <h4>Estágio ou Jovem Aprendiz</h4>
+                <p>
+                    Indústrias e fábricas costumam abrir vagas de entrada para estudantes técnicos.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="5">
+                <h4>Primeiro emprego</h4>
+                <p>
+                    Auxiliar de manutenção ou eletricista industrial júnior são as portas de entrada mais comuns.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
+    </dialog>
+
+</section>
+
+
+<!-- ===================== FARMÁCIA ===================== -->
+
+<section class="area-view" id="view-farmacia">
+
+    <div class="hero-banner area-banner">
+
+        <img
+            src="img farmacia.jpeg"
+            alt="Farmácia">
+
+        <div class="hero-overlay">
+
+            <div class="hero-eyebrow">Área profissional</div>
+
+            <h1>
+                Farmácia
+            </h1>
+
+            <p class="lede">
+                Dispensação de medicamentos, manipulação farmacêutica e cuidados com a saúde — presente em praticamente toda cidade.
+            </p>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-farmacia')" aria-haspopup="dialog">Saiba mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <dialog class="saiba-dialog" id="saiba-farmacia" aria-labelledby="saiba-farmacia-titulo">
+        <div class="saiba-head">
+            <h2 id="saiba-farmacia-titulo">Farmácia</h2>
+            <button type="button" class="saiba-close" onclick="this.closest('dialog').close()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="saiba-body">
+
+    <div class="area-panel" id="farmacia-exploracao">
+
+        <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
+
+        <p class="exploracao-intro">
+            A área de Farmácia envolve a dispensação de medicamentos, orientação ao paciente e, em farmácias de manipulação, a produção de fórmulas sob prescrição. É uma área da saúde presente em quase todos os bairros e cidades.
+        </p>
+
+        <div class="exploracao-stats">
+
+            <div class="xstat">
+                <div class="num">4</div>
+                <div class="lab">Profissões mapeadas</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">+</div>
+                <div class="lab">Presente em toda cidade</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">C</div>
+                <div class="lab">Exige registro no CRF</div>
+            </div>
+
+        </div>
+
+        <p style="color:var(--ink-2); max-width:600px;">
+            Indicada para quem gosta de cuidar de pessoas, tem atenção a detalhes e se interessa por saúde e medicamentos.
+        </p>
+
+    </div>
+
+
+    <div class="area-panel" id="farmacia-guia">
+
+        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
+
+        <div class="prof-grid">
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Farmácia</h3>
+
+                <p>
+                    Auxilia na dispensação de medicamentos e orienta clientes sob supervisão do farmacêutico.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.600 – 3.200</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 a 1,5 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Auxiliar de Farmácia</h3>
+
+                <p>
+                    Organiza o estoque, repõe produtos nas prateleiras e apoia o atendimento ao público.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.400 – 2.400</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">6 meses</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Balconista de Farmácia</h3>
+
+                <p>
+                    Atende o cliente no balcão, indica produtos de venda livre e opera o caixa.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.400 – 2.200</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">Sem exigência formal</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Manipulação Farmacêutica</h3>
+
+                <p>
+                    Prepara fórmulas magistrais sob prescrição, seguindo normas de boas práticas.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.800 – 3.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1,5 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="farmacia-biblioteca">
+
+        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+
+        <div class="course-list">
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Farmácia</h4>
+                    <div class="school">Etec / SENAC</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Boas Práticas de Manipulação Farmacêutica</h4>
+                    <div class="school">SENAC</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Farmácia — ênfase Hospitalar</h4>
+                    <div class="school">Etec</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Atendimento ao Cliente em Farmácias</h4>
+                    <div class="school">Sebrae</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="farmacia-trilha">
+
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+
+        <div class="trilha-track">
+
+            <div class="trilha-step" data-n="1">
+                <h4>Ensino Médio</h4>
+                <p>
+                    Biologia e química ajudam bastante a entender medicamentos e suas composições.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="2">
+                <h4>Curso técnico</h4>
+                <p>
+                    Técnico em Farmácia, com foco em dispensação, hospitalar ou manipulação.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="3">
+                <h4>Estágio supervisionado</h4>
+                <p>
+                    Etapa obrigatória do curso técnico, necessária para o registro profissional.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="4">
+                <h4>Registro no Conselho Regional de Farmácia</h4>
+                <p>
+                    Após concluir o curso e o estágio, é preciso se registrar no CRF para atuar.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="5">
+                <h4>Primeiro emprego</h4>
+                <p>
+                    Auxiliar ou técnico(a) de farmácia em drogarias e farmácias de manipulação são as portas de entrada mais comuns.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
+    </dialog>
+
+</section>
+
+
+<!-- ===================== MEIO AMBIENTE ===================== -->
+
+<section class="area-view" id="view-meioambiente">
+
+    <div class="hero-banner area-banner">
+
+        <img
+            src="img meio ambiente.jpeg"
+            alt="Meio Ambiente">
+
+        <div class="hero-overlay">
+
+            <div class="hero-eyebrow">Área profissional</div>
+
+            <h1>
+                Meio Ambiente
+            </h1>
+
+            <p class="lede">
+                Gestão ambiental, sustentabilidade e conservação de recursos naturais — uma área em crescimento constante.
+            </p>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-meioambiente')" aria-haspopup="dialog">Saiba mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <dialog class="saiba-dialog" id="saiba-meioambiente" aria-labelledby="saiba-meioambiente-titulo">
+        <div class="saiba-head">
+            <h2 id="saiba-meioambiente-titulo">Meio Ambiente</h2>
+            <button type="button" class="saiba-close" onclick="this.closest('dialog').close()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="saiba-body">
+
+    <div class="area-panel" id="meioambiente-exploracao">
+
+        <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
+
+        <p class="exploracao-intro">
+            A área de Meio Ambiente cuida da gestão de resíduos, licenciamento, educação ambiental e conservação de recursos naturais. É uma área em expansão, impulsionada por leis ambientais mais rígidas e pela busca das empresas por sustentabilidade.
+        </p>
+
+        <div class="exploracao-stats">
+
+            <div class="xstat">
+                <div class="num">4</div>
+                <div class="lab">Profissões mapeadas</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">+</div>
+                <div class="lab">Área em crescimento</div>
+            </div>
+
+            <div class="xstat">
+                <div class="num">S</div>
+                <div class="lab">Foco em sustentabilidade</div>
+            </div>
+
+        </div>
+
+        <p style="color:var(--ink-2); max-width:600px;">
+            Indicada para quem se preocupa com questões ambientais, gosta de trabalhar em campo ou com dados, e quer contribuir para um futuro mais sustentável.
+        </p>
+
+    </div>
+
+
+    <div class="area-panel" id="meioambiente-guia">
+
+        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
+
+        <div class="prof-grid">
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Meio Ambiente</h3>
+
+                <p>
+                    Monitora indicadores ambientais e apoia empresas no cumprimento de normas e licenças.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.800 – 3.800</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">2 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Agente Ambiental</h3>
+
+                <p>
+                    Fiscaliza e orienta a comunidade sobre práticas de preservação e descarte correto.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.600 – 3.000</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 ano</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Técnico(a) em Gestão de Resíduos</h3>
+
+                <p>
+                    Planeja e acompanha a coleta, separação e destinação correta de resíduos.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.800 – 3.500</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 a 2 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="prof-card">
+
+                <h3>Educador(a) Ambiental</h3>
+
+                <p>
+                    Desenvolve e conduz atividades de conscientização ambiental em escolas e empresas.
+                </p>
+
+                <div class="prof-stats">
+
+                    <div class="prof-stat">
+                        <div class="label">Faixa salarial</div>
+                        <div class="value">R$ 1.700 – 3.200</div>
+                    </div>
+
+                    <div class="prof-stat">
+                        <div class="label">Formação</div>
+                        <div class="value">1 a 2 anos</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="meioambiente-biblioteca">
+
+        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+
+        <div class="course-list">
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Meio Ambiente</h4>
+                    <div class="school">Etec / SENAI</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Gestão de Resíduos Sólidos</h4>
+                    <div class="school">SENAI</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Saneamento</h4>
+                    <div class="school">Etec</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Educação Ambiental — introdução</h4>
+                    <div class="school">Plataformas online</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="meioambiente-trilha">
+
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+
+        <div class="trilha-track">
+
+            <div class="trilha-step" data-n="1">
+                <h4>Ensino Médio</h4>
+                <p>
+                    Biologia e geografia ajudam bastante a entender ecossistemas e legislação ambiental.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="2">
+                <h4>Curso técnico</h4>
+                <p>
+                    Técnico em Meio Ambiente ou Saneamento, conforme o que mais te interessa.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="3">
+                <h4>Ferramentas do dia a dia</h4>
+                <p>
+                    Aprenda noções de legislação ambiental e licenciamento — usadas em praticamente qualquer função da área.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="4">
+                <h4>Estágio ou Jovem Aprendiz</h4>
+                <p>
+                    Empresas, ONGs e órgãos públicos costumam abrir vagas de entrada na área ambiental.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="5">
+                <h4>Primeiro emprego</h4>
+                <p>
+                    Auxiliar ou técnico(a) ambiental júnior são as portas de entrada mais comuns.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
+    </dialog>
+
+</section>
+
+
+
+    </div>
+
+</section>
+
+
+<!-- ===================== ÁREA EDUCATIVA ===================== -->
+
+<section class="page-section band" id="educativa">
+
+    <div class="band-inner">
+
+        <div class="section-label">Área Educativa:</div>
+        <h2 class="section-title">O que todo estudante precisa saber</h2>
+        <p class="section-sub">
+            Conteúdo sobre o mercado de trabalho — útil para qualquer área profissional que você escolher.
+        </p>
+
+        <div class="edu-list">
 
         <details class="edu-card" open>
 
@@ -1477,1759 +3674,37 @@ footer{
 
     </div>
 
-</section>
-
-
-<!-- ===================== DESENVOLVIMENTO DE SISTEMAS ===================== -->
-
-<section class="view" id="view-sistemas">
-
-    <div class="hero-banner area-banner">
-
-        <img
-            src="img informatica.jpeg"
-            alt="Desenvolvimento de Sistemas">
-
-        <div class="hero-overlay">
-
-            <div class="breadcrumb">
-                <span onclick="goTo('home')" style="cursor:pointer;">
-                    Início
-                </span>
-                /
-                Desenvolvimento de Sistemas
-            </div>
-
-            <h1>
-                Desenvolvimento de Sistemas
-            </h1>
-
-            <p class="lede">
-                Programação, suporte técnico, dados e produtos digitais — uma das áreas com maior demanda de profissionais no Brasil.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-tabs">
-
-        <button
-            class="area-tab active"
-            data-panel="sistemas-exploracao"
-            onclick="setTab('sistemas','exploracao')">
-            Exploração de Carreira
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="sistemas-guia"
-            onclick="setTab('sistemas','guia')">
-            Guia de Profissões
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="sistemas-biblioteca"
-            onclick="setTab('sistemas','biblioteca')">
-            Biblioteca de Cursos
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="sistemas-trilha"
-            onclick="setTab('sistemas','trilha')">
-            Trilha de Desenvolvimento
-        </button>
-
-    </div>
-
-
-    <div class="area-panel active" id="sistemas-exploracao">
-
-        <p class="exploracao-intro">
-            A área de Desenvolvimento de Sistemas envolve criar, manter e dar suporte a softwares, sites, aplicativos e sistemas de dados. É uma das áreas técnicas que mais permite entrada rápida no mercado através de cursos técnicos, com boas oportunidades de trabalho remoto.
-        </p>
-
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Alta empregabilidade técnica</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">R</div>
-                <div class="lab">Trabalho remoto comum</div>
-            </div>
-
-        </div>
-
-        <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de resolver problemas de forma lógica, tem paciência para testar e corrigir erros, e se interessa por tecnologia no dia a dia.
-        </p>
-
-    </div>
-
-
-    <div class="area-panel" id="sistemas-guia">
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-                <h3>Desenvolvedor(a) Front-end</h3>
-
-                <p>
-                    Constrói as telas e interações que o usuário vê e usa em sites e aplicativos.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 4.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Desenvolvedor(a) Back-end</h3>
-
-                <p>
-                    Cuida da lógica, banco de dados e servidores que fazem o sistema funcionar por trás das telas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.200 – 5.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1,5 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Suporte</h3>
-
-                <p>
-                    Resolve problemas de hardware, software e redes para usuários e empresas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 2.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Analista de Dados Jr.</h3>
-
-                <p>
-                    Organiza e interpreta dados para ajudar empresas a tomar decisões.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.000 – 4.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="sistemas-biblioteca">
-
-        <div class="course-list">
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Desenvolvimento de Sistemas</h4>
-                    <div class="school">SENAI</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://novo.senaipr.org.br/pt/cursos-tecnicos/desenvolvimento-de-sistemas" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Informática para Internet</h4>
-                    <div class="school">Etec</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://vestibulinho.etec.sp.gov.br/unidades-cursos/curso.asp?c=244" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Redes de Computadores</h4>
-                    <div class="school">Instituto Federal (IF)</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.ifgoiano.edu.br/home/index.php/periodicos/60-cursos-tecnicos/4947-redes-de-computadores.html" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Fundamentos de Programação</h4>
-                    <div class="school">
-                        Plataformas livres (ex: Fundação Bradesco)
-                    </div>
-                </div>
-                <a class="course-badge is-online course-link" href="https://www.ev.org.br/areas-de-interesse/programacao" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="sistemas-trilha">
-
-        <div class="trilha-track">
-
-            <div class="trilha-step" data-n="1">
-                <h4>Ensino Médio</h4>
-                <p>
-                    Se possível, escolha matérias e projetos com contato com lógica e tecnologia.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="2">
-                <h4>Curso técnico ou introdutório</h4>
-                <p>
-                    Comece com um curso técnico ou cursos gratuitos de lógica de programação.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="3">
-                <h4>Projetos práticos</h4>
-                <p>
-                    Monte um portfólio simples: um site, um app pequeno, ou análise de dados de exemplo.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="4">
-                <h4>Estágio ou Jovem Aprendiz</h4>
-                <p>
-                    Busque a primeira experiência prática em empresa — veja a Área Educativa para entender as regras.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="5">
-                <h4>Primeiro emprego</h4>
-                <p>
-                    Cargos júnior de suporte, front-end ou dados são as portas de entrada mais comuns.
-                </p>
-            </div>
-
-        </div>
-
     </div>
 
 </section>
 
 
-<!-- ===================== ALIMENTAÇÃO ===================== -->
+<!-- ===================== SOBRE ===================== -->
 
-<section class="view" id="view-alimentacao">
+<section class="page-section" id="sobre">
 
-    <div class="hero-banner area-banner">
+    <div class="about-block">
 
-        <img
-            src="img alimentos.jpeg"
-            alt="Alimentação">
 
-        <div class="hero-overlay">
-
-            <div class="breadcrumb">
-                <span onclick="goTo('home')" style="cursor:pointer;">
-                    Início
-                </span>
-                /
-                Alimentação
-            </div>
-
-            <h1>Alimentação</h1>
-
-            <p class="lede">
-                Cozinha, confeitaria, nutrição e segurança alimentar — uma área com demanda constante em restaurantes, indústrias e serviços de saúde.
-            </p>
-
-        </div>
-
+    <div class="section-label">
+        Sobre o projeto:
     </div>
 
+    <h2 style="font-size:1.5rem;">
+        Por que o INTEGRA existe
+    </h2>
 
-    <div class="area-tabs">
+    <p>
+        Somos estudantes do Colégio Estadual Euzébio da Mota. O projeto nasceu da observação de um problema real: muitos estudantes enfrentam dificuldades para escolher uma profissão, encontrar cursos e acessar oportunidades. Antes de pensar na tecnologia, buscamos entender essas necessidades através de pesquisa.
+    </p>
 
-        <button
-            class="area-tab active"
-            data-panel="alimentacao-exploracao"
-            onclick="setTab('alimentacao','exploracao')">
-            Exploração de Carreira
-        </button>
+    <p>
+        O INTEGRA une tecnologia, criatividade e trabalho em equipe para oferecer uma ferramenta prática, acessível e eficiente — pensada para estudantes do Ensino Médio e dos Cursos Técnicos tomarem decisões com mais segurança sobre sua trajetória acadêmica e profissional.
+    </p>
 
-        <button
-            class="area-tab"
-            data-panel="alimentacao-guia"
-            onclick="setTab('alimentacao','guia')">
-            Guia de Profissões
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="alimentacao-biblioteca"
-            onclick="setTab('alimentacao','biblioteca')">
-            Biblioteca de Cursos
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="alimentacao-trilha"
-            onclick="setTab('alimentacao','trilha')">
-            Trilha de Desenvolvimento
-        </button>
-
+    <div class="credit">
+        Miguel · Ana Carolina · Lucca · Thauane · Anthony · Nicolas
     </div>
-
-
-    <div class="area-panel active" id="alimentacao-exploracao">
-
-        <p class="exploracao-intro">
-            A área de Alimentação vai da produção de pratos e doces até o controle de qualidade e a orientação nutricional. É uma área prática, com entrada no mercado geralmente mais rápida do que outras áreas técnicas.
-        </p>
-
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Demanda constante</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">P</div>
-                <div class="lab">Forte caráter prático</div>
-            </div>
-
-        </div>
-
-        <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de trabalho manual, tem atenção a detalhes e higiene, e se interessa por nutrição ou gastronomia.
-        </p>
-
-    </div>
-
-
-    <div class="area-panel" id="alimentacao-guia">
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Cozinheiro(a)</h3>
-
-                <p>
-                    Prepara pratos seguindo receitas e padrões de qualidade em restaurantes e cozinhas industriais.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 2.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Confeiteiro(a)</h3>
-
-                <p>
-                    Produz doces, bolos e sobremesas para eventos, padarias e confeitarias.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 3.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Nutrição</h3>
-
-                <p>
-                    Auxilia nutricionistas no planejamento de cardápios e no acompanhamento nutricional.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Gestor(a) de Segurança Alimentar</h3>
-
-                <p>
-                    Garante que a produção de alimentos siga normas de higiene e qualidade.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.200 – 4.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="alimentacao-biblioteca">
-
-        <div class="course-list">
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Cozinha</h4>
-                    <div class="school">SENAC</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.pr.senac.br/cursos/?c=41984" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Confeitaria</h4>
-                    <div class="school">SENAC</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.sp.senac.br/cursos-tecnicos/curso-tecnico-em-confeitaria-presencial-ead" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Nutrição e Dietética</h4>
-                    <div class="school">Etec</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.cps.sp.gov.br/cursos-etec/nutricao-e-dietetica/" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Boas Práticas de Manipulação de Alimentos</h4>
-                    <div class="school">
-                        Vigilância Sanitária / SENAI
-                    </div>
-                </div>
-                <a class="course-badge is-online course-link" href="https://www.sp.senai.br/curso/boas-praticas-de-fabricacao-para-manipuladores-de-alimentos/105653" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="alimentacao-trilha">
-
-        <div class="trilha-track">
-
-            <div class="trilha-step" data-n="1">
-                <h4>Ensino Médio</h4>
-                <p>
-                    Interesse por biologia, química e prática são um bom ponto de partida.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="2">
-                <h4>Curso técnico</h4>
-                <p>
-                    Escolha entre cozinha, confeitaria ou nutrição conforme seu interesse.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="3">
-                <h4>Prática supervisionada</h4>
-                <p>
-                    Cozinhas-escola e eventos são boas oportunidades de treino real.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="4">
-                <h4>Estágio ou Jovem Aprendiz</h4>
-                <p>
-                    Restaurantes, padarias e redes de alimentação costumam abrir vagas de entrada.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="5">
-                <h4>Primeiro emprego</h4>
-                <p>
-                    Auxiliar de cozinha, confeiteiro júnior ou técnico de nutrição são portas de entrada comuns.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===================== ADMINISTRAÇÃO ===================== -->
-
-<section class="view" id="view-administracao">
-
-    <div class="hero-banner area-banner">
-
-        <img
-            src="img administração.jpeg"
-            alt="Administração">
-
-        <div class="hero-overlay">
-
-            <div class="breadcrumb">
-                <span onclick="goTo('home')" style="cursor:pointer;">
-                    Início
-                </span>
-                /
-                Administração
-            </div>
-
-            <h1>Administração</h1>
-
-            <p class="lede">
-                Rotinas administrativas, finanças, recursos humanos e empreendedorismo — a área que sustenta o funcionamento de qualquer empresa.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-tabs">
-
-        <button
-            class="area-tab active"
-            data-panel="administracao-exploracao"
-            onclick="setTab('administracao','exploracao')">
-            Exploração de Carreira
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="administracao-guia"
-            onclick="setTab('administracao','guia')">
-            Guia de Profissões
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="administracao-biblioteca"
-            onclick="setTab('administracao','biblioteca')">
-            Biblioteca de Cursos
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="administracao-trilha"
-            onclick="setTab('administracao','trilha')">
-            Trilha de Desenvolvimento
-        </button>
-
-    </div>
-
-
-    <div class="area-panel active" id="administracao-exploracao">
-
-        <p class="exploracao-intro">
-            A área de Administração cobre a organização de processos, pessoas e recursos dentro de uma empresa. É uma área versátil, presente em qualquer setor, e também é a base para quem quer empreender.
-        </p>
-
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Presente em todo setor</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">E</div>
-                <div class="lab">Base para empreender</div>
-            </div>
-
-        </div>
-
-        <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem é organizado, gosta de lidar com pessoas e números, e quer entender como uma empresa funciona por dentro.
-        </p>
-
-    </div>
-
-
-    <div class="area-panel" id="administracao-guia">
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Assistente Administrativo(a)</h3>
-
-                <p>
-                    Organiza documentos, agendas e rotinas do dia a dia de um setor ou empresa.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 2.600</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Auxiliar de RH</h3>
-
-                <p>
-                    Apoia processos de recrutamento, folha de pagamento e benefícios dos funcionários.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.600 – 3.000</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Analista Financeiro(a) Jr.</h3>
-
-                <p>
-                    Acompanha contas, pagamentos e relatórios financeiros da empresa.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.000 – 4.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Empreendedor(a) / MEI</h3>
-
-                <p>
-                    Conduz seu próprio pequeno negócio, cuidando de vendas, custos e clientes.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">Variável</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">Sem exigência formal</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="administracao-biblioteca">
-
-        <div class="course-list">
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Administração</h4>
-                    <div class="school">Etec / SENAC</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.sp.senac.br/cursos-tecnicos/curso-tecnico-em-administracao-presencial-ead" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Recursos Humanos</h4>
-                    <div class="school">SENAC</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.sp.senac.br/cursos-tecnicos/curso-tecnico-em-recursos-humanos-presencial-ead" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Finanças</h4>
-                    <div class="school">Etec</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.cps.sp.gov.br/cursos-etec/financas/" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Formação MEI — como abrir seu negócio</h4>
-                    <div class="school">Sebrae</div>
-                </div>
-                <a class="course-badge is-online course-link" href="https://www.sebraeplay.com.br/cursos/mei-como-iniciar-o-seu-negocio" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="administracao-trilha">
-
-        <div class="trilha-track">
-
-            <div class="trilha-step" data-n="1">
-                <h4>Ensino Médio</h4>
-                <p>
-                    Organização, comunicação e noções básicas de matemática financeira ajudam bastante.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="2">
-                <h4>Curso técnico</h4>
-                <p>
-                    Administração, RH ou Finanças, conforme o que mais te interessa.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="3">
-                <h4>Ferramentas do dia a dia</h4>
-                <p>
-                    Aprenda planilhas e noções de atendimento — usadas em praticamente qualquer função administrativa.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="4">
-                <h4>Estágio ou Jovem Aprendiz</h4>
-                <p>
-                    Empresas de todos os portes costumam abrir vagas administrativas de entrada.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="5">
-                <h4>Primeiro emprego</h4>
-                <p>
-                    Assistente administrativo ou auxiliar de RH são as portas de entrada mais comuns.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===================== ELETROMECÂNICA ===================== -->
-
-<section class="view" id="view-eletromecanica">
-
-    <div class="hero-banner area-banner">
-
-        <img
-            src="img engenharia.jpeg"
-            alt="Eletromecânica">
-
-        <div class="hero-overlay">
-
-            <div class="breadcrumb">
-                <span onclick="goTo('home')" style="cursor:pointer;">
-                    Início
-                </span>
-                /
-                Eletromecânica
-            </div>
-
-            <h1>
-                Eletromecânica
-            </h1>
-
-            <p class="lede">
-                Instalação, manutenção elétrica e mecânica de máquinas e equipamentos — a área que mantém a indústria funcionando.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-tabs">
-
-        <button
-            class="area-tab active"
-            data-panel="eletromecanica-exploracao"
-            onclick="setTab('eletromecanica','exploracao')">
-            Exploração de Carreira
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="eletromecanica-guia"
-            onclick="setTab('eletromecanica','guia')">
-            Guia de Profissões
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="eletromecanica-biblioteca"
-            onclick="setTab('eletromecanica','biblioteca')">
-            Biblioteca de Cursos
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="eletromecanica-trilha"
-            onclick="setTab('eletromecanica','trilha')">
-            Trilha de Desenvolvimento
-        </button>
-
-    </div>
-
-
-    <div class="area-panel active" id="eletromecanica-exploracao">
-
-        <p class="exploracao-intro">
-            A área de Eletromecânica reúne conhecimentos de eletricidade e mecânica aplicados à instalação, operação e manutenção de máquinas, motores e equipamentos industriais. É uma área essencial para fábricas, usinas e qualquer setor que dependa de maquinário.
-        </p>
-
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Alta demanda industrial</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">S</div>
-                <div class="lab">Foco em segurança do trabalho</div>
-            </div>
-
-        </div>
-
-        <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de trabalhar com as mãos, tem raciocínio lógico para entender circuitos e mecanismos, e se interessa por como as máquinas funcionam por dentro.
-        </p>
-
-    </div>
-
-
-    <div class="area-panel" id="eletromecanica-guia">
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Eletricista Industrial</h3>
-
-                <p>
-                    Instala, testa e repara sistemas elétricos de máquinas e instalações industriais.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.000 – 4.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Mecânico(a) de Manutenção</h3>
-
-                <p>
-                    Realiza manutenção preventiva e corretiva em motores, correias e peças mecânicas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Eletromecânica</h3>
-
-                <p>
-                    Une eletricidade e mecânica para instalar, operar e dar manutenção em equipamentos industriais.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.200 – 5.000</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Automação Industrial</h3>
-
-                <p>
-                    Programa e mantém sistemas automatizados que controlam linhas de produção.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.500 – 5.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="eletromecanica-biblioteca">
-
-        <div class="course-list">
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Eletromecânica</h4>
-                    <div class="school">Etec / SENAI</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://ifpr.edu.br/curitiba/nossos-cursos/cursos-tecnicos-subsequentes/eletromecanica-2/" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Eletrotécnica</h4>
-                    <div class="school">SENAI</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://novo.senaipr.org.br/pt/cursos-tecnicos/eletromecanica" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Automação Industrial</h4>
-                    <div class="school">SENAI</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://novo.senaipr.org.br/pt/cursos-tecnicos/automacao-industrial" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Segurança em Instalações Elétricas — NR10</h4>
-                    <div class="school">SENAI</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://cursos.sesisenai.org.br/cursos-de-nr/nr-seguranca-em-instalacoes-e-servicos-com-eletricidade-basico/394" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="eletromecanica-trilha">
-
-        <div class="trilha-track">
-
-            <div class="trilha-step" data-n="1">
-                <h4>Ensino Médio</h4>
-                <p>
-                    Física e matemática ajudam bastante a entender circuitos e mecanismos.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="2">
-                <h4>Curso técnico</h4>
-                <p>
-                    Eletromecânica, Eletrotécnica ou Automação Industrial, conforme o que mais te interessa.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="3">
-                <h4>Ferramentas do dia a dia</h4>
-                <p>
-                    Aprenda leitura de diagramas elétricos e normas de segurança — usadas em qualquer função da área.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="4">
-                <h4>Estágio ou Jovem Aprendiz</h4>
-                <p>
-                    Indústrias e fábricas costumam abrir vagas de entrada para estudantes técnicos.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="5">
-                <h4>Primeiro emprego</h4>
-                <p>
-                    Auxiliar de manutenção ou eletricista industrial júnior são as portas de entrada mais comuns.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===================== FARMÁCIA ===================== -->
-
-<section class="view" id="view-farmacia">
-
-    <div class="hero-banner area-banner">
-
-        <img
-            src="img farmacia.jpeg"
-            alt="Farmácia">
-
-        <div class="hero-overlay">
-
-            <div class="breadcrumb">
-                <span onclick="goTo('home')" style="cursor:pointer;">
-                    Início
-                </span>
-                /
-                Farmácia
-            </div>
-
-            <h1>
-                Farmácia
-            </h1>
-
-            <p class="lede">
-                Dispensação de medicamentos, manipulação farmacêutica e cuidados com a saúde — presente em praticamente toda cidade.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-tabs">
-
-        <button
-            class="area-tab active"
-            data-panel="farmacia-exploracao"
-            onclick="setTab('farmacia','exploracao')">
-            Exploração de Carreira
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="farmacia-guia"
-            onclick="setTab('farmacia','guia')">
-            Guia de Profissões
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="farmacia-biblioteca"
-            onclick="setTab('farmacia','biblioteca')">
-            Biblioteca de Cursos
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="farmacia-trilha"
-            onclick="setTab('farmacia','trilha')">
-            Trilha de Desenvolvimento
-        </button>
-
-    </div>
-
-
-    <div class="area-panel active" id="farmacia-exploracao">
-
-        <p class="exploracao-intro">
-            A área de Farmácia envolve a dispensação de medicamentos, orientação ao paciente e, em farmácias de manipulação, a produção de fórmulas sob prescrição. É uma área da saúde presente em quase todos os bairros e cidades.
-        </p>
-
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Presente em toda cidade</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">C</div>
-                <div class="lab">Exige registro no CRF</div>
-            </div>
-
-        </div>
-
-        <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de cuidar de pessoas, tem atenção a detalhes e se interessa por saúde e medicamentos.
-        </p>
-
-    </div>
-
-
-    <div class="area-panel" id="farmacia-guia">
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Farmácia</h3>
-
-                <p>
-                    Auxilia na dispensação de medicamentos e orienta clientes sob supervisão do farmacêutico.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.600 – 3.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 1,5 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Auxiliar de Farmácia</h3>
-
-                <p>
-                    Organiza o estoque, repõe produtos nas prateleiras e apoia o atendimento ao público.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.400 – 2.400</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Balconista de Farmácia</h3>
-
-                <p>
-                    Atende o cliente no balcão, indica produtos de venda livre e opera o caixa.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.400 – 2.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">Sem exigência formal</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Manipulação Farmacêutica</h3>
-
-                <p>
-                    Prepara fórmulas magistrais sob prescrição, seguindo normas de boas práticas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1,5 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="farmacia-biblioteca">
-
-        <div class="course-list">
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Farmácia</h4>
-                    <div class="school">Etec / SENAC</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.pr.senac.br/cursos/?c=9906" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Boas Práticas de Manipulação Farmacêutica</h4>
-                    <div class="school">SENAC</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.sp.senac.br/cursos-livres/curso-de-manipulacao-de-capsulas-em-farmacias" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Farmácia — ênfase Hospitalar</h4>
-                    <div class="school">Etec</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://etecdecasabranca.cps.sp.gov.br/tecnico-em-farmacia/" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Atendimento ao Cliente em Farmácias</h4>
-                    <div class="school">Sebrae</div>
-                </div>
-                <a class="course-badge is-online course-link" href="https://www.sebraeplay.com.br/content/atendimento-de-qualidade-e-diferencial-para-pequenas-farmacias" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="farmacia-trilha">
-
-        <div class="trilha-track">
-
-            <div class="trilha-step" data-n="1">
-                <h4>Ensino Médio</h4>
-                <p>
-                    Biologia e química ajudam bastante a entender medicamentos e suas composições.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="2">
-                <h4>Curso técnico</h4>
-                <p>
-                    Técnico em Farmácia, com foco em dispensação, hospitalar ou manipulação.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="3">
-                <h4>Estágio supervisionado</h4>
-                <p>
-                    Etapa obrigatória do curso técnico, necessária para o registro profissional.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="4">
-                <h4>Registro no Conselho Regional de Farmácia</h4>
-                <p>
-                    Após concluir o curso e o estágio, é preciso se registrar no CRF para atuar.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="5">
-                <h4>Primeiro emprego</h4>
-                <p>
-                    Auxiliar ou técnico(a) de farmácia em drogarias e farmácias de manipulação são as portas de entrada mais comuns.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===================== MEIO AMBIENTE ===================== -->
-
-<section class="view" id="view-meioambiente">
-
-    <div class="hero-banner area-banner">
-
-        <img
-            src="img meio ambiente.jpeg"
-            alt="Meio Ambiente">
-
-        <div class="hero-overlay">
-
-            <div class="breadcrumb">
-                <span onclick="goTo('home')" style="cursor:pointer;">
-                    Início
-                </span>
-                /
-                Meio Ambiente
-            </div>
-
-            <h1>
-                Meio Ambiente
-            </h1>
-
-            <p class="lede">
-                Gestão ambiental, sustentabilidade e conservação de recursos naturais — uma área em crescimento constante.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-tabs">
-
-        <button
-            class="area-tab active"
-            data-panel="meioambiente-exploracao"
-            onclick="setTab('meioambiente','exploracao')">
-            Exploração de Carreira
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="meioambiente-guia"
-            onclick="setTab('meioambiente','guia')">
-            Guia de Profissões
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="meioambiente-biblioteca"
-            onclick="setTab('meioambiente','biblioteca')">
-            Biblioteca de Cursos
-        </button>
-
-        <button
-            class="area-tab"
-            data-panel="meioambiente-trilha"
-            onclick="setTab('meioambiente','trilha')">
-            Trilha de Desenvolvimento
-        </button>
-
-    </div>
-
-
-    <div class="area-panel active" id="meioambiente-exploracao">
-
-        <p class="exploracao-intro">
-            A área de Meio Ambiente cuida da gestão de resíduos, licenciamento, educação ambiental e conservação de recursos naturais. É uma área em expansão, impulsionada por leis ambientais mais rígidas e pela busca das empresas por sustentabilidade.
-        </p>
-
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Área em crescimento</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">S</div>
-                <div class="lab">Foco em sustentabilidade</div>
-            </div>
-
-        </div>
-
-        <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem se preocupa com questões ambientais, gosta de trabalhar em campo ou com dados, e quer contribuir para um futuro mais sustentável.
-        </p>
-
-    </div>
-
-
-    <div class="area-panel" id="meioambiente-guia">
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Meio Ambiente</h3>
-
-                <p>
-                    Monitora indicadores ambientais e apoia empresas no cumprimento de normas e licenças.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Agente Ambiental</h3>
-
-                <p>
-                    Fiscaliza e orienta a comunidade sobre práticas de preservação e descarte correto.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.600 – 3.000</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Gestão de Resíduos</h3>
-
-                <p>
-                    Planeja e acompanha a coleta, separação e destinação correta de resíduos.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Educador(a) Ambiental</h3>
-
-                <p>
-                    Desenvolve e conduz atividades de conscientização ambiental em escolas e empresas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.700 – 3.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="meioambiente-biblioteca">
-
-        <div class="course-list">
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Meio Ambiente</h4>
-                    <div class="school">Etec / SENAI</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.senaipr.org.br/tecnologiaeinovacao/nossarede/meioambienteequimica/" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Gestão de Resíduos Sólidos</h4>
-                    <div class="school">SENAI</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.senaipr.org.br/tecnologiaeinovacao/nossarede/meioambienteequimica/" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Técnico em Saneamento</h4>
-                    <div class="school">Etec</div>
-                </div>
-                <a class="course-badge is-presencial course-link" href="https://www.cps.sp.gov.br/cursos-etec/saneamento/" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-            <div class="course-card">
-                <div>
-                    <h4>Educação Ambiental — introdução</h4>
-                    <div class="school">Plataformas online</div>
-                </div>
-                <a class="course-badge is-online course-link" href="https://senaigoias.com.br/eadcursos/senai/curso/19447/introducao-a-educacao-ambiental" target="_blank" rel="noopener noreferrer">Link</a>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="area-panel" id="meioambiente-trilha">
-
-        <div class="trilha-track">
-
-            <div class="trilha-step" data-n="1">
-                <h4>Ensino Médio</h4>
-                <p>
-                    Biologia e geografia ajudam bastante a entender ecossistemas e legislação ambiental.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="2">
-                <h4>Curso técnico</h4>
-                <p>
-                    Técnico em Meio Ambiente ou Saneamento, conforme o que mais te interessa.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="3">
-                <h4>Ferramentas do dia a dia</h4>
-                <p>
-                    Aprenda noções de legislação ambiental e licenciamento — usadas em praticamente qualquer função da área.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="4">
-                <h4>Estágio ou Jovem Aprendiz</h4>
-                <p>
-                    Empresas, ONGs e órgãos públicos costumam abrir vagas de entrada na área ambiental.
-                </p>
-            </div>
-
-            <div class="trilha-step" data-n="5">
-                <h4>Primeiro emprego</h4>
-                <p>
-                    Auxiliar ou técnico(a) ambiental júnior são as portas de entrada mais comuns.
-                </p>
-            </div>
-
-        </div>
 
     </div>
 
@@ -3239,107 +3714,262 @@ footer{
 
 
 <footer>
-    <div>
-        INTEGRA — TCC 2026
+    <div class="footer-inner">
+        <span>INTEGRA — TCC 2026</span>
+        <a href="#inicio">Voltar ao topo ↑</a>
     </div>
 </footer>
 
-
 <script>
+// ================== ÁREAS ==================
 
-function goTo(view){
+const AREAS = {
+    sistemas:       { nome:'Desenvolvimento de Sistemas', desc:'Programação, suporte técnico, dados e produtos digitais.' },
+    alimentacao:    { nome:'Alimentação',                 desc:'Cozinha, confeitaria, nutrição e segurança alimentar.' },
+    administracao:  { nome:'Administração',               desc:'Rotinas administrativas, finanças, RH e empreendedorismo.' },
+    eletromecanica: { nome:'Eletromecânica',              desc:'Instalação, manutenção elétrica e mecânica de máquinas e equipamentos.' },
+    farmacia:       { nome:'Farmácia',                    desc:'Dispensação de medicamentos, manipulação farmacêutica e atendimento ao público.' },
+    meioambiente:   { nome:'Meio Ambiente',               desc:'Gestão ambiental, resíduos e conservação de recursos naturais.' }
+};
 
-    document.querySelectorAll('.view').forEach(v => {
-        v.classList.remove('active');
+// Mostra uma área (sem trocar de página). Se "rolar" for true, leva o usuário até ela.
+function showArea(area, rolar){
+
+    document.querySelectorAll('.area-view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + area).classList.add('active');
+
+    document.querySelectorAll('.pick').forEach(p => {
+        p.classList.toggle('active', p.dataset.area === area);
     });
 
-    document.getElementById('view-' + view).classList.add('active');
-
-
-    // Elementos exclusivos da página inicial
-
-    const homeEduBand = document.getElementById('home-edu-band');
-    const homeAbout = document.getElementById('home-about');
-
-    if(homeEduBand){
-        homeEduBand.style.display = (view === 'home') ? 'block' : 'none';
+    // deixa o botão escolhido visível no seletor (útil no celular)
+    const pick = document.querySelector('.pick[data-area="' + area + '"]');
+    if(pick){
+        pick.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
     }
 
-    if(homeAbout){
-        homeAbout.style.display = (view === 'home') ? 'block' : 'none';
+    if(rolar){
+        document.getElementById('areas').scrollIntoView({ behavior:'smooth' });
     }
-
-
-    // Botão ativo do menu
-
-    document.querySelectorAll('.nav-btn').forEach(b => {
-        b.classList.remove('active');
-    });
-
-    const btn = document.querySelector(
-        '.nav-btn[data-view="' + view + '"]'
-    );
-
-    if(btn){
-        btn.classList.add('active');
-    }
-
-
-    // Fecha o menu mobile
-
-    document.querySelector('nav.mainnav').classList.remove('open');
-
-
-    // Volta para o topo
-
-    window.scrollTo({
-        top:0,
-        behavior:'auto'
-    });
-
 }
 
 
-function setTab(area, tab){
+// ================== SAIBA MAIS ==================
+// Abre a janela com os detalhes da área (Esc, botão ✕ ou clique fora fecham).
 
-    document.querySelectorAll(
-        '#view-' + area + ' .area-tab'
-    ).forEach(t => {
-        t.classList.remove('active');
-    });
-
-
-    document.querySelectorAll(
-        '#view-' + area + ' .area-panel'
-    ).forEach(p => {
-        p.classList.remove('active');
-    });
-
-
-    const tabButton = document.querySelector(
-        '#view-' + area +
-        ' [data-panel="' + area + '-' + tab + '"]'
-    );
-
-    if(tabButton){
-        tabButton.classList.add('active');
-    }
-
-
-    const panel = document.getElementById(
-        area + '-' + tab
-    );
-
-    if(panel){
-        panel.classList.add('active');
-    }
-
+function abrirSaibaMais(id){
+    const d = document.getElementById(id);
+    if(!d) return;
+    d.showModal();
+    d.querySelector('.saiba-body').scrollTop = 0;
+    document.body.classList.add('saiba-open');
 }
 
+document.querySelectorAll('.saiba-dialog').forEach(d => {
+    d.addEventListener('click', e => { if(e.target === d) d.close(); });
+    d.addEventListener('close', () => document.body.classList.remove('saiba-open'));
+});
 
-// Inicialização
 
-goTo('home');
+// ================== QUIZ ==================
+// Cada resposta soma pontos para uma ou mais áreas.
+
+const PERGUNTAS = [
+    {
+        q:'O que você mais gosta de fazer no tempo livre?',
+        opcoes:[
+            { t:'Mexer no computador, em jogos ou aplicativos', p:{ sistemas:2 } },
+            { t:'Cozinhar ou testar receitas novas',            p:{ alimentacao:2 } },
+            { t:'Organizar coisas, planejar ou vender algo',    p:{ administracao:2 } },
+            { t:'Consertar ou desmontar objetos',               p:{ eletromecanica:2 } },
+            { t:'Ajudar e cuidar de outras pessoas',            p:{ farmacia:2 } },
+            { t:'Estar ao ar livre, em contato com a natureza', p:{ meioambiente:2 } }
+        ]
+    },
+    {
+        q:'Qual dessas matérias você mais curte?',
+        opcoes:[
+            { t:'Matemática', p:{ sistemas:1, administracao:1, eletromecanica:1 } },
+            { t:'Física',     p:{ eletromecanica:2 } },
+            { t:'Química',    p:{ farmacia:1, alimentacao:1 } },
+            { t:'Biologia',   p:{ farmacia:1, meioambiente:1, alimentacao:1 } },
+            { t:'Geografia',  p:{ meioambiente:2 } },
+            { t:'Sociologia ou Português', p:{ administracao:2 } }
+        ]
+    },
+    {
+        q:'Como você imagina seu ambiente de trabalho?',
+        opcoes:[
+            { t:'Na frente do computador, talvez até de casa',   p:{ sistemas:2 } },
+            { t:'Numa cozinha movimentada',                      p:{ alimentacao:2 } },
+            { t:'Num escritório, lidando com pessoas e números', p:{ administracao:2 } },
+            { t:'Numa fábrica ou oficina, cheia de máquinas',    p:{ eletromecanica:2 } },
+            { t:'Numa farmácia ou hospital, atendendo pessoas',  p:{ farmacia:2 } },
+            { t:'Em campo, visitando áreas naturais e empresas', p:{ meioambiente:2 } }
+        ]
+    },
+    {
+        q:'O que mais te motiva?',
+        opcoes:[
+            { t:'Resolver problemas com lógica e criar coisas novas', p:{ sistemas:2, eletromecanica:1 } },
+            { t:'Ver o resultado do meu trabalho feito à mão',        p:{ alimentacao:2, eletromecanica:1 } },
+            { t:'Ter meu próprio negócio um dia',                     p:{ administracao:2, alimentacao:1 } },
+            { t:'Cuidar da saúde das pessoas',                        p:{ farmacia:2 } },
+            { t:'Proteger o planeta para o futuro',                   p:{ meioambiente:2 } }
+        ]
+    }
+];
+
+let passo = 0;
+let respostas = [];
+const quizCard = document.getElementById('quiz-card');
+
+function renderPergunta(){
+
+    const atual = PERGUNTAS[passo];
+    const letras = 'ABCDEF';
+
+    quizCard.innerHTML = `
+        <div class="quiz-top">
+            <span>Pergunta ${passo + 1} de ${PERGUNTAS.length}</span>
+            ${passo > 0 ? '<button class="quiz-back" onclick="voltarPergunta()">← Voltar</button>' : ''}
+        </div>
+        <div class="quiz-bar"><span style="width:${(passo / PERGUNTAS.length) * 100}%"></span></div>
+        <p class="quiz-q">${atual.q}</p>
+        <div class="quiz-options">
+            ${atual.opcoes.map((o, i) => `
+                <button class="quiz-opt" onclick="responder(${i})">
+                    <span class="key">letras[i]</span>{o.t}
+                </button>`).join('')}
+        </div>
+    `;
+}
+
+let travado = false;
+
+function responder(i){
+    if(travado) return;
+    travado = true;
+    setTimeout(() => travado = false, 250);
+
+    respostas[passo] = i;
+    passo++;
+    if(passo < PERGUNTAS.length){
+        renderPergunta();
+    } else {
+        renderResultado();
+    }
+}
+
+function voltarPergunta(){
+    if(passo > 0){
+        passo--;
+        renderPergunta();
+    }
+}
+
+function refazerQuiz(){
+    passo = 0;
+    respostas = [];
+    renderPergunta();
+}
+
+function renderResultado(){
+
+    // soma os pontos
+    const pontos = {};
+    Object.keys(AREAS).forEach(a => pontos[a] = 0);
+
+    respostas.forEach((r, i) => {
+        const p = PERGUNTAS[i].opcoes[r].p;
+        Object.keys(p).forEach(a => pontos[a] += p[a]);
+    });
+
+    const ranking = Object.keys(pontos).sort((a, b) => pontos[b] - pontos[a]);
+    const max = pontos[ranking[0]] || 1;
+    const vencedora = ranking[0];
+
+    quizCard.innerHTML = `
+        <div class="quiz-result">
+            <div class="quiz-bar"><span style="width:100%"></span></div>
+            <div class="eyebrow">Sua área recomendada</div>
+            <h3>${AREAS[vencedora].nome}</h3>
+            <p>${AREAS[vencedora].desc}</p>
+
+            <div class="match-list">
+                ${ranking.slice(0, 3).map((a, i) => `
+                    <div class="match-row ${i === 0 ? 'top' : ''}">
+                        <span>${AREAS[a].nome}</span>
+                        <div class="bar"><span style="width:${Math.round(pontos[a] / max * 100)}%"></span></div>
+                        <span class="pct">${pontos[a]} pts</span>
+                    </div>`).join('')}
+            </div>
+
+            <div class="quiz-actions">
+                <button class="btn btn-primary" onclick="showArea('${vencedora}', true)">Ver área completa →</button>
+                <button class="btn btn-line" onclick="refazerQuiz()">Refazer quiz</button>
+            </div>
+        </div>
+    `;
+}
+
+renderPergunta();
+
+
+// ================== MENU E ROLAGEM ==================
+
+// menu do celular/tablet: abre, fecha ao clicar num link, fora dele ou com Esc
+const nav = document.getElementById('mainnav');
+const navToggle = document.getElementById('nav-toggle');
+
+function setMenu(aberto){
+    nav.classList.toggle('open', aberto);
+    navToggle.setAttribute('aria-expanded', aberto);
+    navToggle.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+    navToggle.querySelector('.nav-icon').textContent = aberto ? '✕' : '☰';
+}
+
+navToggle.addEventListener('click', e => {
+    e.stopPropagation();
+    setMenu(!nav.classList.contains('open'));
+});
+
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+document.addEventListener('click', e => {
+    if(!nav.contains(e.target)) setMenu(false);
+});
+
+document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') setMenu(false);
+});
+
+// se a tela aumentar (ex.: girar o tablet), fecha a gaveta
+window.addEventListener('resize', () => {
+    if(window.innerWidth > 880) setMenu(false);
+});
+
+// destaca no menu a seção que está na tela
+const secoes = document.querySelectorAll('.page-section');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if(e.isIntersecting){
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.section === e.target.id);
+            });
+        }
+    });
+}, { rootMargin:'-45% 0px -50% 0px' });
+
+secoes.forEach(s => observer.observe(s));
+
+// barra de progresso no topo
+window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+    document.getElementById('scroll-progress').style.width = pct + '%';
+});
 
 </script>
 
