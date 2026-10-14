@@ -20,6 +20,8 @@
     --paper-2:#ECEAE2;
     --gold:#D9A441;
     --gold-dark:#B4842E;
+    --orange:#E08A2E;
+    --orange-dark:#B8651A;
     --sage:#6E8F7C;
     --line:rgba(20,41,61,0.14);
     --white:#FFFFFF;
@@ -548,52 +550,6 @@ main{
 
 
 
-.prof-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:16px;
-}
-
-.prof-card{
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    background:var(--white);
-    padding:22px;
-}
-
-.prof-card h3{
-    font-size:1.1rem;
-}
-
-.prof-card p{
-    color:var(--ink-2);
-    font-size:0.88rem;
-    margin-top:8px;
-}
-
-.prof-stats{
-    display:flex;
-    gap:18px;
-    margin-top:16px;
-    padding-top:14px;
-    border-top:1px dashed var(--line);
-}
-
-.prof-stat .label{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.68rem;
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    color:var(--sage);
-}
-
-.prof-stat .value{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.98rem;
-    font-weight:500;
-    margin-top:3px;
-}
-
 .course-list{
     display:grid;
     gap:12px;
@@ -649,27 +605,18 @@ main{
     outline-offset:2px;
 }
 
-.course-badge.is-presencial{
-    background:var(--paper-2);
-    border-color:var(--ink);
-    color:var(--ink);
-}
-
-.course-badge.is-presencial:hover{
-    background:var(--ink);
-    color:var(--paper);
-}
-
+.course-badge.is-presencial,
 .course-badge.is-online{
-    background:rgba(217,164,65,0.12);
-    border-color:var(--gold-dark);
-    color:var(--gold-dark);
+    background:var(--orange);
+    border-color:var(--orange-dark);
+    color:var(--ink);
 }
 
+.course-badge.is-presencial:hover,
 .course-badge.is-online:hover{
-    background:var(--gold);
-    border-color:var(--gold);
-    color:var(--ink);
+    background:var(--orange-dark);
+    border-color:var(--orange-dark);
+    color:var(--white);
 }
 
 .trilha-track{
@@ -723,42 +670,6 @@ main{
     margin-bottom:30px;
 }
 
-.exploracao-stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:16px;
-    margin-bottom:36px;
-}
-
-.xstat{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:22px 20px;
-    transition:border-color .15s, transform .15s;
-}
-
-.xstat:hover{
-    border-color:var(--gold);
-    transform:translateY(-2px);
-}
-
-.xstat .num{
-    font-family:'Fraunces',serif;
-    font-size:2.1rem;
-    color:var(--ink);
-    font-weight:600;
-}
-
-.xstat .lab{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.72rem;
-    color:var(--sage);
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    margin-top:6px;
-}
-
 /* ---------- Footer ---------- */
 
 
@@ -768,7 +679,7 @@ main{
 }
 
 /* =====================================================
-   LAYOUT NOVO — página única + quiz
+   LAYOUT NOVO — página única
    ===================================================== */
 
 a{
@@ -847,7 +758,7 @@ a{
     margin:32px 0 0;
     padding:0;
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:0;
     position:relative;
 }
@@ -923,202 +834,6 @@ a{
         grid-row:span 2;
         margin-bottom:0;
     }
-}
-
-/* ---------- Quiz ---------- */
-
-.quiz-wrap{
-    display:grid;
-    grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:48px;
-    align-items:start;
-}
-
-.quiz-intro p{
-    color:var(--ink-2);
-    margin-top:12px;
-}
-
-@media (max-width:880px){
-    .quiz-wrap{
-        grid-template-columns:1fr;
-        gap:24px;
-    }
-}
-
-.quiz-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:28px;
-    box-shadow:0 18px 40px -24px rgba(20,41,61,0.35);
-    min-height:380px;
-    animation:fade .25s ease;
-}
-
-.quiz-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.75rem;
-    color:var(--sage);
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-}
-
-.quiz-back{
-    background:none;
-    border:none;
-    color:var(--sage);
-    font:inherit;
-    padding:0;
-}
-
-.quiz-back:hover{
-    color:var(--ink);
-}
-
-.quiz-bar{
-    height:6px;
-    background:var(--paper-2);
-    border-radius:6px;
-    margin:12px 0 24px;
-    overflow:hidden;
-}
-
-.quiz-bar span{
-    display:block;
-    height:100%;
-    background:var(--gold);
-    border-radius:6px;
-    transition:width .3s ease;
-}
-
-.quiz-q{
-    font-family:'Fraunces',serif;
-    font-size:1.4rem;
-    font-weight:600;
-    margin:0 0 18px;
-}
-
-.quiz-options{
-    display:grid;
-    gap:10px;
-}
-
-.quiz-opt{
-    text-align:left;
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:14px 16px;
-    font-size:0.95rem;
-    color:var(--ink);
-    display:flex;
-    align-items:center;
-    gap:12px;
-    transition:border-color .15s, background .15s, transform .12s;
-}
-
-.quiz-opt:hover{
-    border-color:var(--gold);
-    background:var(--white);
-    transform:translateX(3px);
-}
-
-.quiz-opt .key{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.75rem;
-    width:24px;
-    height:24px;
-    flex-shrink:0;
-    border:1px solid var(--line);
-    border-radius:4px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--sage);
-}
-
-/* resultado */
-
-.quiz-result .eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.75rem;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    color:var(--gold-dark);
-}
-
-.quiz-result h3{
-    font-size:2rem;
-    margin:6px 0 10px;
-}
-
-.quiz-result p{
-    color:var(--ink-2);
-    margin:0 0 18px;
-}
-
-.match-list{
-    display:grid;
-    gap:8px;
-    margin:0 0 24px;
-}
-
-.match-row{
-    display:grid;
-    grid-template-columns:150px 1fr 56px;
-    gap:12px;
-    align-items:center;
-    font-size:0.85rem;
-}
-
-.match-row .bar{
-    height:8px;
-    background:var(--paper-2);
-    border-radius:8px;
-    overflow:hidden;
-}
-
-.match-row .bar span{
-    display:block;
-    height:100%;
-    background:var(--sage);
-    border-radius:8px;
-}
-
-.match-row.top .bar span{
-    background:var(--gold);
-}
-
-.match-row .pct{
-    font-family:'IBM Plex Mono',monospace;
-    text-align:right;
-    white-space:nowrap;
-    color:var(--sage);
-}
-
-.quiz-actions{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-}
-
-.btn-line{
-    border-color:var(--ink);
-    color:var(--ink);
-    background:none;
-}
-
-.btn-line:hover{
-    background:var(--paper-2);
-}
-
-@media (max-width:520px){
-    .quiz-card{ padding:20px; }
-    .match-row{ grid-template-columns:110px 1fr 52px; }
 }
 
 /* ---------- Saiba mais (janela com os detalhes de cada área) ---------- */
@@ -1432,24 +1147,10 @@ img{
     gap:16px;
 }
 
-.prof-stats{
-    flex-wrap:wrap;
-}
-
 /* respeita o "notch" de iPhones */
 .topbar{
     padding-left:max(24px, env(safe-area-inset-left));
     padding-right:max(24px, env(safe-area-inset-right));
-}
-
-/* ----- guia de profissões: colunas por tamanho de tela ----- */
-
-@media (min-width:600px){
-    .prof-grid{ grid-template-columns:repeat(2,1fr); }
-}
-
-@media (min-width:1100px){
-    .prof-grid{ grid-template-columns:repeat(4,1fr); }
 }
 
 /* ----- tablet e celular: menu em gaveta ----- */
@@ -1516,25 +1217,6 @@ img{
         padding-top:44px;
     }
 
-    /* os 3 destaques da área ficam lado a lado e compactos */
-    .exploracao-stats{
-        grid-template-columns:repeat(3,1fr);
-        gap:8px;
-    }
-
-    .xstat{
-        padding:14px 10px;
-    }
-
-    .xstat .num{
-        font-size:1.5rem;
-    }
-
-    .xstat .lab{
-        font-size:0.6rem;
-        letter-spacing:0.03em;
-    }
-
     .course-card{
         padding:16px;
     }
@@ -1546,15 +1228,6 @@ img{
 
     .edu-card .body{
         padding:0 16px 16px;
-    }
-
-    .quiz-card{
-        min-height:0;
-    }
-
-    .quiz-actions .btn{
-        flex:1 1 100%;
-        justify-content:center;
     }
 
     .panel-title{
@@ -1591,36 +1264,6 @@ img{
         font-size:0.68rem;
     }
 
-    .quiz-card{
-        padding:16px;
-    }
-
-    .quiz-q{
-        font-size:1.2rem;
-    }
-
-    .match-row{
-        grid-template-columns:1fr 52px;
-        row-gap:4px;
-    }
-
-    .match-row > span:first-child{
-        grid-column:1 / -1;
-    }
-
-    .exploracao-stats{
-        grid-template-columns:1fr;
-    }
-
-    .xstat{
-        display:flex;
-        align-items:center;
-        gap:14px;
-    }
-
-    .xstat .lab{
-        margin-top:0;
-    }
 }
 
 /* ----- celular deitado (paisagem) ----- */
@@ -1644,9 +1287,7 @@ img{
 
 @media (hover:none){
     .btn:hover,
-    .xstat:hover,
-    .course-badge:hover,
-    .quiz-opt:hover{
+    .course-badge:hover{
         transform:none;
     }
 }
@@ -1664,7 +1305,7 @@ img{
 /* ----- impressão: mostra todas as áreas e esconde o que é interativo ----- */
 
 @media print{
-    .topbar, .scroll-progress, .area-picker, #quiz, footer a{ display:none !important; }
+    .topbar, .scroll-progress, .area-picker, footer a{ display:none !important; }
     .area-view{ display:block !important; page-break-before:always; }
     .saiba-dialog{ display:block !important; position:static; width:auto; max-height:none; box-shadow:none; overflow:visible; }
     .saiba-head, .saiba-btn{ display:none !important; }
@@ -1702,7 +1343,6 @@ img{
 
     <nav class="mainnav" id="mainnav">
         <a class="nav-btn" href="#inicio" data-section="inicio">Início</a>
-        <a class="nav-btn" href="#quiz" data-section="quiz">Quiz</a>
         <a class="nav-btn" href="#areas" data-section="areas">Áreas profissionais</a>
         <a class="nav-btn" href="#educativa" data-section="educativa">Área Educativa</a>
         <a class="nav-btn" href="#sobre" data-section="sobre">Sobre</a>
@@ -1735,8 +1375,7 @@ img{
             </p>
 
             <div class="hero-actions">
-                <a class="btn btn-primary btn-gold" href="#quiz">Descobrir minha área →</a>
-                <a class="btn btn-ghost" href="#areas">Ver todas as áreas</a>
+                <a class="btn btn-primary btn-gold" href="#areas">Explorar as áreas →</a>
             </div>
 
         </div>
@@ -1750,35 +1389,10 @@ img{
         <h2 class="section-title">Uma trilha, não uma lista de links</h2>
 
         <ol class="how-steps">
-            <li><span class="how-n">1</span><h3>Faça o quiz</h3><p>Responda 4 perguntas rápidas e descubra qual área combina com você.</p></li>
-            <li><span class="how-n">2</span><h3>Explore a carreira</h3><p>Entenda o que a área envolve e para quem ela é indicada.</p></li>
-            <li><span class="how-n">3</span><h3>Veja as profissões</h3><p>Faixa salarial, tempo de formação e o dia a dia de cada uma.</p></li>
-            <li><span class="how-n">4</span><h3>Encontre onde estudar</h3><p>Cursos técnicos e escolas que oferecem formação na área.</p></li>
-            <li><span class="how-n">5</span><h3>Siga a trilha</h3><p>Do Ensino Médio até o primeiro emprego, passo a passo.</p></li>
+            <li><span class="how-n">1</span><h3>Explore a carreira</h3><p>Entenda o que a área envolve e para quem ela é indicada.</p></li>
+            <li><span class="how-n">2</span><h3>Encontre onde estudar</h3><p>Cursos técnicos e escolas que oferecem formação na área.</p></li>
+            <li><span class="how-n">3</span><h3>Siga a trilha</h3><p>Do Ensino Médio até o primeiro emprego, passo a passo.</p></li>
         </ol>
-
-    </div>
-
-</section>
-
-
-<!-- ===================== QUIZ ===================== -->
-
-<section class="page-section" id="quiz">
-
-    <div class="quiz-wrap">
-
-        <div class="quiz-intro">
-            <div class="section-label">Quiz vocacional:</div>
-            <h2 class="section-title">Qual área combina mais com você?</h2>
-            <p>
-                Não existe resposta certa ou errada. Escolha a opção que mais parece com você — no final, recomendamos uma área para você começar a explorar.
-            </p>
-        </div>
-
-        <div class="quiz-card" id="quiz-card">
-            <!-- preenchido pelo JavaScript -->
-        </div>
 
     </div>
 
@@ -1799,6 +1413,7 @@ img{
         <button class="pick" data-area="eletromecanica" onclick="showArea('eletromecanica')"><span class="tag">Tecnologia Industrial</span>Eletromecânica</button>
         <button class="pick" data-area="farmacia" onclick="showArea('farmacia')"><span class="tag">Saúde</span>Farmácia</button>
         <button class="pick" data-area="meioambiente" onclick="showArea('meioambiente')"><span class="tag">Sustentabilidade</span>Meio Ambiente</button>
+        <button class="pick" data-area="turismo" onclick="showArea('turismo')"><span class="tag">Viagens & Hospitalidade</span>Turismo</button>
     </div>
 
     <div id="area-conteudo">
@@ -1849,25 +1464,6 @@ img{
             A área de Desenvolvimento de Sistemas envolve criar, manter e dar suporte a softwares, sites, aplicativos e sistemas de dados. É uma das áreas técnicas que mais permite entrada rápida no mercado através de cursos técnicos, com boas oportunidades de trabalho remoto.
         </p>
 
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Alta empregabilidade técnica</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">R</div>
-                <div class="lab">Trabalho remoto comum</div>
-            </div>
-
-        </div>
-
         <p style="color:var(--ink-2); max-width:600px;">
             Indicada para quem gosta de resolver problemas de forma lógica, tem paciência para testar e corrigir erros, e se interessa por tecnologia no dia a dia.
         </p>
@@ -1875,152 +1471,60 @@ img{
     </div>
 
 
-    <div class="area-panel" id="sistemas-guia">
-
-        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-                <h3>Desenvolvedor(a) Front-end</h3>
-
-                <p>
-                    Constrói as telas e interações que o usuário vê e usa em sites e aplicativos.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 4.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Desenvolvedor(a) Back-end</h3>
-
-                <p>
-                    Cuida da lógica, banco de dados e servidores que fazem o sistema funcionar por trás das telas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.200 – 5.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1,5 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Suporte</h3>
-
-                <p>
-                    Resolve problemas de hardware, software e redes para usuários e empresas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 2.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Analista de Dados Jr.</h3>
-
-                <p>
-                    Organiza e interpreta dados para ajudar empresas a tomar decisões.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.000 – 4.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
     <div class="area-panel" id="sistemas-biblioteca">
 
-        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+        <h3 class="panel-title"><span class="mono">02</span> Biblioteca de Cursos</h3>
 
         <div class="course-list">
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Desenvolvimento de Sistemas</h4>
-                    <div class="school">SENAI</div>
+                    <div class="school">CertificadosEaD</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://novo.senaipr.org.br/pt/cursos-tecnicos/desenvolvimento-de-sistemas" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://certificadosead.com.br/curso/curso-de-desenvolvimento-de-sistemas/" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Informática para Internet</h4>
-                    <div class="school">Etec</div>
+                    <div class="school">Prime Cursos</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.primecursos.com.br/tecnico-em-informatica/" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Redes de Computadores</h4>
-                    <div class="school">Instituto Federal (IF)</div>
+                    <div class="school"></div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://onlinecursosgratuitos.com.br/curso/informatica-e-computacao/rede-de-computadores" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Fundamentos de Programação</h4>
                     <div class="school">
-                        Plataformas livres (ex: Fundação Bradesco)
+                        Fundação Bradesco
                     </div>
                 </div>
-                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+                <a class="course-badge is-online course-link" href="https://www.ev.org.br/areas-de-interesse/programacao" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Lógica da Programação</h4>
+                    <div class="school">Udemy</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://onlinecursosgratuitos.com.br/curso/informatica-e-computacao/rede-de-computadores" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Noções de Tecnologia da Informação</h4>
+                    <div class="school"></div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://onlinecursosgratuitos.com.br/curso/informatica-e-computacao/nocoes-de-tecnologia-da-informacao" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
         </div>
@@ -2030,7 +1534,7 @@ img{
 
     <div class="area-panel" id="sistemas-trilha">
 
-        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -2123,25 +1627,6 @@ img{
             A área de Alimentação vai da produção de pratos e doces até o controle de qualidade e a orientação nutricional. É uma área prática, com entrada no mercado geralmente mais rápida do que outras áreas técnicas.
         </p>
 
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Demanda constante</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">P</div>
-                <div class="lab">Forte caráter prático</div>
-            </div>
-
-        </div>
-
         <p style="color:var(--ink-2); max-width:600px;">
             Indicada para quem gosta de trabalho manual, tem atenção a detalhes e higiene, e se interessa por nutrição ou gastronomia.
         </p>
@@ -2149,154 +1634,60 @@ img{
     </div>
 
 
-    <div class="area-panel" id="alimentacao-guia">
-
-        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Cozinheiro(a)</h3>
-
-                <p>
-                    Prepara pratos seguindo receitas e padrões de qualidade em restaurantes e cozinhas industriais.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 2.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Confeiteiro(a)</h3>
-
-                <p>
-                    Produz doces, bolos e sobremesas para eventos, padarias e confeitarias.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 3.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Nutrição</h3>
-
-                <p>
-                    Auxilia nutricionistas no planejamento de cardápios e no acompanhamento nutricional.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Gestor(a) de Segurança Alimentar</h3>
-
-                <p>
-                    Garante que a produção de alimentos siga normas de higiene e qualidade.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.200 – 4.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
     <div class="area-panel" id="alimentacao-biblioteca">
 
-        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+        <h3 class="panel-title"><span class="mono">02</span> Biblioteca de Cursos</h3>
 
         <div class="course-list">
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Cozinha</h4>
-                    <div class="school">SENAC</div>
+                    <div class="school">Ginead</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.ginead.com.br/curso/curso-de-cozinheiro" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Confeitaria</h4>
-                    <div class="school">SENAC</div>
+                    <div class="school">Edune</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.edunecursos.com.br/curso/confeitaria-e-docaria" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Nutrição e Dietética</h4>
-                    <div class="school">Etec</div>
+                    <div class="school">EducaWeb</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://cursoseducaweb.com.br/curso-de-nutricao-e-dietetica" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Boas Práticas de Manipulação de Alimentos</h4>
                     <div class="school">
-                        Vigilância Sanitária / SENAI
+                        Unieducar
                     </div>
                 </div>
-                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+                <a class="course-badge is-online course-link" href="https://unieducar.org.br/catalogo/curso-gratis/boas-praticas-de-manipulacao-de-alimentos-gratuito" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Produção Alimentícia</h4>
+                    <div class="school">AprendaMais</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://aprendamais.mec.gov.br/course/index.php?categoryid=9" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Conservação e Processamento de Alimentos</h4>
+                    <div class="school">UpCursos</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://upcursosgratis.com.br/curso-online-gratis/metodo-de-conservacao-de-alimentos" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
         </div>
@@ -2306,7 +1697,7 @@ img{
 
     <div class="area-panel" id="alimentacao-trilha">
 
-        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -2399,25 +1790,6 @@ img{
             A área de Administração cobre a organização de processos, pessoas e recursos dentro de uma empresa. É uma área versátil, presente em qualquer setor, e também é a base para quem quer empreender.
         </p>
 
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Presente em todo setor</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">E</div>
-                <div class="lab">Base para empreender</div>
-            </div>
-
-        </div>
-
         <p style="color:var(--ink-2); max-width:600px;">
             Indicada para quem é organizado, gosta de lidar com pessoas e números, e quer entender como uma empresa funciona por dentro.
         </p>
@@ -2425,152 +1797,58 @@ img{
     </div>
 
 
-    <div class="area-panel" id="administracao-guia">
-
-        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Assistente Administrativo(a)</h3>
-
-                <p>
-                    Organiza documentos, agendas e rotinas do dia a dia de um setor ou empresa.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.500 – 2.600</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses a 1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Auxiliar de RH</h3>
-
-                <p>
-                    Apoia processos de recrutamento, folha de pagamento e benefícios dos funcionários.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.600 – 3.000</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Analista Financeiro(a) Jr.</h3>
-
-                <p>
-                    Acompanha contas, pagamentos e relatórios financeiros da empresa.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.000 – 4.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 a 3 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Empreendedor(a) / MEI</h3>
-
-                <p>
-                    Conduz seu próprio pequeno negócio, cuidando de vendas, custos e clientes.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">Variável</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">Sem exigência formal</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
     <div class="area-panel" id="administracao-biblioteca">
 
-        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+        <h3 class="panel-title"><span class="mono">02</span> Biblioteca de Cursos</h3>
 
         <div class="course-list">
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Administração</h4>
-                    <div class="school">Etec / SENAC</div>
+                    <div class="school">Fundação Bradesco</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.ev.org.br/cursos/introducao-a-administracao" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
-                    <h4>Técnico em Recursos Humanos</h4>
-                    <div class="school">SENAC</div>
+                    <h4>Gestão de Pessoas</h4>
+                    <div class="school">Sest Senat</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://digital.sestsenat.org.br/cursos/gestao-de-pessoas" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
-                    <h4>Técnico em Finanças</h4>
-                    <div class="school">Etec</div>
+                    <h4>Educação Financeira</h4>
+                    <div class="school">Fundação Bradesco</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.ev.org.br/cursos/educacao-financeira" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
-                    <h4>Formação MEI — como abrir seu negócio</h4>
-                    <div class="school">Sebrae</div>
+                    <h4>Empreendedorismo e Inovação</h4>
+                    <div class="school">Fundação Bradesco</div>
                 </div>
-                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+                <a class="course-badge is-online course-link" href="https://www.ev.org.br/cursos/empreendedorismo-e-inovacao" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Introdução a Gestão e Liderança</h4>
+                    <div class="school">Up Cursos</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://upcursosgratis.com.br/curso-online-gratis/introducao-a-gestao-e-lideranca" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Curso de gestão da qualidade</h4>
+                    <div class="school">Edutin</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://edutin.com/br/curso-de-gestao-da-qualidade" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
         </div>
@@ -2580,7 +1858,7 @@ img{
 
     <div class="area-panel" id="administracao-trilha">
 
-        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -2675,25 +1953,6 @@ img{
             A área de Eletromecânica reúne conhecimentos de eletricidade e mecânica aplicados à instalação, operação e manutenção de máquinas, motores e equipamentos industriais. É uma área essencial para fábricas, usinas e qualquer setor que dependa de maquinário.
         </p>
 
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Alta demanda industrial</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">S</div>
-                <div class="lab">Foco em segurança do trabalho</div>
-            </div>
-
-        </div>
-
         <p style="color:var(--ink-2); max-width:600px;">
             Indicada para quem gosta de trabalhar com as mãos, tem raciocínio lógico para entender circuitos e mecanismos, e se interessa por como as máquinas funcionam por dentro.
         </p>
@@ -2701,128 +1960,18 @@ img{
     </div>
 
 
-    <div class="area-panel" id="eletromecanica-guia">
-
-        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Eletricista Industrial</h3>
-
-                <p>
-                    Instala, testa e repara sistemas elétricos de máquinas e instalações industriais.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.000 – 4.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Mecânico(a) de Manutenção</h3>
-
-                <p>
-                    Realiza manutenção preventiva e corretiva em motores, correias e peças mecânicas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Eletromecânica</h3>
-
-                <p>
-                    Une eletricidade e mecânica para instalar, operar e dar manutenção em equipamentos industriais.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.200 – 5.000</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Automação Industrial</h3>
-
-                <p>
-                    Programa e mantém sistemas automatizados que controlam linhas de produção.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 2.500 – 5.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
     <div class="area-panel" id="eletromecanica-biblioteca">
 
-        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+        <h3 class="panel-title"><span class="mono">02</span> Biblioteca de Cursos</h3>
 
         <div class="course-list">
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Eletromecânica</h4>
-                    <div class="school">Etec / SENAI</div>
+                    <div class="school">SENAI</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://novo.senaipr.org.br/pt/cursos-tecnicos/eletromecanica-ead" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
@@ -2830,23 +1979,23 @@ img{
                     <h4>Técnico em Eletrotécnica</h4>
                     <div class="school">SENAI</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.pe.senai.br/cursos/tecnico-em-eletrotecnica-ead/" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Automação Industrial</h4>
-                    <div class="school">SENAI</div>
+                    <div class="school">Sistema Fiep</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-presencial course-link" href="https://www.sistemafiep.org.br/educacao/cursos-senai/curso-tecnico-em-automacao-18-33876-373906.shtml" target="_blank" rel="noopener noreferrer">Presencial</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Segurança em Instalações Elétricas — NR10</h4>
-                    <div class="school">SENAI</div>
+                    <div class="school">Continental</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial · Certificado</a>
+                <a class="course-badge is-online course-link" href="https://www.escolacontinental.com.br/seguranca-em-instalacoes-e-servicos-em-eletricidade-nr10/" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
         </div>
@@ -2856,7 +2005,7 @@ img{
 
     <div class="area-panel" id="eletromecanica-trilha">
 
-        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -2951,25 +2100,6 @@ img{
             A área de Farmácia envolve a dispensação de medicamentos, orientação ao paciente e, em farmácias de manipulação, a produção de fórmulas sob prescrição. É uma área da saúde presente em quase todos os bairros e cidades.
         </p>
 
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Presente em toda cidade</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">C</div>
-                <div class="lab">Exige registro no CRF</div>
-            </div>
-
-        </div>
-
         <p style="color:var(--ink-2); max-width:600px;">
             Indicada para quem gosta de cuidar de pessoas, tem atenção a detalhes e se interessa por saúde e medicamentos.
         </p>
@@ -2977,152 +2107,42 @@ img{
     </div>
 
 
-    <div class="area-panel" id="farmacia-guia">
-
-        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Farmácia</h3>
-
-                <p>
-                    Auxilia na dispensação de medicamentos e orienta clientes sob supervisão do farmacêutico.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.600 – 3.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 1,5 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Auxiliar de Farmácia</h3>
-
-                <p>
-                    Organiza o estoque, repõe produtos nas prateleiras e apoia o atendimento ao público.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.400 – 2.400</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">6 meses</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Balconista de Farmácia</h3>
-
-                <p>
-                    Atende o cliente no balcão, indica produtos de venda livre e opera o caixa.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.400 – 2.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">Sem exigência formal</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Manipulação Farmacêutica</h3>
-
-                <p>
-                    Prepara fórmulas magistrais sob prescrição, seguindo normas de boas práticas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1,5 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
     <div class="area-panel" id="farmacia-biblioteca">
 
-        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+        <h3 class="panel-title"><span class="mono">02</span> Biblioteca de Cursos</h3>
 
         <div class="course-list">
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Farmácia</h4>
-                    <div class="school">Etec / SENAC</div>
+                    <div class="school">Educations</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.br.educations.com/institutions/alison-free-online-learning/auxiliar-e-tecnico-de-farmacia-curso-online-gratuito-com-certificado" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Boas Práticas de Manipulação Farmacêutica</h4>
-                    <div class="school">SENAC</div>
+                    <div class="school"></div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://onlinecursosgratuitos.com.br/curso/farmacia/boas-praticas-de-manipulacao-de-medicamentos" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Farmácia — ênfase Hospitalar</h4>
-                    <div class="school">Etec</div>
+                    <div class="school">Abeline</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://cursosabeline.com.br/curso/gratis/farmacia-hospitalar" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Atendimento ao Cliente em Farmácias</h4>
-                    <div class="school">Sebrae</div>
+                    <div class="school">Ginead</div>
                 </div>
-                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+                <a class="course-badge is-online course-link" href="https://www.ginead.com.br/curso/curso-online-balconista-de-farmacia-gratis" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
         </div>
@@ -3132,7 +2152,7 @@ img{
 
     <div class="area-panel" id="farmacia-trilha">
 
-        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -3227,25 +2247,6 @@ img{
             A área de Meio Ambiente cuida da gestão de resíduos, licenciamento, educação ambiental e conservação de recursos naturais. É uma área em expansão, impulsionada por leis ambientais mais rígidas e pela busca das empresas por sustentabilidade.
         </p>
 
-        <div class="exploracao-stats">
-
-            <div class="xstat">
-                <div class="num">4</div>
-                <div class="lab">Profissões mapeadas</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">+</div>
-                <div class="lab">Área em crescimento</div>
-            </div>
-
-            <div class="xstat">
-                <div class="num">S</div>
-                <div class="lab">Foco em sustentabilidade</div>
-            </div>
-
-        </div>
-
         <p style="color:var(--ink-2); max-width:600px;">
             Indicada para quem se preocupa com questões ambientais, gosta de trabalhar em campo ou com dados, e quer contribuir para um futuro mais sustentável.
         </p>
@@ -3253,144 +2254,34 @@ img{
     </div>
 
 
-    <div class="area-panel" id="meioambiente-guia">
-
-        <h3 class="panel-title"><span class="mono">02</span> Guia de Profissões</h3>
-
-        <div class="prof-grid">
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Meio Ambiente</h3>
-
-                <p>
-                    Monitora indicadores ambientais e apoia empresas no cumprimento de normas e licenças.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.800</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Agente Ambiental</h3>
-
-                <p>
-                    Fiscaliza e orienta a comunidade sobre práticas de preservação e descarte correto.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.600 – 3.000</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 ano</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Técnico(a) em Gestão de Resíduos</h3>
-
-                <p>
-                    Planeja e acompanha a coleta, separação e destinação correta de resíduos.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.800 – 3.500</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="prof-card">
-
-                <h3>Educador(a) Ambiental</h3>
-
-                <p>
-                    Desenvolve e conduz atividades de conscientização ambiental em escolas e empresas.
-                </p>
-
-                <div class="prof-stats">
-
-                    <div class="prof-stat">
-                        <div class="label">Faixa salarial</div>
-                        <div class="value">R$ 1.700 – 3.200</div>
-                    </div>
-
-                    <div class="prof-stat">
-                        <div class="label">Formação</div>
-                        <div class="value">1 a 2 anos</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
     <div class="area-panel" id="meioambiente-biblioteca">
 
-        <h3 class="panel-title"><span class="mono">03</span> Biblioteca de Cursos</h3>
+        <h3 class="panel-title"><span class="mono">02</span> Biblioteca de Cursos</h3>
 
         <div class="course-list">
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Meio Ambiente</h4>
-                    <div class="school">Etec / SENAI</div>
+                    <div class="school">SENAI</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.pe.senai.br/en/cursos/tecnico-em-meio-ambiente-ead/" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Gestão de Resíduos Sólidos</h4>
-                    <div class="school">SENAI</div>
+                    <div class="school">Educa Fácil</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://www.educafacilonline.com.br/curso-gratis/gestao-de-residuos-solidos" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
                 <div>
                     <h4>Técnico em Saneamento</h4>
-                    <div class="school">Etec</div>
+                    <div class="school">Educa Fácil</div>
                 </div>
-                <a class="course-badge is-presencial course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Presencial</a>
+                <a class="course-badge is-online course-link" href="https://cursos.escolaeducacao.com.br/curso/curso-saneamento-basico" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
             <div class="course-card">
@@ -3398,7 +2289,7 @@ img{
                     <h4>Educação Ambiental — introdução</h4>
                     <div class="school">Plataformas online</div>
                 </div>
-                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online · Gratuito</a>
+                <a class="course-badge is-online course-link" href="https://exemplo.com" target="_blank" rel="noopener noreferrer">Online</a>
             </div>
 
         </div>
@@ -3408,7 +2299,7 @@ img{
 
     <div class="area-panel" id="meioambiente-trilha">
 
-        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -3457,6 +2348,144 @@ img{
 </section>
 
 
+<!-- ===================== TURISMO ===================== -->
+
+<section class="area-view" id="view-turismo">
+
+    <div class="hero-banner area-banner">
+
+        <img
+            src="img turismo.jpeg"
+            alt="Turismo">
+
+        <div class="hero-overlay">
+
+            <div class="hero-eyebrow">Área profissional</div>
+
+            <h1>
+                Turismo
+            </h1>
+
+            <p class="lede">
+                Guiamento, hospedagem, eventos e atendimento ao viajante — uma área que une cultura, comunicação e serviços.
+            </p>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-turismo')" aria-haspopup="dialog">Saiba mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <dialog class="saiba-dialog" id="saiba-turismo" aria-labelledby="saiba-turismo-titulo">
+        <div class="saiba-head">
+            <h2 id="saiba-turismo-titulo">Turismo</h2>
+            <button type="button" class="saiba-close" onclick="this.closest('dialog').close()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="saiba-body">
+
+    <div class="area-panel" id="turismo-exploracao">
+
+        <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
+
+        <p class="exploracao-intro">
+            A área de Turismo envolve a organização e a condução de viagens, passeios e eventos, além do atendimento em hotéis, pousadas e agências. É uma área com muitas portas de entrada, presente em cidades turísticas e também em grandes centros.
+        </p>
+
+        <p style="color:var(--ink-2); max-width:600px;">
+            Indicada para quem gosta de se comunicar, tem interesse por cultura e geografia, e se sente à vontade para atender e orientar pessoas.
+        </p>
+
+    </div>
+
+
+    <div class="area-panel" id="turismo-biblioteca">
+
+        <h3 class="panel-title"><span class="mono">02</span> Biblioteca de Cursos</h3>
+
+        <div class="course-list">
+
+            <div class="course-card">
+                <div>
+                    <h4>Técnico em Guia de Turismo</h4>
+                    <div class="school">Senac</div>
+                </div>
+                <a class="course-badge is-presencial course-link" href="https://www.sp.senac.br/cursos-tecnicos/curso-tecnico-em-guia-de-turismo-presencial-ead" target="_blank" rel="noopener noreferrer">Presencial</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Qualificação em Turismo</h4>
+                    <div class="school">Ministério do Turismo</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://qualifica.turismo.gov.br/" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h4>Atendimento ao Público</h4>
+                    <div class="school">Fundação Bradesco</div>
+                </div>
+                <a class="course-badge is-online course-link" href="https://www.ev.org.br/" target="_blank" rel="noopener noreferrer">Online</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="area-panel" id="turismo-trilha">
+
+        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+
+        <div class="trilha-track">
+
+            <div class="trilha-step" data-n="1">
+                <h4>Ensino Médio</h4>
+                <p>
+                    Geografia, história e línguas estrangeiras ajudam bastante a atender e orientar turistas.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="2">
+                <h4>Curso técnico</h4>
+                <p>
+                    Guia de Turismo, Hospedagem ou Eventos, conforme o que mais te interessa.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="3">
+                <h4>Ferramentas do dia a dia</h4>
+                <p>
+                    Aprenda um segundo idioma e noções de atendimento ao cliente — usados em praticamente qualquer função da área.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="4">
+                <h4>Estágio ou Jovem Aprendiz</h4>
+                <p>
+                    Hotéis, agências de viagem e empresas de eventos costumam abrir vagas de entrada.
+                </p>
+            </div>
+
+            <div class="trilha-step" data-n="5">
+                <h4>Primeiro emprego</h4>
+                <p>
+                    Recepcionista, auxiliar de agência de viagens ou guia de turismo são as portas de entrada mais comuns.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+        </div>
+    </dialog>
+
+</section>
+
 
     </div>
 
@@ -3478,87 +2507,6 @@ img{
         <div class="edu-list">
 
         <details class="edu-card" open>
-
-            <summary>
-                CLT — Consolidação das Leis do Trabalho
-                <span class="plus">+</span>
-            </summary>
-
-            <div class="body">
-
-                <div class="edu-body-grid">
-
-                    <div class="edu-text">
-
-                        <p>
-                            A CLT é o conjunto de leis que regula as relações de trabalho no Brasil para quem tem carteira assinada. Ela garante direitos como:
-                        </p>
-
-                        <ul>
-                            <li>Salário mínimo e 13º salário</li>
-                            <li>Férias remuneradas de 30 dias por ano</li>
-                            <li>FGTS (Fundo de Garantia do Tempo de Serviço)</li>
-                            <li>Jornada de trabalho limitada e horas extras remuneradas</li>
-                        </ul>
-
-                        <div class="fonte">
-                            Fonte: Decreto-Lei nº 5.452/1943 (CLT)
-                        </div>
-
-                    </div>
-
-                    <div class="edu-media">
-                        <img src="img clt.jpeg" alt="CLT — Consolidação das Leis do Trabalho">
-                    </div>
-
-                </div>
-
-            </div>
-
-        </details>
-
-
-        <details class="edu-card">
-
-            <summary>
-                Estágio
-                <span class="plus">+</span>
-            </summary>
-
-            <div class="body">
-
-                <div class="edu-body-grid">
-
-                    <div class="edu-text">
-
-                        <p>
-                            O estágio é um período de aprendizado prático, obrigatório ou não, ligado à formação escolar. Diferente da CLT, o estagiário não tem vínculo empregatício — recebe bolsa-auxílio, não salário.
-                        </p>
-
-                        <ul>
-                            <li>Carga horária máxima de 6 horas diárias e 30 horas semanais (Ensino Médio técnico)</li>
-                            <li>Direito a recesso remunerado de 30 dias por ano</li>
-                            <li>Precisa de um professor orientador e um supervisor na empresa</li>
-                        </ul>
-
-                        <div class="fonte">
-                            Fonte: Lei nº 11.788/2008 (Lei do Estágio)
-                        </div>
-
-                    </div>
-
-                    <div class="edu-media">
-                        <img src="img estagio.jpeg" alt="Estágio">
-                    </div>
-
-                </div>
-
-            </div>
-
-        </details>
-
-
-        <details class="edu-card">
 
             <summary>
                 Jovem Aprendiz
@@ -3723,15 +2671,6 @@ img{
 <script>
 // ================== ÁREAS ==================
 
-const AREAS = {
-    sistemas:       { nome:'Desenvolvimento de Sistemas', desc:'Programação, suporte técnico, dados e produtos digitais.' },
-    alimentacao:    { nome:'Alimentação',                 desc:'Cozinha, confeitaria, nutrição e segurança alimentar.' },
-    administracao:  { nome:'Administração',               desc:'Rotinas administrativas, finanças, RH e empreendedorismo.' },
-    eletromecanica: { nome:'Eletromecânica',              desc:'Instalação, manutenção elétrica e mecânica de máquinas e equipamentos.' },
-    farmacia:       { nome:'Farmácia',                    desc:'Dispensação de medicamentos, manipulação farmacêutica e atendimento ao público.' },
-    meioambiente:   { nome:'Meio Ambiente',               desc:'Gestão ambiental, resíduos e conservação de recursos naturais.' }
-};
-
 // Mostra uma área (sem trocar de página). Se "rolar" for true, leva o usuário até ela.
 function showArea(area, rolar){
 
@@ -3769,151 +2708,6 @@ document.querySelectorAll('.saiba-dialog').forEach(d => {
     d.addEventListener('click', e => { if(e.target === d) d.close(); });
     d.addEventListener('close', () => document.body.classList.remove('saiba-open'));
 });
-
-
-// ================== QUIZ ==================
-// Cada resposta soma pontos para uma ou mais áreas.
-
-const PERGUNTAS = [
-    {
-        q:'O que você mais gosta de fazer no tempo livre?',
-        opcoes:[
-            { t:'Mexer no computador, em jogos ou aplicativos', p:{ sistemas:2 } },
-            { t:'Cozinhar ou testar receitas novas',            p:{ alimentacao:2 } },
-            { t:'Organizar coisas, planejar ou vender algo',    p:{ administracao:2 } },
-            { t:'Consertar ou desmontar objetos',               p:{ eletromecanica:2 } },
-            { t:'Ajudar e cuidar de outras pessoas',            p:{ farmacia:2 } },
-            { t:'Estar ao ar livre, em contato com a natureza', p:{ meioambiente:2 } }
-        ]
-    },
-    {
-        q:'Qual dessas matérias você mais curte?',
-        opcoes:[
-            { t:'Matemática', p:{ sistemas:1, administracao:1, eletromecanica:1 } },
-            { t:'Física',     p:{ eletromecanica:2 } },
-            { t:'Química',    p:{ farmacia:1, alimentacao:1 } },
-            { t:'Biologia',   p:{ farmacia:1, meioambiente:1, alimentacao:1 } },
-            { t:'Geografia',  p:{ meioambiente:2 } },
-            { t:'Sociologia ou Português', p:{ administracao:2 } }
-        ]
-    },
-    {
-        q:'Como você imagina seu ambiente de trabalho?',
-        opcoes:[
-            { t:'Na frente do computador, talvez até de casa',   p:{ sistemas:2 } },
-            { t:'Numa cozinha movimentada',                      p:{ alimentacao:2 } },
-            { t:'Num escritório, lidando com pessoas e números', p:{ administracao:2 } },
-            { t:'Numa fábrica ou oficina, cheia de máquinas',    p:{ eletromecanica:2 } },
-            { t:'Numa farmácia ou hospital, atendendo pessoas',  p:{ farmacia:2 } },
-            { t:'Em campo, visitando áreas naturais e empresas', p:{ meioambiente:2 } }
-        ]
-    },
-    {
-        q:'O que mais te motiva?',
-        opcoes:[
-            { t:'Resolver problemas com lógica e criar coisas novas', p:{ sistemas:2, eletromecanica:1 } },
-            { t:'Ver o resultado do meu trabalho feito à mão',        p:{ alimentacao:2, eletromecanica:1 } },
-            { t:'Ter meu próprio negócio um dia',                     p:{ administracao:2, alimentacao:1 } },
-            { t:'Cuidar da saúde das pessoas',                        p:{ farmacia:2 } },
-            { t:'Proteger o planeta para o futuro',                   p:{ meioambiente:2 } }
-        ]
-    }
-];
-
-let passo = 0;
-let respostas = [];
-const quizCard = document.getElementById('quiz-card');
-
-function renderPergunta(){
-
-    const atual = PERGUNTAS[passo];
-    const letras = 'ABCDEF';
-
-    quizCard.innerHTML = `
-        <div class="quiz-top">
-            <span>Pergunta ${passo + 1} de ${PERGUNTAS.length}</span>
-            ${passo > 0 ? '<button class="quiz-back" onclick="voltarPergunta()">← Voltar</button>' : ''}
-        </div>
-        <div class="quiz-bar"><span style="width:${(passo / PERGUNTAS.length) * 100}%"></span></div>
-        <p class="quiz-q">${atual.q}</p>
-        <div class="quiz-options">
-            ${atual.opcoes.map((o, i) => `
-                <button class="quiz-opt" onclick="responder(${i})">
-                    <span class="key">letras[i]</span>{o.t}
-                </button>`).join('')}
-        </div>
-    `;
-}
-
-let travado = false;
-
-function responder(i){
-    if(travado) return;
-    travado = true;
-    setTimeout(() => travado = false, 250);
-
-    respostas[passo] = i;
-    passo++;
-    if(passo < PERGUNTAS.length){
-        renderPergunta();
-    } else {
-        renderResultado();
-    }
-}
-
-function voltarPergunta(){
-    if(passo > 0){
-        passo--;
-        renderPergunta();
-    }
-}
-
-function refazerQuiz(){
-    passo = 0;
-    respostas = [];
-    renderPergunta();
-}
-
-function renderResultado(){
-
-    // soma os pontos
-    const pontos = {};
-    Object.keys(AREAS).forEach(a => pontos[a] = 0);
-
-    respostas.forEach((r, i) => {
-        const p = PERGUNTAS[i].opcoes[r].p;
-        Object.keys(p).forEach(a => pontos[a] += p[a]);
-    });
-
-    const ranking = Object.keys(pontos).sort((a, b) => pontos[b] - pontos[a]);
-    const max = pontos[ranking[0]] || 1;
-    const vencedora = ranking[0];
-
-    quizCard.innerHTML = `
-        <div class="quiz-result">
-            <div class="quiz-bar"><span style="width:100%"></span></div>
-            <div class="eyebrow">Sua área recomendada</div>
-            <h3>${AREAS[vencedora].nome}</h3>
-            <p>${AREAS[vencedora].desc}</p>
-
-            <div class="match-list">
-                ${ranking.slice(0, 3).map((a, i) => `
-                    <div class="match-row ${i === 0 ? 'top' : ''}">
-                        <span>${AREAS[a].nome}</span>
-                        <div class="bar"><span style="width:${Math.round(pontos[a] / max * 100)}%"></span></div>
-                        <span class="pct">${pontos[a]} pts</span>
-                    </div>`).join('')}
-            </div>
-
-            <div class="quiz-actions">
-                <button class="btn btn-primary" onclick="showArea('${vencedora}', true)">Ver área completa →</button>
-                <button class="btn btn-line" onclick="refazerQuiz()">Refazer quiz</button>
-            </div>
-        </div>
-    `;
-}
-
-renderPergunta();
 
 
 // ================== MENU E ROLAGEM ==================
