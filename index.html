@@ -1325,6 +1325,335 @@ img{
     min-height:44px;
 }
 
+
+/* =====================================================
+   BANNER PRINCIPAL — largura total (de ponta a ponta)
+   Só afeta o banner da página inicial; o resto do site
+   continua dentro do container de 1200px.
+   ===================================================== */
+
+/* evita barra de rolagem horizontal (100vw inclui a barra de rolagem)
+   "clip" não cria contêiner de rolagem, então elementos sticky seguem funcionando */
+html{
+    overflow-x:clip;
+}
+
+/* sem espaço entre a topbar e o banner principal */
+/* Início = banner + "Sobre o projeto" juntos, ocupando a tela inteira.
+   O banner estica para preencher o espaço que sobra acima do texto. */
+#inicio{
+    padding-top:0;
+    padding-bottom:0;
+    display:flex;
+    flex-direction:column;
+    min-height:calc(100vh - 67px);
+    min-height:calc(100svh - 67px);
+    scroll-margin-top:67px;
+}
+
+/* "Sobre o projeto": centralizado, logo abaixo do banner */
+#inicio .about-home{
+    width:100%;
+    max-width:760px;
+    margin:0 auto;
+    padding:40px 0 48px;
+    text-align:center;
+}
+
+#inicio .about-home p{
+    margin-top:12px;
+}
+
+#inicio .hero-banner{
+    flex:1 0 auto;
+    min-height:380px;
+    align-items:center;      /* texto e botão mais para cima no banner */
+    margin-top:0;
+    width:100vw;
+    max-width:100vw;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    border-radius:0;
+}
+
+/* texto continua alinhado com o conteúdo do site (container de 1200px) */
+@media (min-width:641px){
+    #inicio .hero-overlay{
+        max-width:none;
+        width:100%;
+        padding-top:40px;
+        padding-bottom:110px;
+        padding-left:max(44px, calc((100% - 1200px) / 2 + 24px + 44px));
+        padding-right:44px;
+    }
+
+    #inicio .hero-overlay > *{
+        max-width:720px;
+    }
+
+    #inicio .hero-overlay .hero-eyebrow{
+        max-width:none;
+    }
+}
+
+
+/* =====================================================
+   SEÇÕES DE NAVEGAÇÃO — cada uma ocupa a tela inteira
+   Áreas profissionais e Área Educativa
+   preenchem toda a altura visível (abaixo da topbar), então
+   ao clicar no menu só a seção escolhida aparece.
+   Se o conteúdo for maior que a tela, a seção cresce
+   normalmente e a página rola.
+   ===================================================== */
+
+#areas,
+#educativa{
+    min-height:calc(100vh - 67px);
+    min-height:calc(100svh - 67px);
+    scroll-margin-top:67px; /* 64px da topbar + 3px da borda dourada */
+}
+
+/* celular deitado: não força altura em telas muito baixas */
+@media (max-height:500px) and (orientation:landscape){
+    #inicio,
+    #areas,
+    #educativa{
+        min-height:0;
+    }
+}
+
+
+/* nomes da equipe no rodapé */
+.footer-info{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+footer .credit{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    color:var(--gold);
+    line-height:1.5;
+}
+
+
+/* celular: texto do banner da inicial também mais para cima */
+@media (max-width:640px){
+    #inicio .hero-overlay{
+        padding:48px 22px 80px;
+    }
+
+    #inicio .about-home{
+        padding:32px 4px 40px;
+    }
+}
+
+/* =====================================================
+   ÁREAS PROFISSIONAIS — cada área é um card
+   (imagem ao fundo, texto e botão "Saiba mais" por cima)
+   ===================================================== */
+
+/* título da seção centralizado */
+#areas .section-label,
+#areas .section-title{
+    text-align:center;
+}
+
+/* cards centralizados — a última linha (incompleta) também fica no meio */
+#area-conteudo{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    margin:28px auto 0;
+}
+
+/* todos os cards visíveis ao mesmo tempo (4 por linha no computador) */
+#areas .area-view,
+#areas .area-view.active{
+    display:block;
+    animation:none;
+    min-width:0;
+    flex:0 0 calc((100% - 60px) / 4);
+}
+
+@media (max-width:980px){
+    #areas .area-view,
+    #areas .area-view.active{
+        flex-basis:calc((100% - 40px) / 3);
+    }
+}
+
+@media (max-width:700px){
+    #areas .area-view,
+    #areas .area-view.active{
+        flex-basis:calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width:520px){
+    #areas .area-view,
+    #areas .area-view.active{
+        flex-basis:100%;
+    }
+}
+
+#areas .area-banner{
+    height:100%;
+    min-height:380px;
+    margin:0;
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+
+#areas .area-banner:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 30px rgba(20,41,61,0.22);
+}
+
+#areas .area-banner img{
+    transition:transform .4s ease;
+}
+
+#areas .area-banner:hover img{
+    transform:scale(1.05);
+}
+
+#areas .area-banner .hero-overlay{
+    width:100%;
+    max-width:none;
+    padding:24px 22px 26px;
+}
+
+#areas .area-banner .hero-eyebrow{
+    font-size:0.68rem;
+    margin-bottom:10px;
+}
+
+#areas .area-banner .hero-overlay h1{
+    font-size:1.4rem;
+    line-height:1.2;
+    margin-bottom:10px;
+}
+
+#areas .area-banner .hero-overlay p.lede{
+    font-size:0.88rem;
+    line-height:1.5;
+    margin-bottom:16px;
+}
+
+#areas .area-banner .hero-actions{
+    margin-top:0;
+}
+
+@media (max-width:640px){
+
+    #areas .area-banner{
+        min-height:320px;
+    }
+}
+
+/* =====================================================
+   ÁREA EDUCATIVA — conteúdo centralizado à esquerda
+   + espaço para imagem à direita
+   ===================================================== */
+
+#educativa{
+    display:flex;
+    align-items:center;
+}
+
+.edu-layout{
+    width:100%;
+    display:grid;
+    grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);
+    gap:48px;
+    align-items:center;
+}
+
+/* bloco de informações e cards: centralizado dentro da metade esquerda */
+.edu-main{
+    width:100%;
+    max-width:720px;
+    margin:0 auto;
+}
+
+.edu-main .section-label,
+.edu-main .section-title{
+    text-align:center;
+}
+
+.edu-main .section-sub{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* imagens internas dos cards um pouco menores, para caber na coluna */
+#educativa .edu-body-grid{
+    grid-template-columns:minmax(0,1fr) 220px;
+}
+
+/* base para a imagem do lado direito */
+.edu-aside{
+    align-self:stretch;
+    min-height:420px;
+    margin:0;
+    border:2px dashed rgba(20,41,61,0.30);
+    border-radius:var(--radius);
+    background:rgba(255,255,255,0.45);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.edu-aside img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.edu-aside-placeholder{
+    padding:24px;
+    color:var(--sage);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    line-height:1.7;
+}
+
+.edu-aside-placeholder strong{
+    display:block;
+    font-size:2rem;
+    font-weight:400;
+    line-height:1;
+    margin-bottom:10px;
+}
+
+/* tablet e celular: imagem vai para baixo dos cards */
+@media (max-width:980px){
+
+    .edu-layout{
+        grid-template-columns:minmax(0,1fr);
+        gap:32px;
+    }
+
+    .edu-aside{
+        min-height:260px;
+    }
+}
+
+@media (max-width:680px){
+
+    #educativa .edu-body-grid{
+        grid-template-columns:1fr;
+    }
+}
+
 </style>
 </head>
 
@@ -1345,7 +1674,6 @@ img{
         <a class="nav-btn" href="#inicio" data-section="inicio">Início</a>
         <a class="nav-btn" href="#areas" data-section="areas">Áreas profissionais</a>
         <a class="nav-btn" href="#educativa" data-section="educativa">Área Educativa</a>
-        <a class="nav-btn" href="#sobre" data-section="sobre">Sobre</a>
     </nav>
 
 </div>
@@ -1382,17 +1710,26 @@ img{
 
     </div>
 
-    <!-- Como funciona: trilha horizontal -->
-    <div class="how">
+    <!-- Sobre o projeto -->
 
-        <div class="section-label">Como o INTEGRA funciona:</div>
-        <h2 class="section-title">Uma trilha, não uma lista de links</h2>
+    <div class="about-block about-home">
 
-        <ol class="how-steps">
-            <li><span class="how-n">1</span><h3>Explore a carreira</h3><p>Entenda o que a área envolve e para quem ela é indicada.</p></li>
-            <li><span class="how-n">2</span><h3>Encontre onde estudar</h3><p>Cursos técnicos e escolas que oferecem formação na área.</p></li>
-            <li><span class="how-n">3</span><h3>Siga a trilha</h3><p>Do Ensino Médio até o primeiro emprego, passo a passo.</p></li>
-        </ol>
+
+    <div class="section-label">
+        Sobre o projeto:
+    </div>
+
+    <h2 style="font-size:1.5rem;">
+        Por que o INTEGRA existe
+    </h2>
+
+    <p>
+        Somos estudantes do Colégio Estadual Euzébio da Mota. O projeto nasceu da observação de um problema real: muitos estudantes enfrentam dificuldades para escolher cursos e acessar oportunidades. Antes de pensar na tecnologia, buscamos entender essas necessidades através de pesquisa.
+    </p>
+
+    <p>
+        O INTEGRA une tecnologia, criatividade e trabalho em equipe para oferecer uma ferramenta prática, acessível e eficiente — pensada para estudantes do nono ano a tomarem decisões com mais segurança sobre sua trajetória acadêmica e profissional futura.
+    </p>
 
     </div>
 
@@ -1405,16 +1742,6 @@ img{
 
     <div class="section-label">Áreas profissionais:</div>
     <h2 class="section-title">Escolha uma área para explorar</h2>
-
-    <div class="area-picker" role="tablist" aria-label="Áreas profissionais">
-        <button class="pick active" data-area="sistemas" onclick="showArea('sistemas')"><span class="tag">Tecnologia</span>Desenvolvimento de Sistemas</button>
-        <button class="pick" data-area="alimentacao" onclick="showArea('alimentacao')"><span class="tag">Gastronomia & Nutrição</span>Alimentação</button>
-        <button class="pick" data-area="administracao" onclick="showArea('administracao')"><span class="tag">Gestão & Negócios</span>Administração</button>
-        <button class="pick" data-area="eletromecanica" onclick="showArea('eletromecanica')"><span class="tag">Tecnologia Industrial</span>Eletromecânica</button>
-        <button class="pick" data-area="farmacia" onclick="showArea('farmacia')"><span class="tag">Saúde</span>Farmácia</button>
-        <button class="pick" data-area="meioambiente" onclick="showArea('meioambiente')"><span class="tag">Sustentabilidade</span>Meio Ambiente</button>
-        <button class="pick" data-area="turismo" onclick="showArea('turismo')"><span class="tag">Viagens & Hospitalidade</span>Turismo</button>
-    </div>
 
     <div id="area-conteudo">
 
@@ -1430,7 +1757,7 @@ img{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Área profissional</div>
+            <div class="hero-eyebrow">Tecnologia</div>
 
             <h1>
                 Desenvolvimento de Sistemas
@@ -1595,7 +1922,7 @@ img{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Área profissional</div>
+            <div class="hero-eyebrow">Gastronomia &amp; Nutrição</div>
 
             <h1>Alimentação</h1>
 
@@ -1758,7 +2085,7 @@ img{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Área profissional</div>
+            <div class="hero-eyebrow">Gestão &amp; Negócios</div>
 
             <h1>Administração</h1>
 
@@ -1919,7 +2246,7 @@ img{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Área profissional</div>
+            <div class="hero-eyebrow">Tecnologia Industrial</div>
 
             <h1>
                 Eletromecânica
@@ -2066,7 +2393,7 @@ img{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Área profissional</div>
+            <div class="hero-eyebrow">Saúde</div>
 
             <h1>
                 Farmácia
@@ -2213,7 +2540,7 @@ img{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Área profissional</div>
+            <div class="hero-eyebrow">Sustentabilidade</div>
 
             <h1>
                 Meio Ambiente
@@ -2360,7 +2687,7 @@ img{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Área profissional</div>
+            <div class="hero-eyebrow">Viagens &amp; Hospitalidade</div>
 
             <h1>
                 Turismo
@@ -2496,7 +2823,9 @@ img{
 
 <section class="page-section band" id="educativa">
 
-    <div class="band-inner">
+    <div class="band-inner edu-layout">
+
+    <div class="edu-main">
 
         <div class="section-label">Área Educativa:</div>
         <h2 class="section-title">O que todo estudante precisa saber</h2>
@@ -2622,37 +2951,17 @@ img{
 
     </div>
 
-    </div>
+    </div><!-- /edu-main -->
 
-</section>
-
-
-<!-- ===================== SOBRE ===================== -->
-
-<section class="page-section" id="sobre">
-
-    <div class="about-block">
-
-
-    <div class="section-label">
-        Sobre o projeto:
-    </div>
-
-    <h2 style="font-size:1.5rem;">
-        Por que o INTEGRA existe
-    </h2>
-
-    <p>
-        Somos estudantes do Colégio Estadual Euzébio da Mota. O projeto nasceu da observação de um problema real: muitos estudantes enfrentam dificuldades para escolher uma profissão, encontrar cursos e acessar oportunidades. Antes de pensar na tecnologia, buscamos entender essas necessidades através de pesquisa.
-    </p>
-
-    <p>
-        O INTEGRA une tecnologia, criatividade e trabalho em equipe para oferecer uma ferramenta prática, acessível e eficiente — pensada para estudantes do Ensino Médio e dos Cursos Técnicos tomarem decisões com mais segurança sobre sua trajetória acadêmica e profissional.
-    </p>
-
-    <div class="credit">
-        Miguel · Ana Carolina · Lucca · Thauane · Anthony · Nicolas
-    </div>
+    <!-- Base para imagem (lado direito).
+         Para usar: apague o <div class="edu-aside-placeholder"> abaixo e coloque no lugar:
+         <img src="nome-da-imagem.jpg" alt="descrição da imagem"> -->
+    <figure class="edu-aside">
+        <div class="edu-aside-placeholder">
+            <strong>+</strong>
+            Espaço para imagem
+        </div>
+    </figure>
 
     </div>
 
@@ -2663,7 +2972,10 @@ img{
 
 <footer>
     <div class="footer-inner">
-        <span>INTEGRA — TCC 2026</span>
+        <div class="footer-info">
+            <span>INTEGRA — TCC 2026</span>
+            <div class="credit">Miguel · Ana Carolina · Lucca · Thauane · Anthony · Nicolas</div>
+        </div>
         <a href="#inicio">Voltar ao topo ↑</a>
     </div>
 </footer>
