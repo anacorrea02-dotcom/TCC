@@ -14,11 +14,11 @@
 
 
 :root{
-    --ink:#14293D;
+    --ink:#2e3a5c;
     --ink-2:#1E3A56;
     --paper:#F5F4EF;
     --paper-2:#ECEAE2;
-    --gold:#D9A441;
+    --gold:#f5bb40;
     --gold-dark:#B4842E;
     --orange:#E08A2E;
     --orange-dark:#B8651A;
@@ -91,23 +91,6 @@ button{
     font-weight:700;
     letter-spacing:0.02em;
     cursor:pointer;
-}
-
-.brand-mark{
-    width:26px;
-    height:26px;
-    border:2px solid var(--gold);
-    border-radius:50%;
-    position:relative;
-    flex-shrink:0;
-}
-
-.brand-mark::after{
-    content:"";
-    position:absolute;
-    inset:5px;
-    background:var(--gold);
-    border-radius:50%;
 }
 
 nav.mainnav{
@@ -1654,6 +1637,95 @@ footer .credit{
     }
 }
 
+
+/* =====================================================
+   TOPBAR — indicador animado da seção atual
+   O destaque dourado desliza até o item da área em que o
+   usuário está, e a cor do texto muda suavemente.
+   ===================================================== */
+
+.nav-btn{
+    position:relative;
+    z-index:1;
+    transition:opacity .25s ease, background .25s ease, color .3s ease;
+}
+
+.nav-btn.active{
+    color:var(--gold);
+}
+
+.nav-indicator{
+    display:none;
+}
+
+@media (min-width:881px){
+
+    nav.mainnav{
+        position:relative;
+    }
+
+    .nav-indicator{
+        display:block;
+        position:absolute;
+        z-index:0;
+        left:0;
+        top:50%;
+        height:38px;
+        width:0;
+        margin-top:-19px;
+        border-radius:var(--radius);
+        background:rgba(223,168,64,0.16);
+        box-shadow:inset 0 -2px 0 var(--gold);
+        opacity:0;
+        pointer-events:none;
+        transition:transform .45s cubic-bezier(.4,0,.2,1),
+                   width .45s cubic-bezier(.4,0,.2,1),
+                   opacity .3s ease;
+    }
+
+    .nav-indicator.ready{
+        opacity:1;
+    }
+
+    /* o item ativo não precisa do fundo próprio: o indicador faz esse papel */
+    .nav-btn.active:hover{
+        background:transparent;
+    }
+}
+
+/* tablet e celular (menu em gaveta): destaque lateral no item ativo */
+@media (max-width:880px){
+    nav.mainnav .nav-btn.active{
+        background:rgba(223,168,64,0.14);
+        box-shadow:inset 3px 0 0 var(--gold);
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .nav-indicator,
+    .nav-btn{
+        transition:none;
+    }
+}
+
+
+/* espaço para a logo no topbar (a imagem se ajusta sem aumentar a barra) */
+.brand-logo{
+    display:block;
+    height:40px;
+    width:auto;
+    max-width:140px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+@media (max-width:640px){
+    .brand-logo{
+        height:34px;
+        max-width:110px;
+    }
+}
+
 </style>
 </head>
 
@@ -1662,7 +1734,10 @@ footer .credit{
 <div class="topbar">
 
     <a class="brand" href="#inicio" aria-label="Voltar para o início" title="Voltar para o início">
-        <span class="brand-mark"></span>
+        <!-- LOGO: para colocar uma imagem aqui, tire as setas do comentário abaixo
+             e troque o nome do arquivo (a imagem se ajusta sozinha ao topbar):
+        <img class="brand-logo" src="logo.png" alt="Logo do INTEGRA">
+        -->
         INTEGRA
     </a>
 
@@ -1674,6 +1749,7 @@ footer .credit{
         <a class="nav-btn" href="#inicio" data-section="inicio">Início</a>
         <a class="nav-btn" href="#areas" data-section="areas">Áreas profissionais</a>
         <a class="nav-btn" href="#educativa" data-section="educativa">Área Educativa</a>
+        <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
     </nav>
 
 </div>
@@ -1694,12 +1770,12 @@ footer .credit{
 
         <div class="hero-overlay">
 
-            <div class="hero-eyebrow">Orientação profissional · Ensino Médio</div>
+            <div class="hero-eyebrow">Orientação profissional · 9º ano</div>
 
             <h1>Orientação profissional em um só lugar.</h1>
 
             <p class="lede">
-                O INTEGRA reúne cursos, profissões, escolas técnicas e oportunidades para ajudar estudantes do Ensino Médio a decidir sua trajetória acadêmica e profissional com mais segurança.
+                O INTEGRA reúne cursos, profissões, escolas técnicas e oportunidades para ajudar estudantes do nono ano a decidir sua trajetória acadêmica e profissional com mais segurança.
             </p>
 
             <div class="hero-actions">
@@ -1724,11 +1800,11 @@ footer .credit{
     </h2>
 
     <p>
-        Somos estudantes do Colégio Estadual Euzébio da Mota. O projeto nasceu da observação de um problema real: muitos estudantes enfrentam dificuldades para escolher cursos e acessar oportunidades. Antes de pensar na tecnologia, buscamos entender essas necessidades através de pesquisa.
+        Somos estudantes do Colégio Estadual Euzébio da Mota. O projeto nasceu da observação de um problema real: muitos estudantes enfrentam dificuldades para escolher cursos e acessar oportunidades. Antes de pensar na tecnologia, buscamos entender essas necessidades por meio de pesquisa.
     </p>
 
     <p>
-        O INTEGRA une tecnologia, criatividade e trabalho em equipe para oferecer uma ferramenta prática, acessível e eficiente — pensada para estudantes do nono ano a tomarem decisões com mais segurança sobre sua trajetória acadêmica e profissional futura.
+        O INTEGRA une tecnologia, criatividade e trabalho em equipe para oferecer uma ferramenta prática, acessível e eficiente — pensada para estudantes do nono ano tomarem decisões com mais segurança sobre sua trajetória acadêmica e profissional futura.
     </p>
 
     </div>
@@ -1788,11 +1864,11 @@ footer .credit{
         <h3 class="panel-title"><span class="mono">01</span> Exploração de Carreira</h3>
 
         <p class="exploracao-intro">
-            A área de Desenvolvimento de Sistemas envolve criar, manter e dar suporte a softwares, sites, aplicativos e sistemas de dados. É uma das áreas técnicas que mais permite entrada rápida no mercado através de cursos técnicos, com boas oportunidades de trabalho remoto.
+            A área de Desenvolvimento de Sistemas envolve criar, manter e dar suporte a softwares, sites, aplicativos e sistemas de dados. É uma das áreas técnicas que mais permitem entrada rápida no mercado por meio de cursos técnicos, com boas oportunidades de trabalho remoto.
         </p>
 
         <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de resolver problemas de forma lógica, tem paciência para testar e corrigir erros, e se interessa por tecnologia no dia a dia.
+            Indicada para quem gosta de resolver problemas de forma lógica, tem paciência para testar e corrigir erros e se interessa por tecnologia no dia a dia.
         </p>
 
     </div>
@@ -1868,7 +1944,7 @@ footer .credit{
             <div class="trilha-step" data-n="1">
                 <h4>Ensino Médio</h4>
                 <p>
-                    Se possível, escolha matérias e projetos com contato com lógica e tecnologia.
+                    Se possível, escolha matérias e projetos que tenham contato com lógica e tecnologia.
                 </p>
             </div>
 
@@ -1882,7 +1958,7 @@ footer .credit{
             <div class="trilha-step" data-n="3">
                 <h4>Projetos práticos</h4>
                 <p>
-                    Monte um portfólio simples: um site, um app pequeno, ou análise de dados de exemplo.
+                    Monte um portfólio simples: um site, um app pequeno ou uma análise de dados de exemplo.
                 </p>
             </div>
 
@@ -1955,7 +2031,7 @@ footer .credit{
         </p>
 
         <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de trabalho manual, tem atenção a detalhes e higiene, e se interessa por nutrição ou gastronomia.
+            Indicada para quem gosta de trabalho manual, tem atenção a detalhes e higiene e se interessa por nutrição ou gastronomia.
         </p>
 
     </div>
@@ -2031,7 +2107,7 @@ footer .credit{
             <div class="trilha-step" data-n="1">
                 <h4>Ensino Médio</h4>
                 <p>
-                    Interesse por biologia, química e prática são um bom ponto de partida.
+                    Interesse por biologia, química e prática é um bom ponto de partida.
                 </p>
             </div>
 
@@ -2118,7 +2194,7 @@ footer .credit{
         </p>
 
         <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem é organizado, gosta de lidar com pessoas e números, e quer entender como uma empresa funciona por dentro.
+            Indicada para quem é organizado, gosta de lidar com pessoas e números e quer entender como uma empresa funciona por dentro.
         </p>
 
     </div>
@@ -2164,7 +2240,7 @@ footer .credit{
 
             <div class="course-card">
                 <div>
-                    <h4>Introdução a Gestão e Liderança</h4>
+                    <h4>Introdução à Gestão e Liderança</h4>
                     <div class="school">Up Cursos</div>
                 </div>
                 <a class="course-badge is-online course-link" href="https://upcursosgratis.com.br/curso-online-gratis/introducao-a-gestao-e-lideranca" target="_blank" rel="noopener noreferrer">Online</a>
@@ -2172,7 +2248,7 @@ footer .credit{
 
             <div class="course-card">
                 <div>
-                    <h4>Curso de gestão da qualidade</h4>
+                    <h4>Curso de Gestão da Qualidade</h4>
                     <div class="school">Edutin</div>
                 </div>
                 <a class="course-badge is-online course-link" href="https://edutin.com/br/curso-de-gestao-da-qualidade" target="_blank" rel="noopener noreferrer">Online</a>
@@ -2281,7 +2357,7 @@ footer .credit{
         </p>
 
         <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de trabalhar com as mãos, tem raciocínio lógico para entender circuitos e mecanismos, e se interessa por como as máquinas funcionam por dentro.
+            Indicada para quem gosta de trabalhar com as mãos, tem raciocínio lógico para entender circuitos e mecanismos e se interessa por como as máquinas funcionam por dentro.
         </p>
 
     </div>
@@ -2575,7 +2651,7 @@ footer .credit{
         </p>
 
         <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem se preocupa com questões ambientais, gosta de trabalhar em campo ou com dados, e quer contribuir para um futuro mais sustentável.
+            Indicada para quem se preocupa com questões ambientais, gosta de trabalhar em campo ou com dados e quer contribuir para um futuro mais sustentável.
         </p>
 
     </div>
@@ -2722,7 +2798,7 @@ footer .credit{
         </p>
 
         <p style="color:var(--ink-2); max-width:600px;">
-            Indicada para quem gosta de se comunicar, tem interesse por cultura e geografia, e se sente à vontade para atender e orientar pessoas.
+            Indicada para quem gosta de se comunicar, tem interesse por cultura e geografia e se sente à vontade para atender e orientar pessoas.
         </p>
 
     </div>
@@ -2897,7 +2973,7 @@ footer .credit{
                             <li>Formação escolar e cursos técnicos ou livres</li>
                             <li>Experiências práticas: projetos escolares, trabalho voluntário, estágios</li>
                             <li>Habilidades relevantes para a vaga</li>
-                            <li>Evite erros de português e use e-mail profissional</li>
+                            <li>Evite erros de português e use um e-mail profissional</li>
                         </ul>
 
                     </div>
@@ -3056,19 +3132,67 @@ window.addEventListener('resize', () => {
 });
 
 // destaca no menu a seção que está na tela
-const secoes = document.querySelectorAll('.page-section');
+const secoes = Array.from(document.querySelectorAll('.page-section'));
+const botoesNav = Array.from(document.querySelectorAll('.nav-btn'));
+const indicador = document.getElementById('nav-indicator');
+let secaoAtiva = null;
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if(e.isIntersecting){
-            document.querySelectorAll('.nav-btn').forEach(b => {
-                b.classList.toggle('active', b.dataset.section === e.target.id);
-            });
-        }
+// move o indicador dourado até o botão ativo (somente no menu horizontal)
+function moverIndicador(){
+    const ativo = botoesNav.find(b => b.classList.contains('active'));
+    if(!ativo || window.innerWidth <= 880){
+        indicador.classList.remove('ready');
+        return;
+    }
+    indicador.style.width = ativo.offsetWidth + 'px';
+    indicador.style.transform = 'translateX(' + ativo.offsetLeft + 'px)';
+    indicador.classList.add('ready');
+}
+
+// descobre qual seção ocupa a "linha de leitura" logo abaixo da topbar
+function atualizarSecaoAtiva(){
+    const linha = 67 + window.innerHeight * 0.25;
+    let atual = secoes[0];
+
+    secoes.forEach(sec => {
+        if(sec.getBoundingClientRect().top <= linha) atual = sec;
     });
-}, { rootMargin:'-45% 0px -50% 0px' });
 
-secoes.forEach(s => observer.observe(s));
+    // no fim da página, mantém a última seção marcada
+    if(window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2){
+        atual = secoes[secoes.length - 1];
+    }
+
+    if(atual && atual.id !== secaoAtiva){
+        secaoAtiva = atual.id;
+        botoesNav.forEach(b => {
+            b.classList.toggle('active', b.dataset.section === secaoAtiva);
+        });
+        moverIndicador();
+    }
+}
+
+let aguardandoFrame = false;
+window.addEventListener('scroll', () => {
+    if(aguardandoFrame) return;
+    aguardandoFrame = true;
+    requestAnimationFrame(() => {
+        atualizarSecaoAtiva();
+        aguardandoFrame = false;
+    });
+}, { passive:true });
+
+window.addEventListener('resize', () => {
+    atualizarSecaoAtiva();
+    moverIndicador();
+});
+
+window.addEventListener('load', () => {
+    atualizarSecaoAtiva();
+    moverIndicador();
+});
+
+atualizarSecaoAtiva();
 
 // barra de progresso no topo
 window.addEventListener('scroll', () => {
