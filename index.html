@@ -590,15 +590,15 @@ main{
 
 .course-badge.is-presencial,
 .course-badge.is-online{
-    background:var(--orange);
-    border-color:var(--orange-dark);
+    background:#f5bb40;
+    border-color:var(--gold-dark);
     color:var(--ink);
 }
 
 .course-badge.is-presencial:hover,
 .course-badge.is-online:hover{
-    background:var(--orange-dark);
-    border-color:var(--orange-dark);
+    background:var(--gold-dark);
+    border-color:var(--gold-dark);
     color:var(--white);
 }
 
@@ -1726,98 +1726,1449 @@ footer .credit{
     }
 }
 
+
+/* =====================================================================
+   NOVO LAYOUT — SIDEBAR + PÁGINAS (uma por vez)
+   ===================================================================== */
+
+:root{
+    --sidebar-w:264px;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    width:var(--sidebar-w);
+    z-index:70;
+    background:var(--ink);
+    color:var(--paper);
+    display:flex;
+    flex-direction:column;
+    padding:26px 16px 20px;
+    border-right:3px solid var(--gold);
+    overflow-y:auto;
+}
+
+.side-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:6px 12px 24px;
+    border-bottom:1px solid rgba(245,244,239,0.14);
+    font-family:'Fraunces',serif;
+    font-size:1.6rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+    color:var(--paper);
+    text-decoration:none;
+}
+
+.side-nav{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    margin-top:22px;
+}
+
+.side-link{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    min-height:46px;
+    padding:10px 16px;
+    border-radius:12px;
+    color:rgba(245,244,239,0.78);
+    text-decoration:none;
+    font-weight:500;
+    font-size:0.96rem;
+    line-height:1.25;
+    transition:color .3s ease, background .25s ease;
+}
+
+.side-link:hover{
+    color:#fff;
+    background:rgba(255,255,255,0.07);
+}
+
+.side-link.active{
+    color:var(--gold);
+}
+
+.side-link.active:hover{
+    background:transparent;
+}
+
+/* destaque que desliza até o item da página atual */
+.side-indicator{
+    position:absolute;
+    z-index:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:46px;
+    border-radius:12px;
+    background:rgba(245,187,64,0.16);
+    box-shadow:inset 3px 0 0 var(--gold);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .4s cubic-bezier(.4,0,.2,1), height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+}
+
+.side-indicator.ready{
+    opacity:1;
+}
+
+.side-foot{
+    margin-top:auto;
+    padding:18px 12px 0;
+    border-top:1px solid rgba(245,244,239,0.14);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    color:rgba(245,244,239,0.55);
+}
+
+.side-toggle,
+.side-backdrop{
+    display:none;
+}
+
+/* ---------- Estrutura da página ---------- */
+
+.layout{
+    margin-left:var(--sidebar-w);
+    min-width:0;
+}
+
+.layout main{
+    max-width:none;
+    margin:0;
+    padding:0;
+}
+
+/* só a página escolhida aparece */
+.view:not(.active){
+    display:none !important;
+}
+
+.view.active{
+    animation:viewIn .4s ease;
+}
+
+@keyframes viewIn{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:none; }
+}
+
+.view-inner{
+    max-width:1100px;
+    margin:0 auto;
+    padding:64px 32px 72px;
+}
+
+.view-narrow{
+    max-width:820px;
+}
+
+#sobre,
+#jovem-aprendiz,
+#curriculo,
+#comportamento{
+    min-height:100vh;
+    min-height:100svh;
+}
+
+#sobre .view-inner{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:100svh;
+}
+
+.page-head{
+    margin-bottom:30px;
+}
+
+.page-head .section-sub{
+    margin-bottom:0;
+    max-width:680px;
+}
+
+.scroll-progress{
+    top:0;
+    left:var(--sidebar-w);
+    right:0;
+    width:auto;
+    transform-origin:left center;
+    transform:scaleX(0);
+    transition:none;
+    z-index:60;
+}
+
+/* ---------- Página inicial: banner de ponta a ponta ---------- */
+
+#inicio{
+    display:block;
+    min-height:0;
+    padding:0;
+    border-bottom:none;
+}
+
+#inicio .hero-banner{
+    flex:none;
+    width:100%;
+    max-width:none;
+    margin:0;
+    border-radius:0;
+    min-height:min(82vh,600px);
+    align-items:center;
+}
+
+.hero-inner{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:64px 32px;
+    display:grid;
+    grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+    align-items:center;
+    gap:40px;
+}
+
+.hero-inner .hero-eyebrow{
+    color:var(--gold);
+}
+
+.hero-inner .hero-eyebrow::before{
+    background:var(--gold);
+}
+
+.hero-inner h1{
+    color:var(--white);
+    font-size:clamp(2.1rem,4.4vw,3.6rem);
+    line-height:1.08;
+    margin:0;
+}
+
+.hero-inner p.lede{
+    color:rgba(245,244,239,0.88);
+    max-width:52ch;
+    margin:0 0 26px;
+}
+
+/* logo com fade in */
+.hero-logo{
+    justify-self:center;
+    width:min(100%,260px);
+    color:var(--gold);
+    opacity:0;
+    animation:logoFade 1.6s ease .5s forwards;
+    filter:drop-shadow(0 0 28px rgba(245,187,64,0.35));
+}
+
+.hero-logo svg,
+.hero-logo img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+@keyframes logoFade{
+    from{ opacity:0; transform:scale(0.86); }
+    to{ opacity:1; transform:scale(1); }
+}
+
+/* ---------- Cards dos cursos (logo abaixo do banner) ---------- */
+
+.cursos-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:72px 32px 88px;
+}
+
+.cursos-wrap .section-label,
+.cursos-wrap .section-title,
+.cursos-wrap .section-sub{
+    text-align:center;
+}
+
+.cursos-wrap .section-sub{
+    margin:0 auto;
+    max-width:620px;
+}
+
+#area-conteudo{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:26px;
+    margin:40px 0 0;
+}
+
+#cursos .area-view,
+#cursos .area-view.active{
+    display:block;
+    min-width:0;
+    flex:none;
+    animation:none;
+}
+
+/* o último card (7º) fica sozinho e centralizado */
+#cursos .area-view:last-child:nth-child(odd){
+    grid-column:1 / -1;
+    justify-self:center;
+    width:calc(50% - 13px);
+}
+
+#cursos .area-banner{
+    height:100%;
+    min-height:340px;
+    margin:0;
+    border-radius:28px;
+    align-items:flex-end;
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+
+#cursos .area-banner:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 36px rgba(46,58,92,0.25);
+}
+
+#cursos .area-banner img{
+    transition:transform .5s ease;
+}
+
+#cursos .area-banner:hover img{
+    transform:scale(1.05);
+}
+
+#cursos .area-banner .hero-overlay{
+    width:100%;
+    max-width:none;
+    padding:30px 32px 32px;
+}
+
+#cursos .area-banner .hero-eyebrow{
+    font-size:0.7rem;
+    margin-bottom:12px;
+}
+
+#cursos .area-banner .hero-overlay h1{
+    font-size:1.65rem;
+    line-height:1.2;
+    margin-bottom:12px;
+}
+
+#cursos .area-banner .hero-overlay p.lede{
+    font-size:0.94rem;
+    line-height:1.55;
+    max-width:56ch;
+    margin-bottom:20px;
+}
+
+#cursos .area-banner .hero-actions{
+    margin-top:0;
+}
+
+/* ---------- Páginas internas ---------- */
+
+.prose{
+    max-width:70ch;
+}
+
+.prose p,
+.page-text p{
+    color:var(--ink-2);
+    font-size:1.02rem;
+    line-height:1.7;
+    margin:0 0 16px;
+}
+
+.prose h3,
+.page-text h3{
+    font-size:1.3rem;
+    margin:30px 0 12px;
+}
+
+.page-text h3:first-child{
+    margin-top:0;
+}
+
+.page-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+    gap:44px;
+    align-items:start;
+}
+
+.page-media{
+    position:sticky;
+    top:32px;
+    margin:0;
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--paper-2);
+}
+
+.page-media img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+/* espaço reservado para imagem (Currículo) */
+.page-media.is-placeholder{
+    aspect-ratio:3 / 4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:rgba(255,255,255,0.55);
+    border:2px dashed rgba(46,58,92,0.35);
+}
+
+.page-placeholder{
+    padding:24px;
+    color:var(--sage);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    line-height:1.8;
+}
+
+.page-placeholder strong{
+    display:block;
+    font-size:2.2rem;
+    font-weight:400;
+    line-height:1;
+    margin-bottom:10px;
+}
+
+.page-placeholder span{
+    opacity:0.8;
+}
+
+/* passo a passo numerado */
+.step-list{
+    counter-reset:passo;
+    list-style:none;
+    margin:0 0 8px;
+    padding:0;
+    display:grid;
+    gap:12px;
+}
+
+.step-list li{
+    counter-increment:passo;
+    position:relative;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:16px 20px 16px 68px;
+}
+
+.step-list li::before{
+    content:counter(passo);
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:var(--gold);
+    color:var(--ink);
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.step-list strong{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-size:1.05rem;
+    color:var(--ink);
+    margin-bottom:2px;
+}
+
+.step-list span{
+    color:var(--ink-2);
+    font-size:0.94rem;
+    line-height:1.55;
+}
+
+.check-list{
+    margin:0 0 16px;
+    padding-left:20px;
+    color:var(--ink-2);
+    line-height:1.6;
+}
+
+.check-list li{
+    margin-bottom:8px;
+}
+
+.info-cards{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+    margin:22px 0 4px;
+}
+
+.info-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px 20px;
+}
+
+.info-card h4{
+    margin:0 0 6px;
+    font-family:'Fraunces',serif;
+    font-size:1.05rem;
+    color:var(--ink);
+}
+
+.info-card p{
+    margin:0;
+    font-size:0.92rem;
+    line-height:1.55;
+}
+
+.page-note{
+    margin-top:8px;
+    padding:14px 18px;
+    border-left:3px solid var(--gold);
+    background:rgba(245,187,64,0.14);
+    border-radius:0 12px 12px 0;
+}
+
+.page-fonte{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem;
+    color:var(--sage);
+}
+
+/* ---------- Rodapé com contatos ---------- */
+
+.layout footer{
+    background:var(--ink);
+    color:rgba(245,244,239,0.78);
+    font-size:0.92rem;
+    margin:0;
+}
+
+.footer-top{
+    max-width:1100px;
+    margin:0 auto;
+    padding:56px 32px 36px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:44px;
+}
+
+.footer-brand{
+    font-family:'Fraunces',serif;
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--paper);
+    margin-bottom:12px;
+}
+
+.footer-about p{
+    margin:0;
+    line-height:1.7;
+    max-width:46ch;
+}
+
+.footer-col h4{
+    margin:0 0 16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.74rem;
+    font-weight:500;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+}
+
+.contact-list,
+.footer-links{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:12px;
+}
+
+.contact-list li{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.contact-list .rotulo{
+    font-size:0.74rem;
+    color:rgba(245,244,239,0.55);
+}
+
+.contact-list .valor{
+    font-size:1.08rem;
+    color:var(--paper);
+}
+
+.footer-links a{
+    text-decoration:none;
+    color:rgba(245,244,239,0.78);
+    transition:color .2s ease;
+}
+
+.footer-bottom{
+    max-width:1100px;
+    margin:0 auto;
+    padding:22px 32px 28px;
+    border-top:1px solid rgba(245,244,239,0.14);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.footer-bottom a{
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    text-decoration:none;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:1100px){
+    .page-grid{
+        grid-template-columns:minmax(0,1fr);
+    }
+
+    .page-media{
+        position:static;
+        max-width:520px;
+    }
+}
+
+/* ---------- Celular e tablet: sidebar vira gaveta ---------- */
+
+@media (max-width:880px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:transform .3s ease;
+        box-shadow:none;
+    }
+
+    /* o botão ✕ fica no canto: a marca desce para não ficar embaixo dele */
+    .sidebar{
+        padding-top:72px;
+    }
+
+    .sidebar.open{
+        transform:none;
+        box-shadow:0 0 40px rgba(0,0,0,0.35);
+    }
+
+    .side-toggle{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        position:fixed;
+        top:12px;
+        left:12px;
+        z-index:80;
+        width:46px;
+        height:46px;
+        border-radius:12px;
+        border:1px solid rgba(245,244,239,0.25);
+        background:var(--ink);
+        color:var(--paper);
+        font-size:1.3rem;
+    }
+
+    .side-backdrop{
+        display:block;
+        position:fixed;
+        inset:0;
+        z-index:65;
+        background:rgba(20,29,45,0.55);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .3s ease;
+    }
+
+    .side-backdrop.show{
+        opacity:1;
+        pointer-events:auto;
+    }
+
+    .layout{
+        margin-left:0;
+    }
+
+    .scroll-progress{
+        left:0;
+    }
+
+    .view-inner{
+        padding-top:84px;
+    }
+
+    .footer-top{
+        grid-template-columns:minmax(0,1fr);
+        gap:32px;
+    }
+}
+
+@media (max-width:760px){
+
+    .hero-inner{
+        grid-template-columns:minmax(0,1fr);
+        padding:84px 22px 48px;
+        gap:28px;
+    }
+
+    .hero-logo{
+        order:-1;
+        width:110px;
+        justify-self:start;
+    }
+
+    .view-inner,
+    .cursos-wrap{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    #area-conteudo{
+        grid-template-columns:minmax(0,1fr);
+    }
+
+    #cursos .area-view:last-child:nth-child(odd){
+        width:100%;
+    }
+
+    #cursos .area-banner{
+        min-height:320px;
+        border-radius:22px;
+    }
+
+    #cursos .area-banner .hero-overlay{
+        padding:24px 22px 26px;
+    }
+
+    .info-cards{
+        grid-template-columns:minmax(0,1fr);
+    }
+
+    .footer-top,
+    .footer-bottom{
+        padding-left:20px;
+        padding-right:20px;
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .hero-logo{
+        animation:none;
+        opacity:1;
+    }
+
+    .view.active,
+    .side-indicator,
+    .sidebar{
+        animation:none;
+        transition:none;
+    }
+}
+
+
+/* =====================================================================
+   SIDEBAR RETRÁTIL EM QUALQUER DISPOSITIVO
+   ===================================================================== */
+
+/* botão sempre visível (esconde/mostra a sidebar) */
+.side-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:fixed;
+    top:12px;
+    left:12px;
+    z-index:80;
+    width:46px;
+    height:46px;
+    border-radius:12px;
+    border:1px solid rgba(245,244,239,0.25);
+    background:var(--ink);
+    color:var(--paper);
+    font-size:1.3rem;
+    transition:background .2s ease;
+}
+
+.side-toggle:hover{
+    background:var(--ink-2);
+}
+
+/* a marca fica abaixo do botão */
+.sidebar{
+    padding-top:72px;
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.layout{
+    transition:margin-left .3s ease;
+}
+
+.scroll-progress{
+    transition:left .3s ease;
+}
+
+/* computador: sidebar escondida pelo usuário */
+@media (min-width:881px){
+
+    body.side-hidden .sidebar{
+        transform:translateX(-100%);
+    }
+
+    body.side-hidden .layout{
+        margin-left:0;
+    }
+
+    body.side-hidden .scroll-progress{
+        left:0;
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .sidebar,
+    .layout,
+    .scroll-progress{
+        transition:none;
+    }
+}
+
+
+/* =====================================================================
+   BANNER: ÁREA PARA IMAGEM (no lugar do círculo)
+   ===================================================================== */
+
+.hero-logo.hero-image{
+    width:min(100%,380px);
+    aspect-ratio:1 / 1;
+    margin:0;
+    filter:none;
+    border:2px dashed rgba(255,255,255,0.5);
+    border-radius:28px;
+    background:rgba(255,255,255,0.08);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero-image-placeholder{
+    padding:24px;
+    color:rgba(255,255,255,0.85);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    line-height:1.7;
+}
+
+.hero-image-placeholder strong{
+    display:block;
+    font-size:2.4rem;
+    font-weight:400;
+    line-height:1;
+    margin-bottom:10px;
+}
+
+.hero-logo.hero-image img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* quando a imagem entra, some a moldura tracejada */
+.hero-logo.hero-image:has(img){
+    border:none;
+    background:none;
+}
+
+@media (max-width:760px){
+    .hero-logo.hero-image{
+        order:2;
+        width:min(100%,300px);
+        aspect-ratio:16 / 10;
+        justify-self:start;
+    }
+}
+
+/* =====================================================================
+   PÁGINAS DETALHADAS (FAQ, faça/evite, modelo)
+   ===================================================================== */
+
+.page-text .step-list .ex{
+    display:block;
+    margin-top:6px;
+    font-size:0.88rem;
+    font-style:italic;
+    color:var(--sage);
+}
+
+.faq{
+    display:grid;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.faq details{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+}
+
+.faq summary{
+    list-style:none;
+    cursor:pointer;
+    padding:16px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.02rem;
+}
+
+.faq summary::-webkit-details-marker{
+    display:none;
+}
+
+.faq summary::after{
+    content:"+";
+    color:var(--gold-dark);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:1.2rem;
+    transition:transform .2s ease;
+}
+
+.faq details[open] summary::after{
+    transform:rotate(45deg);
+}
+
+.faq details p{
+    margin:0;
+    padding:0 20px 18px;
+    font-size:0.95rem;
+}
+
+.do-dont{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+    margin:12px 0 16px;
+}
+
+.do-box,
+.dont-box{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px 20px;
+}
+
+.do-box h4,
+.dont-box h4{
+    margin:0 0 12px;
+    font-family:'Fraunces',serif;
+    font-size:1.05rem;
+}
+
+.do-box h4{ color:#2f6b4a; }
+.dont-box h4{ color:#a24a2b; }
+
+.do-box ul,
+.dont-box ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:9px;
+}
+
+.do-box li,
+.dont-box li{
+    position:relative;
+    padding-left:24px;
+    font-size:0.93rem;
+    line-height:1.5;
+    color:var(--ink-2);
+}
+
+.do-box li::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    color:#2f6b4a;
+    font-weight:700;
+}
+
+.dont-box li::before{
+    content:"✕";
+    position:absolute;
+    left:0;
+    color:#a24a2b;
+    font-weight:700;
+}
+
+.example-box{
+    margin:0 0 16px;
+    padding:18px 20px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-left:4px solid var(--gold);
+    border-radius:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    line-height:1.75;
+    color:var(--ink-2);
+    white-space:pre-wrap;
+    overflow-x:auto;
+}
+
+@media (max-width:760px){
+    .do-dont{
+        grid-template-columns:minmax(0,1fr);
+    }
+}
+
+
+/* =====================================================================
+   LOGO ATRÁS DO TEXTO DO BANNER
+   A logo fica numa camada abaixo do texto, com um pouco de transparência,
+   para o título continuar legível por cima dela.
+   ===================================================================== */
+
+#inicio .hero-banner{
+    --logo-w:clamp(230px, 26vw, 330px);
+    --logo-opacidade:0.5;      /* 1 = cores cheias; valores menores deixam a logo mais suave */
+}
+
+#inicio .hero-banner img.hero-logo-bg{
+    position:absolute;
+    inset:auto;
+    top:0;
+    bottom:0;
+    margin-top:auto;
+    margin-bottom:auto;
+    left:min(calc(max(0px, (100% - 1100px) / 2) + 440px), calc(100% - var(--logo-w) - 16px));
+    right:auto;
+    width:var(--logo-w);
+    height:auto;
+    object-fit:contain;
+    z-index:1;
+    opacity:0;
+    animation:logoBgFade 1.6s ease .5s forwards;
+    pointer-events:none;
+}
+
+@keyframes logoBgFade{
+    from{ opacity:0; transform:scale(0.9); }
+    to{ opacity:var(--logo-opacidade); transform:scale(1); }
+}
+
+/* texto por cima da logo, em duas linhas e com sombra para ler bem */
+.hero-inner{
+    grid-template-columns:minmax(0,1fr);
+}
+
+.hero-text{
+    max-width:640px;
+}
+
+.hero-inner h1,
+.hero-inner .hero-eyebrow{
+    text-shadow:0 2px 16px rgba(20,29,45,0.85);
+}
+
+@media (max-width:760px){
+    #inicio .hero-banner{
+        --logo-w:240px;
+        --logo-opacidade:0.32;
+    }
+
+    #inicio .hero-banner img.hero-logo-bg{
+        left:50%;
+        margin-left:-120px;
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    #inicio .hero-banner img.hero-logo-bg{
+        animation:none;
+        opacity:var(--logo-opacidade);
+    }
+}
+
+
+/* Banner inicial sem imagem de fundo: apenas degradê com as cores do site
+   (azul do site -> azul escuro). A logo continua por cima do degradê. */
+#inicio .hero-banner{
+    min-height:min(88vh,680px);
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 55%, #14293d 100%);
+}
+
+#inicio .hero-banner::after{
+    display:none;
+}
+
+/* Logo do banner: logo depois do título, mais à direita.
+   Para ajustar a distância do título, mude o 660px (maior = mais à direita). */
+@media (min-width:761px){
+    #inicio .hero-banner img.hero-logo-bg{
+        left:min(calc(max(0px, (100% - 1100px) / 2) + 660px), calc(100% - var(--logo-w) - 16px));
+    }
+}
+
+/* =====================================================
+   CARDS DAS ÁREAS PROFISSIONAIS — tamanho menor
+   3 por linha no computador (o último fica centralizado),
+   2 no tablet e 1 no celular. Para cards ainda menores,
+   diminua o min-height ou aumente a gap.
+   ===================================================== */
+#area-conteudo{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    margin:32px 0 0;
+}
+
+#cursos .area-view,
+#cursos .area-view.active,
+#cursos .area-view:last-child:nth-child(odd){
+    flex:0 0 calc((100% - 40px) / 3);
+    width:auto;
+    max-width:calc((100% - 40px) / 3);
+    justify-self:auto;
+}
+
+#cursos .area-banner{
+    min-height:270px;
+    border-radius:20px;
+}
+
+#cursos .area-banner .hero-overlay{
+    padding:20px 20px 22px;
+}
+
+#cursos .area-banner .hero-eyebrow{
+    font-size:0.64rem;
+    margin-bottom:8px;
+}
+
+#cursos .area-banner .hero-overlay h1{
+    font-size:1.25rem;
+    margin-bottom:8px;
+}
+
+#cursos .area-banner .hero-overlay p.lede{
+    font-size:0.82rem;
+    line-height:1.45;
+    margin-bottom:14px;
+}
+
+#cursos .area-banner .btn{
+    padding:10px 18px;
+    font-size:0.88rem;
+}
+
+@media (max-width:900px){
+    #cursos .area-view,
+    #cursos .area-view.active,
+    #cursos .area-view:last-child:nth-child(odd){
+        flex-basis:calc((100% - 20px) / 2);
+        max-width:calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width:600px){
+    #cursos .area-view,
+    #cursos .area-view.active,
+    #cursos .area-view:last-child:nth-child(odd){
+        flex-basis:100%;
+        max-width:100%;
+    }
+
+    #cursos .area-banner{
+        min-height:250px;
+    }
+}
+
+/* =====================================================
+   CARDS DAS ÁREAS — tons mais escuros (dentro da paleta)
+   Fundo: o creme do site em versão mais escura (#D6D0BC).
+   Texto: azuis escuros do site (#14293d e #1E3A56).
+   Para ajustar, mude os valores rgba(214,208,188,...) e as cores abaixo.
+   ===================================================== */
+#cursos .area-banner::after{
+    background:linear-gradient(
+        0deg,
+        rgba(214,208,188,0.98) 0%,
+        rgba(214,208,188,0.94) 65%,
+        rgba(214,208,188,0.62) 100%
+    );
+}
+
+#cursos .area-banner .hero-overlay h1{
+    color:#14293d;
+    text-shadow:none;
+}
+
+#cursos .area-banner .hero-overlay p.lede{
+    color:#1E3A56;
+    font-weight:500;
+}
+
+#cursos .area-banner .hero-overlay .hero-eyebrow{
+    color:var(--gold-dark);
+    text-shadow:none;
+}
+
+/* =====================================================
+   AJUSTES POR CARD
+   - "Cor mais clara": fundo da parte de baixo do card em creme claro
+   - "Texto informativo mais claro": descrição em azul mais claro
+   Para mexer em um card, altere só o bloco dele.
+   ===================================================== */
+
+/* Desenvolvimento de Sistemas, Alimentos e Eletromecânica: fundo mais claro */
+#view-sistemas .area-banner::after,
+#view-alimentacao .area-banner::after,
+#view-eletromecanica .area-banner::after{
+    background:linear-gradient(
+        0deg,
+        rgba(236,234,226,0.98) 0%,
+        rgba(236,234,226,0.94) 65%,
+        rgba(236,234,226,0.62) 100%
+    );
+}
+
+/* Administração, Farmácia e Turismo: texto informativo mais claro */
+#view-administracao .area-banner .hero-overlay p.lede,
+#view-farmacia .area-banner .hero-overlay p.lede,
+#view-turismo .area-banner .hero-overlay p.lede{
+    color:#3f5273;
+}
+
+/* =====================================================
+   CARDS DAS ÁREAS — cores do texto de acordo com cada imagem
+   - Imagens ESCURAS (Desenvolvimento, Eletromecânica): fundo azul escuro
+     do site + texto claro.
+   - Imagens CLARAS/COLORIDAS (Alimentação, Administração, Farmácia,
+     Meio Ambiente, Turismo): fundo bege + texto azul escuro.
+   ===================================================== */
+
+/* ---- cards claros: bege mais firme para o texto sempre ler bem ---- */
+#cursos #view-alimentacao .area-banner::after,
+#cursos #view-administracao .area-banner::after,
+#cursos #view-farmacia .area-banner::after,
+#cursos #view-meioambiente .area-banner::after,
+#cursos #view-turismo .area-banner::after{
+    background:linear-gradient(
+        0deg,
+        rgba(222,216,196,0.98) 0%,
+        rgba(222,216,196,0.95) 78%,
+        rgba(222,216,196,0.72) 100%
+    );
+}
+
+#cursos #view-alimentacao .area-banner .hero-overlay h1,
+#cursos #view-administracao .area-banner .hero-overlay h1,
+#cursos #view-farmacia .area-banner .hero-overlay h1,
+#cursos #view-meioambiente .area-banner .hero-overlay h1,
+#cursos #view-turismo .area-banner .hero-overlay h1{
+    color:#14293d;
+}
+
+#cursos #view-alimentacao .area-banner .hero-overlay p.lede,
+#cursos #view-administracao .area-banner .hero-overlay p.lede,
+#cursos #view-farmacia .area-banner .hero-overlay p.lede,
+#cursos #view-turismo .area-banner .hero-overlay p.lede{
+    color:#2e3a5c;
+}
+
+#cursos #view-meioambiente .area-banner .hero-overlay p.lede{
+    color:#1E3A56;
+}
+
+#cursos #view-alimentacao .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-administracao .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-farmacia .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-meioambiente .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-turismo .area-banner .hero-overlay .hero-eyebrow{
+    color:#7a5410;
+}
+
+/* ---- cards escuros: azul escuro do site + texto claro ---- */
+#cursos #view-sistemas .area-banner::after,
+#cursos #view-eletromecanica .area-banner::after{
+    background:linear-gradient(
+        0deg,
+        rgba(20,41,61,0.94) 0%,
+        rgba(20,41,61,0.84) 70%,
+        rgba(20,41,61,0.50) 100%
+    );
+}
+
+#cursos #view-sistemas .area-banner .hero-overlay h1,
+#cursos #view-eletromecanica .area-banner .hero-overlay h1{
+    color:#ffffff;
+    text-shadow:0 2px 12px rgba(20,29,45,0.6);
+}
+
+#cursos #view-sistemas .area-banner .hero-overlay p.lede,
+#cursos #view-eletromecanica .area-banner .hero-overlay p.lede{
+    color:rgba(245,244,239,0.94);
+}
+
+#cursos #view-sistemas .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-eletromecanica .area-banner .hero-overlay .hero-eyebrow{
+    color:#f5bb40;
+}
+
+/* =====================================================
+   AJUSTE — Alimentação, Administração, Farmácia e Turismo
+   Fundo azul escuro do site (mais fechado, porque as fotos são claras)
+   + texto claro. Para ver mais a foto, diminua os valores 0.92 / 0.86.
+   ===================================================== */
+#cursos #view-alimentacao .area-banner::after,
+#cursos #view-administracao .area-banner::after,
+#cursos #view-farmacia .area-banner::after,
+#cursos #view-turismo .area-banner::after{
+    background:linear-gradient(
+        0deg,
+        rgba(20,41,61,0.96) 0%,
+        rgba(20,41,61,0.92) 55%,
+        rgba(20,41,61,0.86) 80%,
+        rgba(20,41,61,0.60) 100%
+    );
+}
+
+#cursos #view-alimentacao .area-banner .hero-overlay h1,
+#cursos #view-administracao .area-banner .hero-overlay h1,
+#cursos #view-farmacia .area-banner .hero-overlay h1,
+#cursos #view-turismo .area-banner .hero-overlay h1{
+    color:#ffffff;
+    text-shadow:0 2px 12px rgba(20,29,45,0.6);
+}
+
+#cursos #view-alimentacao .area-banner .hero-overlay p.lede,
+#cursos #view-administracao .area-banner .hero-overlay p.lede,
+#cursos #view-farmacia .area-banner .hero-overlay p.lede,
+#cursos #view-turismo .area-banner .hero-overlay p.lede{
+    color:rgba(245,244,239,0.95);
+}
+
+#cursos #view-alimentacao .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-administracao .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-farmacia .area-banner .hero-overlay .hero-eyebrow,
+#cursos #view-turismo .area-banner .hero-overlay .hero-eyebrow{
+    color:#f5bb40;
+    text-shadow:none;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
+<!-- ===================== SIDEBAR ===================== -->
+<aside class="sidebar" id="sidebar" aria-label="Menu principal">
 
-    <a class="brand" href="#inicio" aria-label="Voltar para o início" title="Voltar para o início">
+    <a class="side-brand" href="#inicio" aria-label="Voltar para o início" title="Voltar para o início">
         <!-- LOGO: para colocar uma imagem aqui, tire as setas do comentário abaixo
-             e troque o nome do arquivo (a imagem se ajusta sozinha ao topbar):
+             e troque o nome do arquivo (a imagem se ajusta sozinha):
         <img class="brand-logo" src="logo.png" alt="Logo do INTEGRA">
         -->
         INTEGRA
     </a>
 
-    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mainnav" aria-label="Abrir menu">
-        <span class="nav-icon" aria-hidden="true">☰</span> Menu
-    </button>
-
-    <nav class="mainnav" id="mainnav">
-        <a class="nav-btn" href="#inicio" data-section="inicio">Início</a>
-        <a class="nav-btn" href="#areas" data-section="areas">Áreas profissionais</a>
-        <a class="nav-btn" href="#educativa" data-section="educativa">Área Educativa</a>
-        <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
+    <nav class="side-nav" id="side-nav">
+        <span class="side-indicator" id="side-indicator" aria-hidden="true"></span>
+        <a class="side-link active" href="#inicio" data-view="inicio">Início</a>
+        <a class="side-link" href="#sobre" data-view="sobre">Sobre o INTEGRA</a>
+        <a class="side-link" href="#jovem-aprendiz" data-view="jovem-aprendiz">Jovem Aprendiz</a>
+        <a class="side-link" href="#curriculo" data-view="curriculo">Currículo</a>
+        <a class="side-link" href="#comportamento" data-view="comportamento">Comportamento Profissional</a>
     </nav>
 
-</div>
+    <div class="side-foot">INTEGRA — TCC 2026</div>
+
+</aside>
+
+<button class="side-toggle" id="side-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Abrir menu">☰</button>
+<div class="side-backdrop" id="side-backdrop"></div>
 
 <!-- barra de progresso da rolagem -->
 <div class="scroll-progress" id="scroll-progress"></div>
 
+<div class="layout">
 
 <main>
 
-<!-- ===================== INÍCIO ===================== -->
+<section class="view active" id="inicio">
 
-<section class="page-section" id="inicio">
-
+    <!-- BANNER -->
     <div class="hero-banner">
 
-        <img src="img inicio2.jpeg" alt="INTEGRA - Orientação Profissional">
+        <!-- LOGO atrás do texto do banner (aparece com fade in).
+             Para trocar, substitua o arquivo logo-integra.png ou mude o nome em src. -->
+        <img class="hero-logo-bg" src="logo-integra.png" alt="Logo do INTEGRA">
 
-        <div class="hero-overlay">
+        <div class="hero-inner">
 
-            <div class="hero-eyebrow">Orientação profissional · 9º ano</div>
+            <div class="hero-text">
 
-            <h1>Orientação profissional em um só lugar.</h1>
+                <div class="hero-eyebrow">Orientação profissional · 9º ano</div>
 
-            <p class="lede">
-                O INTEGRA reúne cursos, profissões, escolas técnicas e oportunidades para ajudar estudantes do nono ano a decidir sua trajetória acadêmica e profissional com mais segurança.
-            </p>
+                <h1>Orientação Profissional em um só lugar</h1>
 
-            <div class="hero-actions">
-                <a class="btn btn-primary btn-gold" href="#areas">Explorar as áreas →</a>
             </div>
 
         </div>
 
     </div>
 
-    <!-- Sobre o projeto -->
-
-    <div class="about-block about-home">
-
-
-    <div class="section-label">
-        Sobre o projeto:
-    </div>
-
-    <h2 style="font-size:1.5rem;">
-        Por que o INTEGRA existe
-    </h2>
-
-    <p>
-        Somos estudantes do Colégio Estadual Euzébio da Mota. O projeto nasceu da observação de um problema real: muitos estudantes enfrentam dificuldades para escolher cursos e acessar oportunidades. Antes de pensar na tecnologia, buscamos entender essas necessidades por meio de pesquisa.
-    </p>
-
-    <p>
-        O INTEGRA une tecnologia, criatividade e trabalho em equipe para oferecer uma ferramenta prática, acessível e eficiente — pensada para estudantes do nono ano tomarem decisões com mais segurança sobre sua trajetória acadêmica e profissional futura.
-    </p>
-
-    </div>
-
-</section>
-
-
+    <!-- CURSOS (cards) -->
 <!-- ===================== ÁREAS PROFISSIONAIS ===================== -->
 
-<section class="page-section" id="areas">
+<div class="cursos-wrap" id="cursos">
 
     <div class="section-label">Áreas profissionais:</div>
     <h2 class="section-title">Escolha uma área para explorar</h2>
+    <p class="section-sub">Conheça cada curso, veja o que se aprende e onde é possível trabalhar. Clique em “Saiba mais” para ver a trilha completa.</p>
 
     <div id="area-conteudo">
 
@@ -1840,7 +3191,7 @@ footer .credit{
             </h1>
 
             <p class="lede">
-                Programação, suporte técnico, dados e produtos digitais — uma das áreas com maior demanda de profissionais no Brasil.
+                Aprenda a criar sites, aplicativos e sistemas, além de cuidar de redes, bancos de dados e suporte técnico. É uma das áreas com maior demanda de profissionais no Brasil, com vagas em empresas de todos os tamanhos.
             </p>
 
             <div class="hero-actions">
@@ -2003,7 +3354,7 @@ footer .credit{
             <h1>Alimentação</h1>
 
             <p class="lede">
-                Cozinha, confeitaria, nutrição e segurança alimentar — uma área com demanda constante em restaurantes, indústrias e serviços de saúde.
+                Cozinha, confeitaria, nutrição e segurança alimentar. O curso ensina a preparar, conservar e controlar a qualidade dos alimentos, com oportunidades em restaurantes, indústrias e serviços de saúde.
             </p>
 
             <div class="hero-actions">
@@ -2166,7 +3517,7 @@ footer .credit{
             <h1>Administração</h1>
 
             <p class="lede">
-                Rotinas administrativas, finanças, recursos humanos e empreendedorismo — a área que sustenta o funcionamento de qualquer empresa.
+                Rotinas administrativas, finanças, recursos humanos e empreendedorismo. Você entende como uma empresa funciona por dentro e abre portas em escritórios, bancos, comércio e no próprio negócio.
             </p>
 
             <div class="hero-actions">
@@ -2329,7 +3680,7 @@ footer .credit{
             </h1>
 
             <p class="lede">
-                Instalação, manutenção elétrica e mecânica de máquinas e equipamentos — a área que mantém a indústria funcionando.
+                Instalação e manutenção elétrica e mecânica de máquinas e equipamentos. Forma profissionais que mantêm a indústria funcionando, com atuação em fábricas, manutenção predial e empresas de energia.
             </p>
 
             <div class="hero-actions">
@@ -2476,7 +3827,7 @@ footer .credit{
             </h1>
 
             <p class="lede">
-                Dispensação de medicamentos, manipulação farmacêutica e cuidados com a saúde — presente em praticamente toda cidade.
+                Dispensação de medicamentos, manipulação e cuidados com a saúde. O técnico atua ao lado do farmacêutico em drogarias, farmácias de manipulação e hospitais.
             </p>
 
             <div class="hero-actions">
@@ -2623,7 +3974,7 @@ footer .credit{
             </h1>
 
             <p class="lede">
-                Gestão ambiental, sustentabilidade e conservação de recursos naturais — uma área em crescimento constante.
+                Gestão ambiental, sustentabilidade e conservação dos recursos naturais. Você aprende a monitorar impactos, cuidar de resíduos e ajudar empresas e órgãos públicos a trabalhar de forma sustentável.
             </p>
 
             <div class="hero-actions">
@@ -2770,7 +4121,7 @@ footer .credit{
             </h1>
 
             <p class="lede">
-                Guiamento, hospedagem, eventos e atendimento ao viajante — uma área que une cultura, comunicação e serviços.
+                Guiamento, hospedagem, eventos e atendimento ao viajante. O curso prepara para atuar em hotéis, agências e roteiros, unindo cultura, comunicação e serviços.
             </p>
 
             <div class="hero-actions">
@@ -2892,195 +4243,324 @@ footer .credit{
 
     </div>
 
+</div>
+
 </section>
 
+<section class="view" id="sobre">
+    <div class="view-inner view-narrow">
 
-<!-- ===================== ÁREA EDUCATIVA ===================== -->
-
-<section class="page-section band" id="educativa">
-
-    <div class="band-inner edu-layout">
-
-    <div class="edu-main">
-
-        <div class="section-label">Área Educativa:</div>
-        <h2 class="section-title">O que todo estudante precisa saber</h2>
-        <p class="section-sub">
-            Conteúdo sobre o mercado de trabalho — útil para qualquer área profissional que você escolher.
-        </p>
-
-        <div class="edu-list">
-
-        <details class="edu-card" open>
-
-            <summary>
-                Jovem Aprendiz
-                <span class="plus">+</span>
-            </summary>
-
-            <div class="body">
-
-                <div class="edu-body-grid">
-
-                    <div class="edu-text">
-
-                        <p>
-                            Programa que combina trabalho e formação técnico-profissional para jovens de 14 a 24 anos, com carteira assinada e direitos trabalhistas parciais.
-                        </p>
-
-                        <ul>
-                            <li>Contrato com duração máxima de 2 anos</li>
-                            <li>Jornada de até 6 horas diárias</li>
-                            <li>Empresas de médio e grande porte são obrigadas a contratar aprendizes</li>
-                        </ul>
-
-                        <div class="fonte">
-                            Fonte: Lei nº 10.097/2000 (Lei da Aprendizagem)
-                        </div>
-
-                    </div>
-
-                    <div class="edu-media">
-                        <img src="img aprendiz.jpeg" alt="Jovem Aprendiz">
-                    </div>
-
-                </div>
-
-            </div>
-
-        </details>
-
-
-        <details class="edu-card">
-
-            <summary>
-                Currículo — guia rápido
-                <span class="plus">+</span>
-            </summary>
-
-            <div class="body">
-
-                <div class="edu-body-grid">
-
-                    <div class="edu-text">
-
-                        <p>
-                            Um currículo de primeiro emprego deve ser direto e caber em uma página:
-                        </p>
-
-                        <ul>
-                            <li>Dados de contato no topo (nome, telefone, e-mail)</li>
-                            <li>Formação escolar e cursos técnicos ou livres</li>
-                            <li>Experiências práticas: projetos escolares, trabalho voluntário, estágios</li>
-                            <li>Habilidades relevantes para a vaga</li>
-                            <li>Evite erros de português e use um e-mail profissional</li>
-                        </ul>
-
-                    </div>
-
-                    <div class="edu-media">
-                        <img src="img curriculo.jfif" alt="Currículo — guia rápido">
-                    </div>
-
-                </div>
-
-            </div>
-
-        </details>
-
-
-        <details class="edu-card">
-
-            <summary>
-                Comportamento Profissional
-                <span class="plus">+</span>
-            </summary>
-
-            <div class="body">
-
-                <div class="edu-body-grid">
-
-                    <div class="edu-text">
-
-                        <p>
-                            Atitudes que fazem diferença no ambiente de trabalho, especialmente para quem está começando:
-                        </p>
-
-                        <ul>
-                            <li>Pontualidade e organização</li>
-                            <li>Comunicação clara e educada, inclusive por e-mail</li>
-                            <li>Postura proativa: perguntar quando tiver dúvida, em vez de travar</li>
-                            <li>Receber feedback sem levar para o lado pessoal</li>
-                        </ul>
-
-                    </div>
-
-                    <div class="edu-media">
-                        <img src="img comportamento.jpg" alt="Comportamento Profissional">
-                    </div>
-
-                </div>
-
-            </div>
-
-        </details>
-
-    </div>
-
-    </div><!-- /edu-main -->
-
-    <!-- Base para imagem (lado direito).
-         Para usar: apague o <div class="edu-aside-placeholder"> abaixo e coloque no lugar:
-         <img src="nome-da-imagem.jpg" alt="descrição da imagem"> -->
-    <figure class="edu-aside">
-        <div class="edu-aside-placeholder">
-            <strong>+</strong>
-            Espaço para imagem
+        <div class="page-head">
+            <div class="section-label">Sobre o INTEGRA:</div>
+            <h2 class="section-title">Por que o INTEGRA existe</h2>
+            <p class="section-sub">Informação clara e acessível para ajudar você a escolher o próximo passo.</p>
         </div>
-    </figure>
+
+        <div class="page-text">
+
+            <h3>Uma etapa de novas escolhas</h3>
+            <p>
+                A passagem do Ensino Fundamental para o Ensino Médio é um momento importante na vida do estudante. Ela traz novas responsabilidades, decisões sobre a vida acadêmica e muitas dúvidas sobre o futuro profissional. Por isso, ter acesso a informações claras e fáceis de entender faz toda a diferença na hora de decidir.
+            </p>
+
+            <h3>A proposta do INTEGRA</h3>
+            <p>
+                O INTEGRA nasceu para tornar esse processo mais simples. Em uma única plataforma, reunimos informações sobre as escolas da região, as trilhas de formação, o planejamento de carreira, a elaboração de currículo e o programa Jovem Aprendiz.
+            </p>
+
+            <h3>Nosso objetivo</h3>
+            <p>
+                Com conteúdos simples e acessíveis, queremos ampliar o acesso à informação e incentivar a autonomia dos estudantes, ajudando cada jovem a fazer escolhas mais conscientes sobre sua trajetória educacional e profissional.
+            </p>
+
+            <h3>Quem faz o INTEGRA</h3>
+            <p>
+                Projeto desenvolvido por estudantes do Colégio Estadual Euzébio da Mota (TCC 2026): Miguel, Ana Carolina, Lucca, Thauane, Anthony e Nicolas.
+            </p>
+
+        </div>
 
     </div>
+</section>
 
+<section class="view" id="jovem-aprendiz">
+    <div class="view-inner">
+
+        <div class="page-head">
+            <div class="section-label">Jovem Aprendiz:</div>
+            <h2 class="section-title">Estudar e trabalhar ao mesmo tempo</h2>
+            <p class="section-sub">Entenda o que é o programa, quem pode participar, como ele funciona na prática e como conseguir uma vaga.</p>
+        </div>
+
+        <div class="page-grid">
+
+            <div class="page-text">
+
+                <h3>O que é</h3>
+                <p>
+                    O Jovem Aprendiz é um programa previsto em lei que une trabalho e formação profissional. O jovem é contratado por uma empresa, com carteira assinada, e ao mesmo tempo faz um curso de aprendizagem. Assim, aprende uma profissão na prática, com acompanhamento, sem deixar os estudos de lado.
+                </p>
+                <p>
+                    Para muitos jovens, é a porta de entrada para o primeiro emprego: você ganha experiência, recebe salário e ainda constrói um currículo.
+                </p>
+
+                <h3>Quem pode participar</h3>
+                <ul class="check-list">
+                    <li>Ter entre 14 e 24 anos (não há limite de idade para pessoas com deficiência)</li>
+                    <li>Estar com a escola em dia: quem ainda não concluiu o ensino médio precisa estar matriculado e frequentando</li>
+                    <li>Ter documentos básicos: RG, CPF e carteira de trabalho (a digital serve)</li>
+                    <li>Para menores de 18 anos, ter a autorização dos responsáveis</li>
+                </ul>
+
+                <h3>Como funciona na prática</h3>
+                <ol class="step-list">
+                    <li><strong>Contrato especial</strong><span>Dura no máximo 2 anos, é registrado na carteira de trabalho e tem prazo determinado desde o início.</span></li>
+                    <li><strong>Teoria e prática</strong><span>Você aprende em duas frentes: o curso em uma entidade formadora (como o SENAI ou o SENAC) e a rotina de trabalho na empresa.</span></li>
+                    <li><strong>Jornada reduzida</strong><span>Em geral, de até 6 horas por dia, para sobrar tempo de estudar. Quem já concluiu o ensino fundamental pode ter até 8 horas, desde que inclua as aulas teóricas.</span></li>
+                    <li><strong>Salário e direitos</strong><span>O salário é, no mínimo, o salário-mínimo calculado por hora. Há também férias, 13º salário, FGTS e vale-transporte.</span></li>
+                    <li><strong>Escola em dia</strong><span>A empresa e a entidade formadora acompanham a frequência. Faltas sem justificativa na escola podem encerrar o contrato.</span></li>
+                    <li><strong>Fim do contrato</strong><span>Ao terminar, a empresa pode contratar o jovem como funcionário, mas não é obrigatório. O certificado do curso fica com você.</span></li>
+                </ol>
+
+                <h3>Jovem Aprendiz × Estágio</h3>
+                <div class="info-cards">
+                    <div class="info-card"><h4>Jovem Aprendiz</h4><p>Tem carteira assinada e vínculo de emprego. Une trabalho a um curso de aprendizagem e recebe salário com os direitos trabalhistas.</p></div>
+                    <div class="info-card"><h4>Estágio</h4><p>Não gera vínculo de emprego. É uma atividade ligada ao curso do estudante e costuma pagar uma bolsa, sem os mesmos direitos de um empregado.</p></div>
+                </div>
+
+                <h3>Como conseguir uma vaga</h3>
+                <ol class="step-list">
+                    <li><strong>Organize os documentos</strong><span>Separe RG, CPF, carteira de trabalho e comprovante de matrícula. Se for menor de 18 anos, peça a autorização dos responsáveis.</span></li>
+                    <li><strong>Monte um currículo</strong><span>Um currículo simples já ajuda. Veja o passo a passo na página Currículo.</span></li>
+                    <li><strong>Procure as oportunidades</strong><span>Pesquise entidades formadoras e empresas da sua cidade e consulte o Sine do seu município.</span></li>
+                    <li><strong>Participe da seleção</strong><span>Costuma ter entrevista ou dinâmica de grupo. Veja dicas na página Comportamento Profissional.</span></li>
+                    <li><strong>Assine o contrato</strong><span>Aprovado, você assina o contrato, começa o curso e inicia a rotina de trabalho.</span></li>
+                </ol>
+
+                <h3>Cuidados importantes</h3>
+                <ul class="check-list">
+                    <li>Menores de 18 anos não podem trabalhar à noite nem em atividades perigosas ou insalubres</li>
+                    <li>Para menores de 18 anos, as férias devem coincidir com as férias escolares</li>
+                    <li>Desconfie de quem cobra qualquer valor para conseguir a vaga: o programa é gratuito</li>
+                </ul>
+
+                <h3>Perguntas frequentes</h3>
+                <div class="faq">
+                    <details><summary>Quanto o Jovem Aprendiz recebe?</summary><p>No mínimo, o salário-mínimo proporcional às horas trabalhadas. Algumas empresas pagam mais e oferecem benefícios extras.</p></details>
+                    <details><summary>Posso ser contratado depois do programa?</summary><p>Pode. A empresa tem a opção de efetivar o jovem, mas não é uma obrigação. De qualquer forma, a experiência e o certificado ajudam em outras seleções.</p></details>
+                    <details><summary>Quem tem 13 anos pode participar?</summary><p>Não. A idade mínima é de 14 anos.</p></details>
+                    <details><summary>Preciso continuar estudando?</summary><p>Sim. Quem ainda não concluiu o ensino médio precisa manter a matrícula e a frequência na escola.</p></details>
+                </div>
+
+                <p class="page-note">
+                    Empresas de médio e grande porte são obrigadas por lei a contratar aprendizes.
+                </p>
+                <div class="page-fonte">Fonte: Lei nº 10.097/2000 (Lei da Aprendizagem)</div>
+
+            </div>
+
+            <figure class="page-media">
+                <img src="img aprendiz.jpeg" alt="Jovem Aprendiz">
+            </figure>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="view" id="curriculo">
+    <div class="view-inner">
+
+        <div class="page-head">
+            <div class="section-label">Currículo:</div>
+            <h2 class="section-title">Como montar seu currículo, passo a passo</h2>
+            <p class="section-sub">O currículo é o seu cartão de visitas. Um bom currículo de primeiro emprego é simples, claro e cabe em uma página.</p>
+        </div>
+
+        <div class="page-grid">
+
+            <div class="page-text">
+
+                <h3>Antes de começar</h3>
+                <ul class="check-list">
+                    <li>Separe suas informações: dados pessoais, escola, cursos, atividades e projetos de que participou</li>
+                    <li>Crie um e-mail sério, com seu nome (por exemplo, nome.sobrenome), para usar nas candidaturas</li>
+                    <li>Leia a vaga com atenção e destaque o que você tem que combina com ela</li>
+                </ul>
+
+                <h3>Passo a passo</h3>
+                <ol class="step-list">
+                    <li><strong>Dados de contato</strong><span>No topo, coloque nome completo, telefone com WhatsApp, e-mail profissional e cidade. Não é preciso informar RG nem CPF.</span></li>
+                    <li><strong>Objetivo</strong><span>Uma frase curta dizendo a vaga ou a área em que você quer atuar.</span><em class="ex">Exemplo: “Busco oportunidade como jovem aprendiz na área administrativa, para aprender na prática e contribuir com a equipe.”</em></li>
+                    <li><strong>Formação</strong><span>Informe sua escola, a série ou o ano de conclusão e os cursos técnicos ou livres que já fez, sempre do mais recente para o mais antigo.</span></li>
+                    <li><strong>Experiências</strong><span>Quem está começando também tem experiências: projetos escolares, trabalho voluntário, estágios ou trabalhos informais. Conte o que você fez.</span><em class="ex">Exemplo: “Organizei a feira de ciências da escola, dividindo tarefas entre 8 colegas.”</em></li>
+                    <li><strong>Habilidades</strong><span>Liste o que você sabe fazer e que combina com a vaga: informática básica, comunicação, organização, trabalho em equipe, idiomas.</span></li>
+                    <li><strong>Informações complementares</strong><span>Se quiser, acrescente cursos livres, idiomas e a sua disponibilidade de horário.</span></li>
+                    <li><strong>Revisão final</strong><span>Releia tudo, confira a ortografia, use letra legível (como Arial ou Calibri, tamanho 11 ou 12) e salve em PDF. Peça para alguém conferir.</span></li>
+                </ol>
+
+                <h3>Modelo de estrutura</h3>
+                <pre class="example-box">NOME COMPLETO
+Cidade – UF  ·  (00) 00000-0000  ·  nome.sobrenome@email.com
+
+OBJETIVO
+Buscar oportunidade como jovem aprendiz, para aprender na prática e contribuir com a equipe.
+
+FORMAÇÃO
+Colégio Estadual (nome da escola) — Ensino Médio em andamento (2026)
+Curso de (nome do curso), instituição, ano
+
+EXPERIÊNCIAS
+Projeto / trabalho voluntário — o que você fez e o resultado
+
+HABILIDADES
+Informática básica · Comunicação · Trabalho em equipe
+
+INFORMAÇÕES COMPLEMENTARES
+Idiomas, cursos livres e disponibilidade de horário</pre>
+
+                <h3>Dicas finais</h3>
+                <div class="do-dont">
+                    <div class="do-box"><h4>Faça</h4><ul><li>Ser objetivo e caber em uma página</li><li>Usar títulos claros e espaçamento organizado</li><li>Adaptar o currículo para cada vaga</li><li>Salvar em PDF com o seu nome no arquivo</li></ul></div>
+                    <div class="dont-box"><h4>Evite</h4><ul><li>Cometer erros de português</li><li>Colocar informações falsas ou exageradas</li><li>Usar e-mail com apelidos ou brincadeiras</li><li>Encher de cores, fontes diferentes ou imagens</li></ul></div>
+                </div>
+
+            </div>
+
+            <!-- Espaço para a foto de um modelo de currículo.
+                 Para usar: apague o <div class="page-placeholder"> e coloque no lugar:
+                 <img src="nome-da-imagem.jpg" alt="Modelo de currículo"> -->
+            <figure class="page-media is-placeholder">
+                <div class="page-placeholder">
+                    <strong>+</strong>
+                    Espaço para imagem<br>
+                    <span>modelo de currículo</span>
+                </div>
+            </figure>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="view" id="comportamento">
+    <div class="view-inner">
+
+        <div class="page-head">
+            <div class="section-label">Comportamento Profissional:</div>
+            <h2 class="section-title">Postura que abre portas</h2>
+            <p class="section-sub">Saiba o que é comportamento profissional, o que as empresas esperam de você e como chegar mais confiante ao primeiro emprego.</p>
+        </div>
+
+        <div class="page-grid">
+
+            <div class="page-text">
+
+                <h3>O que é</h3>
+                <p>
+                    Comportamento profissional é o conjunto de atitudes que você mostra no trabalho: como se comunica, como cumpre combinados, como lida com erros e como trata as outras pessoas. Não depende de ter muita experiência — depende de escolhas do dia a dia.
+                </p>
+                <p>
+                    As empresas valorizam isso tanto quanto o conhecimento técnico, principalmente em quem está começando. Um jovem educado, pontual e disposto a aprender costuma ser escolhido mesmo sem ter trabalhado antes.
+                </p>
+
+                <h3>As atitudes que mais contam</h3>
+                <div class="info-cards">
+                    <div class="info-card"><h4>Pontualidade e organização</h4><p>Chegar no horário, cumprir prazos e manter suas coisas em ordem passa confiança e respeito.</p></div>
+                    <div class="info-card"><h4>Comunicação clara e educada</h4><p>Fale com respeito, ouça com atenção e escreva mensagens e e-mails sem erros.</p></div>
+                    <div class="info-card"><h4>Postura proativa</h4><p>Pergunte quando tiver dúvida, em vez de travar, e ofereça ajuda quando puder.</p></div>
+                    <div class="info-card"><h4>Trabalho em equipe</h4><p>Divida tarefas, respeite opiniões diferentes e valorize o resultado do grupo.</p></div>
+                    <div class="info-card"><h4>Responsabilidade</h4><p>Assuma o que combinou fazer e avise com antecedência se algo atrapalhar.</p></div>
+                    <div class="info-card"><h4>Abertura a feedback</h4><p>Receba críticas como aprendizado e não leve para o lado pessoal.</p></div>
+                </div>
+
+                <h3>Como ficar mais confiante</h3>
+                <p>
+                    Confiança não é não sentir medo. É seguir em frente mesmo com ele, e ela cresce com preparo e prática. Alguns caminhos:
+                </p>
+                <ol class="step-list">
+                    <li><strong>Prepare-se antes</strong><span>Pesquise sobre a empresa e a vaga, ensaie sua apresentação e separe tudo com antecedência. Quem se prepara fica mais seguro.</span></li>
+                    <li><strong>Treine em voz alta</strong><span>Simule uma entrevista com um familiar ou professor. Praticar diminui o nervosismo e melhora a fala.</span></li>
+                    <li><strong>Conheça seus pontos fortes</strong><span>Liste três qualidades suas com exemplos reais, como um trabalho em grupo ou um projeto da escola.</span></li>
+                    <li><strong>Respire e fale com calma</strong><span>Antes de entrar, respire fundo algumas vezes. Falar mais devagar ajuda a organizar as ideias.</span></li>
+                    <li><strong>Cuide da postura</strong><span>Olhe nos olhos, mantenha a coluna reta e deixe o celular guardado.</span></li>
+                    <li><strong>Aceite que errar faz parte</strong><span>Todo mundo erra no começo. O importante é reconhecer, corrigir e aprender com o erro.</span></li>
+                </ol>
+
+                <h3>Na entrevista e no primeiro dia</h3>
+                <div class="do-dont">
+                    <div class="do-box"><h4>Faça</h4><ul><li>Chegar com alguns minutos de antecedência</li><li>Vestir roupas limpas e adequadas</li><li>Cumprimentar com educação e sorrir</li><li>Fazer perguntas sobre a vaga e a rotina</li></ul></div>
+                    <div class="dont-box"><h4>Evite</h4><ul><li>Mexer no celular durante a conversa</li><li>Falar mal de escolas, professores ou chefes antigos</li><li>Responder só com “sim” ou “não”</li><li>Inventar experiências que você não tem</li></ul></div>
+                </div>
+
+                <h3>Hábitos para o dia a dia</h3>
+                <ul class="check-list">
+                    <li>Use uma agenda ou o celular para anotar horários e tarefas</li>
+                    <li>Treine a escrita: releia mensagens antes de enviar</li>
+                    <li>Peça feedback a professores e colegas depois de apresentações e trabalhos</li>
+                    <li>Comemore pequenas conquistas — elas constroem a confiança aos poucos</li>
+                </ul>
+
+            </div>
+
+            <figure class="page-media">
+                <img src="img comportamento.jpg" alt="Comportamento Profissional">
+            </figure>
+
+        </div>
+
+    </div>
 </section>
 
 </main>
 
+<footer id="contato">
 
-<footer>
-    <div class="footer-inner">
+    <div class="footer-top">
+
+        <div class="footer-col footer-about">
+            <div class="footer-brand">INTEGRA</div>
+            <p>
+                O INTEGRA é um projeto de estudantes do Colégio Estadual Euzébio da Mota que reúne, em um só lugar, informações sobre cursos, profissões e oportunidades para ajudar jovens do nono ano a decidir seus próximos passos com mais segurança.
+            </p>
+        </div>
+
+        <!-- CONTATO: troque os números abaixo pelos reais -->
+        <div class="footer-col">
+            <h4>Contato</h4>
+            <ul class="contact-list">
+                <li><span class="rotulo">Telefone 1</span><span class="valor">(00) 0000-0000</span></li>
+                <li><span class="rotulo">Telefone 2</span><span class="valor">(00) 00000-0000</span></li>
+                <li><span class="rotulo">Telefone 3</span><span class="valor">(00) 0000-0000</span></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Navegue</h4>
+            <ul class="footer-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre o INTEGRA</a></li>
+                <li><a href="#jovem-aprendiz">Jovem Aprendiz</a></li>
+                <li><a href="#curriculo">Currículo</a></li>
+                <li><a href="#comportamento">Comportamento Profissional</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
         <div class="footer-info">
             <span>INTEGRA — TCC 2026</span>
             <div class="credit">Miguel · Ana Carolina · Lucca · Thauane · Anthony · Nicolas</div>
         </div>
         <a href="#inicio">Voltar ao topo ↑</a>
     </div>
+
 </footer>
 
+</div><!-- /layout -->
+
 <script>
-// ================== ÁREAS ==================
-
-// Mostra uma área (sem trocar de página). Se "rolar" for true, leva o usuário até ela.
-function showArea(area, rolar){
-
-    document.querySelectorAll('.area-view').forEach(v => v.classList.remove('active'));
-    document.getElementById('view-' + area).classList.add('active');
-
-    document.querySelectorAll('.pick').forEach(p => {
-        p.classList.toggle('active', p.dataset.area === area);
-    });
-
-    // deixa o botão escolhido visível no seletor (útil no celular)
-    const pick = document.querySelector('.pick[data-area="' + area + '"]');
-    if(pick){
-        pick.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
-    }
-
-    if(rolar){
-        document.getElementById('areas').scrollIntoView({ behavior:'smooth' });
-    }
-}
-
-
 // ================== SAIBA MAIS ==================
 // Abre a janela com os detalhes da área (Esc, botão ✕ ou clique fora fecham).
 
@@ -3098,108 +4578,157 @@ document.querySelectorAll('.saiba-dialog').forEach(d => {
 });
 
 
-// ================== MENU E ROLAGEM ==================
+// ================== PÁGINAS (uma por vez) ==================
 
-// menu do celular/tablet: abre, fecha ao clicar num link, fora dele ou com Esc
-const nav = document.getElementById('mainnav');
-const navToggle = document.getElementById('nav-toggle');
+const views     = Array.from(document.querySelectorAll('.view'));
+const sideLinks = Array.from(document.querySelectorAll('.side-link'));
+const sideInd   = document.getElementById('side-indicator');
+const sidebar   = document.getElementById('sidebar');
+const sideTog   = document.getElementById('side-toggle');
+const sideBack  = document.getElementById('side-backdrop');
 
-function setMenu(aberto){
-    nav.classList.toggle('open', aberto);
-    navToggle.setAttribute('aria-expanded', aberto);
-    navToggle.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
-    navToggle.querySelector('.nav-icon').textContent = aberto ? '✕' : '☰';
-}
-
-navToggle.addEventListener('click', e => {
-    e.stopPropagation();
-    setMenu(!nav.classList.contains('open'));
-});
-
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-
-document.addEventListener('click', e => {
-    if(!nav.contains(e.target)) setMenu(false);
-});
-
-document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') setMenu(false);
-});
-
-// se a tela aumentar (ex.: girar o tablet), fecha a gaveta
-window.addEventListener('resize', () => {
-    if(window.innerWidth > 880) setMenu(false);
-});
-
-// destaca no menu a seção que está na tela
-const secoes = Array.from(document.querySelectorAll('.page-section'));
-const botoesNav = Array.from(document.querySelectorAll('.nav-btn'));
-const indicador = document.getElementById('nav-indicator');
-let secaoAtiva = null;
-
-// move o indicador dourado até o botão ativo (somente no menu horizontal)
+// move o destaque dourado até o item ativo da sidebar
 function moverIndicador(){
-    const ativo = botoesNav.find(b => b.classList.contains('active'));
-    if(!ativo || window.innerWidth <= 880){
-        indicador.classList.remove('ready');
-        return;
-    }
-    indicador.style.width = ativo.offsetWidth + 'px';
-    indicador.style.transform = 'translateX(' + ativo.offsetLeft + 'px)';
-    indicador.classList.add('ready');
+    const ativo = sideLinks.find(l => l.classList.contains('active'));
+    if(!ativo) return;
+    sideInd.style.height = ativo.offsetHeight + 'px';
+    sideInd.style.transform = 'translateY(' + ativo.offsetTop + 'px)';
+    sideInd.classList.add('ready');
 }
 
-// descobre qual seção ocupa a "linha de leitura" logo abaixo da topbar
-function atualizarSecaoAtiva(){
-    const linha = 67 + window.innerHeight * 0.25;
-    let atual = secoes[0];
+function mostrarView(id){
+    views.forEach(v => v.classList.toggle('active', v.id === id));
+    sideLinks.forEach(l => l.classList.toggle('active', l.dataset.view === id));
+    moverIndicador();
+}
 
-    secoes.forEach(sec => {
-        if(sec.getBoundingClientRect().top <= linha) atual = sec;
-    });
+// mostra só a página pedida. "destino" é o id de uma página (sobre, curriculo...)
+// ou de um trecho dentro de uma página (ex.: cursos)
+function irPara(destino){
+    let id = 'inicio', alvo = null;
 
-    // no fim da página, mantém a última seção marcada
-    if(window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2){
-        atual = secoes[secoes.length - 1];
+    if(views.some(v => v.id === destino)){
+        id = destino;
+    } else if(destino){
+        alvo = document.getElementById(destino);
+        const v = alvo && alvo.closest('.view');
+        if(v) id = v.id; else alvo = null;
     }
 
-    if(atual && atual.id !== secaoAtiva){
-        secaoAtiva = atual.id;
-        botoesNav.forEach(b => {
-            b.classList.toggle('active', b.dataset.section === secaoAtiva);
-        });
-        moverIndicador();
+    mostrarView(id);
+
+    if(alvo){
+        alvo.scrollIntoView({ behavior:'smooth', block:'start' });
+    } else {
+        const raiz = document.documentElement;
+        raiz.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        raiz.style.scrollBehavior = '';
     }
 }
 
-let aguardandoFrame = false;
-window.addEventListener('scroll', () => {
-    if(aguardandoFrame) return;
-    aguardandoFrame = true;
-    requestAnimationFrame(() => {
-        atualizarSecaoAtiva();
-        aguardandoFrame = false;
-    });
-}, { passive:true });
+// lê o endereço (#sobre, #curriculo...) — usado ao abrir o site e nos botões voltar/avançar
+function rota(){
+    let h = '';
+    try{ h = decodeURIComponent(location.hash.slice(1)); }catch(e){}
+    irPara(h);
+}
 
-window.addEventListener('resize', () => {
-    atualizarSecaoAtiva();
-    moverIndicador();
+window.addEventListener('hashchange', rota);
+window.addEventListener('popstate', rota);
+window.addEventListener('load', moverIndicador);
+window.addEventListener('resize', moverIndicador);
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(moverIndicador);
+rota();
+
+
+// ================== SIDEBAR RETRÁTIL ==================
+// Computador: o usuário esconde/mostra a sidebar (a escolha fica salva).
+// Celular/tablet: a sidebar abre como gaveta sobre a página.
+
+const MOBILE = () => window.innerWidth <= 880;
+
+function lerPreferencia(){
+    try{ return localStorage.getItem('integra-sidebar') === 'oculta'; }catch(e){ return false; }
+}
+function salvarPreferencia(oculta){
+    try{ localStorage.setItem('integra-sidebar', oculta ? 'oculta' : 'aberta'); }catch(e){}
+}
+
+function atualizarBotao(visivel){
+    sideTog.setAttribute('aria-expanded', visivel);
+    sideTog.setAttribute('aria-label', visivel ? 'Esconder menu' : 'Mostrar menu');
+    sideTog.textContent = visivel ? '✕' : '☰';
+}
+
+// celular: abre/fecha a gaveta
+function setMenu(aberto){
+    sidebar.classList.toggle('open', aberto);
+    sideBack.classList.toggle('show', aberto);
+    if(MOBILE()) atualizarBotao(aberto);
+}
+
+// computador: esconde/mostra a sidebar
+function setSidebarDesktop(visivel){
+    document.body.classList.toggle('side-hidden', !visivel);
+    atualizarBotao(visivel);
+    setTimeout(moverIndicador, 350);
+}
+
+// aplica o estado certo para o tamanho atual da tela
+function ajustarSidebar(){
+    if(MOBILE()){
+        document.body.classList.remove('side-hidden');
+        setMenu(false);
+    } else {
+        setMenu(false);
+        setSidebarDesktop(!lerPreferencia());
+    }
+}
+
+sideTog.addEventListener('click', () => {
+    if(MOBILE()){
+        setMenu(!sidebar.classList.contains('open'));
+    } else {
+        const vaiMostrar = document.body.classList.contains('side-hidden');
+        setSidebarDesktop(vaiMostrar);
+        salvarPreferencia(!vaiMostrar);
+    }
 });
 
-window.addEventListener('load', () => {
-    atualizarSecaoAtiva();
-    moverIndicador();
+sideBack.addEventListener('click', () => setMenu(false));
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && MOBILE()) setMenu(false); });
+window.addEventListener('resize', ajustarSidebar);
+ajustarSidebar();
+
+// clicar em qualquer link interno (#...): abre a página escolhida na hora.
+// O endereço é atualizado só para os botões voltar/avançar funcionarem.
+document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+
+    e.preventDefault();
+
+    const destino = a.getAttribute('href').slice(1);
+
+    if(MOBILE()) setMenu(false);
+
+    irPara(destino);
+
+    try{
+        if(location.hash !== '#' + destino) history.pushState(null, '', '#' + destino);
+    }catch(err){ /* ambientes de visualização podem bloquear: sem problema */ }
 });
 
-atualizarSecaoAtiva();
 
-// barra de progresso no topo
+// ================== BARRA DE PROGRESSO ==================
+
+const barra = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
     const total = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
-    document.getElementById('scroll-progress').style.width = pct + '%';
-});
+    const pct = total > 0 ? (window.scrollY / total) : 0;
+    barra.style.transform = 'scaleX(' + pct + ')';
+}, { passive:true });
 
 </script>
 
