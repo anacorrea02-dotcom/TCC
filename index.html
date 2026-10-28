@@ -3252,6 +3252,212 @@ footer .credit{
     --logo-opacidade:1;
 }
 
+
+/* =====================================================================
+   AJUSTES PARA CELULAR (revisão geral)
+   Só valem em telas pequenas; o computador não muda.
+   ===================================================================== */
+
+/* cards de curso (dentro da janela "Saiba mais"): sem margem extra no título
+   e sem espaço vazio quando não há nome de escola */
+.course-card h4{
+    margin:0;
+}
+
+.course-card .school:empty{
+    display:none;
+}
+
+@media (max-width:900px){
+
+    /* ---- Banner: logo no centro em cima, texto centralizado embaixo ---- */
+    #inicio .hero-banner:not(.area-banner){
+        --logo-w:clamp(150px, 46vw, 220px);
+        --logo-opacidade:1;
+        min-height:min(88vh, 560px);
+        min-height:min(88svh, 560px);
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:24px;
+        padding:80px 0 44px;
+    }
+
+    #inicio .hero-banner img.hero-logo-bg{
+        position:relative;
+        inset:auto;
+        top:auto;
+        bottom:auto;
+        left:auto;
+        right:auto;
+        margin:0;
+        order:-1;
+        flex:none;
+        width:var(--logo-w);
+    }
+
+    #inicio .hero-banner .hero-inner{
+        padding:0 24px;
+        gap:0;
+        text-align:center;
+    }
+
+    #inicio .hero-banner .hero-text{
+        max-width:none;
+    }
+
+    #inicio .hero-banner .hero-inner .hero-eyebrow{
+        min-height:0;
+        justify-content:center;
+        margin-bottom:14px;
+        font-size:0.68rem;
+        letter-spacing:0.1em;
+    }
+
+    #inicio .hero-banner .hero-inner .hero-eyebrow::before{
+        display:none;
+    }
+
+    #inicio .hero-banner .hero-inner h1{
+        font-size:clamp(1.6rem, 7vw, 2.3rem);
+        line-height:1.15;
+    }
+
+
+    /* ---- Cards dos cursos: altura natural, sem espaço vazio no topo ---- */
+    #cursos .area-banner{
+        min-height:320px;
+        align-items:flex-end;
+    }
+
+    #cursos .area-banner .hero-eyebrow{
+        min-height:0;
+    }
+
+    /* ---- Páginas internas: imagem logo abaixo do título, sem ocupar a tela toda ---- */
+    .page-grid{
+        gap:24px;
+    }
+
+    .page-media{
+        order:-1;
+        max-width:none;
+        border-radius:20px;
+    }
+
+    .page-media img{
+        max-height:230px;
+        object-fit:cover;
+    }
+
+    /* o modelo de currículo aparece inteiro, sem cortar */
+    #curriculo .page-media{
+        max-width:300px;
+        margin:0 auto;
+    }
+
+    #curriculo .page-media img{
+        max-height:none;
+        object-fit:contain;
+    }
+
+    /* ---- Menu lateral (gaveta) ---- */
+    .sidebar{
+        width:min(var(--sidebar-w), 84vw);
+    }
+
+    .side-toggle{
+        top:max(12px, env(safe-area-inset-top));
+        left:max(12px, env(safe-area-inset-left));
+    }
+}
+
+@media (max-width:600px){
+
+    /* ---- Cards dos cursos (página inicial) ---- */
+    .cursos-wrap{
+        padding-top:48px;
+        padding-bottom:56px;
+    }
+
+    #area-conteudo{
+        margin-top:26px;
+        gap:16px;
+    }
+
+    /* ---- Passo a passo: mais espaço para o texto ---- */
+    .step-list li{
+        padding:14px 14px 14px 58px;
+    }
+
+    .step-list li::before{
+        left:13px;
+        width:32px;
+        height:32px;
+        font-size:0.95rem;
+    }
+
+    .page-text h3,
+    .prose h3{
+        font-size:1.2rem;
+        margin-top:26px;
+    }
+
+    .view-inner{
+        padding-bottom:56px;
+    }
+
+    .example-box{
+        font-size:0.72rem;
+        padding:14px 14px;
+    }
+
+    /* ---- Janela "Saiba mais": ocupa a tela inteira ---- */
+    .saiba-dialog{
+        width:100vw;
+        max-width:100vw;
+        height:100vh;
+        height:100dvh;
+        max-height:none;
+        margin:0;
+        border-radius:0;
+    }
+
+    .saiba-head{
+        padding:10px 10px 10px 18px;
+    }
+
+    .saiba-head h2{
+        font-size:1.02rem;
+    }
+
+    .saiba-body{
+        padding:22px 18px 36px;
+    }
+
+    /* ---- Cursos dentro da janela: nome em cima, botão embaixo ---- */
+    .course-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+
+    .course-card > div{
+        width:100%;
+    }
+
+    /* ---- Rodapé ---- */
+    .footer-top{
+        padding-top:44px;
+        gap:28px;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
 </style>
 </head>
 
