@@ -3163,8 +3163,8 @@ footer .credit{
     #cursos #view-meioambiente .area-banner::after{
         background:linear-gradient(
             0deg,
-            rgba(222,216,196,0.98) 0%,
-            rgba(222,216,196,0.90) 100%
+            rgba(222,216,196,0.86) 0%,
+            rgba(222,216,196,0.50) 100%
         );
     }
 }
@@ -3210,6 +3210,39 @@ footer .credit{
 
     #inicio .hero-banner{
         min-height:320px;
+    }
+}
+
+/* =====================================================
+   CARDS DAS ÁREAS NO COMPUTADOR — mesma camada do celular
+   A camada escura sobre a foto volta a aparecer, para o texto
+   ficar legível em qualquer imagem.
+   ===================================================== */
+@media (min-width:901px){
+
+    #cursos .area-banner::after{
+        display:block;
+    }
+
+    #cursos #view-sistemas .area-banner::after,
+    #cursos #view-eletromecanica .area-banner::after,
+    #cursos #view-alimentacao .area-banner::after,
+    #cursos #view-administracao .area-banner::after,
+    #cursos #view-farmacia .area-banner::after,
+    #cursos #view-turismo .area-banner::after{
+        background:linear-gradient(
+            0deg,
+            rgba(20,41,61,0.90) 0%,
+            rgba(20,41,61,0.74) 100%
+        );
+    }
+
+    #cursos #view-meioambiente .area-banner::after{
+        background:linear-gradient(
+            0deg,
+            rgba(222,216,196,0.86) 0%,
+            rgba(222,216,196,0.50) 100%
+        );
     }
 }
 
