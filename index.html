@@ -3099,6 +3099,120 @@ footer .credit{
     text-shadow:none;
 }
 
+/* =====================================================
+   AJUSTES PARA CELULAR E TABLET (até 900px)
+   Não alteram o computador (telas maiores que 900px).
+   ===================================================== */
+@media (max-width:900px){
+
+    /* ---- Banner inicial: mais baixo, logo em cima e título embaixo ---- */
+    #inicio .hero-banner{
+        --logo-w:150px;
+        --logo-opacidade:0.6;
+        min-height:340px;
+        align-items:flex-end;
+    }
+
+    #inicio .hero-banner img.hero-logo-bg{
+        top:26px;
+        bottom:auto;
+        margin:0 0 0 calc(var(--logo-w) / -2);
+        left:50%;
+        width:var(--logo-w);
+    }
+
+    #inicio .hero-banner .hero-inner{
+        padding:200px 22px 32px;
+        gap:0;
+    }
+
+    #inicio .hero-banner .hero-inner h1{
+        font-size:clamp(1.55rem, 6.4vw, 2.2rem);
+        line-height:1.15;
+    }
+
+    #inicio .hero-banner .hero-eyebrow{
+        font-size:0.68rem;
+        margin-bottom:10px;
+    }
+
+    /* ---- Seção das áreas ---- */
+    .cursos-wrap{
+        padding:44px 20px 56px;
+    }
+
+    /* os cards voltam a ter a camada escura por cima da foto
+       (sem ela o texto some em fotos claras) */
+    #cursos .area-banner::after{
+        display:block;
+    }
+
+    #cursos #view-sistemas .area-banner::after,
+    #cursos #view-eletromecanica .area-banner::after,
+    #cursos #view-alimentacao .area-banner::after,
+    #cursos #view-administracao .area-banner::after,
+    #cursos #view-farmacia .area-banner::after,
+    #cursos #view-turismo .area-banner::after{
+        background:linear-gradient(
+            0deg,
+            rgba(20,41,61,0.90) 0%,
+            rgba(20,41,61,0.74) 100%
+        );
+    }
+
+    #cursos #view-meioambiente .area-banner::after{
+        background:linear-gradient(
+            0deg,
+            rgba(222,216,196,0.98) 0%,
+            rgba(222,216,196,0.90) 100%
+        );
+    }
+}
+
+@media (max-width:640px){
+
+    .section-title{
+        font-size:1.55rem;
+        line-height:1.2;
+    }
+
+    .cursos-wrap .section-sub{
+        font-size:0.95rem;
+    }
+
+    #area-conteudo{
+        gap:16px;
+        margin-top:26px;
+    }
+
+    #cursos .area-banner{
+        min-height:0;
+        border-radius:18px;
+    }
+
+    #cursos .area-banner .hero-overlay{
+        padding:22px 18px 20px;
+    }
+
+    #cursos .area-banner .hero-overlay h1{
+        font-size:1.3rem;
+    }
+
+    #cursos .area-banner .hero-overlay p.lede{
+        font-size:0.86rem;
+        line-height:1.5;
+    }
+
+    #cursos .area-banner .btn{
+        width:100%;
+        justify-content:center;
+    }
+
+    #inicio .hero-banner{
+        min-height:320px;
+    }
+}
+
 </style>
 </head>
 
