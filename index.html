@@ -3431,6 +3431,43 @@ footer .credit{
     border-radius:var(--radius);
     box-shadow:0 8px 24px rgba(20,41,61,0.12);
 }
+
+/* Currículo: ajustes para celular e tablet */
+#curriculo .curriculo-modelo a{
+    display:block;
+}
+
+#curriculo .curriculo-dica{
+    display:none;
+    margin-top:10px;
+    text-align:center;
+    font-size:0.8rem;
+    color:var(--sage);
+}
+
+@media (max-width:900px){
+
+    #curriculo .curriculo-modelo{
+        max-width:480px;
+        margin:14px auto 8px;      /* centralizada na tela */
+    }
+
+    #curriculo .curriculo-dica{
+        display:block;
+    }
+}
+
+@media (max-width:600px){
+
+    #curriculo .curriculo-modelo{
+        max-width:100%;            /* ocupa toda a largura disponível */
+    }
+
+    #curriculo .curriculo-modelo img{
+        border-radius:6px;
+        box-shadow:0 4px 14px rgba(20,41,61,0.14);
+    }
+}
 </style>
 </head>
 
@@ -4715,7 +4752,10 @@ footer .credit{
 
                 <h3>Modelo de estrutura</h3>
                 <figure class="curriculo-modelo">
-                    <img src="curriculo1.jpeg" alt="Modelo de currículo: Ricardo Santos, Analista de Dados">
+                    <a href="curriculo1.jpeg" target="_blank" rel="noopener" aria-label="Abrir o modelo de currículo em tamanho grande">
+                        <img src="curriculo1.jpeg" width="1131" height="1600" loading="lazy" alt="Modelo de currículo: Ricardo Santos, Analista de Dados">
+                    </a>
+                    <figcaption class="curriculo-dica">Toque na imagem para ampliar</figcaption>
                 </figure>
 
                 <h3>Dicas finais</h3>
