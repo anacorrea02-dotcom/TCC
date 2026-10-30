@@ -3468,6 +3468,62 @@ footer .credit{
         box-shadow:0 4px 14px rgba(20,41,61,0.14);
     }
 }
+
+/* =====================================================================
+   BANNER INICIAL — PROPORÇÃO DAS IMAGENS (16:9, 1600x900)
+   O banner usa a mesma proporção das fotos, então elas aparecem inteiras,
+   sem cortes. Para limitar a altura em telas muito grandes, mude o max-height.
+   ===================================================================== */
+#inicio .hero-banner{
+    aspect-ratio:16 / 9;
+    height:auto;
+    min-height:0;
+    max-height:92vh;
+}
+
+#inicio .hero-slides .hero-slide{
+    object-fit:cover;
+    object-position:center;
+}
+
+/* Celular e tablet: a foto aparece inteira em cima (16:9) e a logo
+   com o título ficam logo abaixo, sobre o azul do site. */
+@media (max-width:900px){
+
+    #inicio .hero-banner{
+        aspect-ratio:auto;
+        max-height:none;
+        min-height:0;
+        display:block;
+        background:linear-gradient(180deg, #0b1f6b 0%, var(--ink) 100%);
+    }
+
+    #inicio .hero-slides{
+        position:relative;
+        inset:auto;
+        width:100%;
+        aspect-ratio:16 / 9;
+    }
+
+    #inicio .hero-banner::after{
+        display:none;
+    }
+
+    #inicio .hero-banner .hero-inner{
+        padding:26px 22px 32px;
+        justify-content:center;
+    }
+
+    #inicio .hero-banner .hero-text{
+        width:100%;
+        max-width:360px;
+        gap:14px;
+    }
+
+    #inicio .hero-banner img.hero-logo-bg{
+        width:min(100%, 130px);
+    }
+}
 </style>
 </head>
 
