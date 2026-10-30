@@ -3486,42 +3486,58 @@ footer .credit{
     object-position:center;
 }
 
-/* Celular e tablet: a foto aparece inteira em cima (16:9) e a logo
-   com o título ficam logo abaixo, sobre o azul do site. */
+/* Celular e tablet: a foto continua inteira (16:9) e a logo e o título
+   ficam no lado direito, por cima da foto — logo em cima, título embaixo.
+   Logo e texto são menores para caberem na tela. */
 @media (max-width:900px){
 
     #inicio .hero-banner{
-        aspect-ratio:auto;
+        aspect-ratio:16 / 9;
         max-height:none;
         min-height:0;
-        display:block;
-        background:linear-gradient(180deg, #0b1f6b 0%, var(--ink) 100%);
+        display:flex;
+        align-items:center;
+        background:var(--ink);
     }
 
     #inicio .hero-slides{
-        position:relative;
-        inset:auto;
+        position:absolute;
+        inset:0;
         width:100%;
-        aspect-ratio:16 / 9;
+        aspect-ratio:auto;
     }
 
+    /* escurece a direita para o texto ler bem sobre a foto */
     #inicio .hero-banner::after{
-        display:none;
+        display:block;
+        background:linear-gradient(
+            270deg,
+            rgba(14,28,64,0.82) 0%,
+            rgba(14,28,64,0.60) 45%,
+            rgba(14,28,64,0) 80%
+        );
     }
 
     #inicio .hero-banner .hero-inner{
-        padding:26px 22px 32px;
-        justify-content:center;
+        padding:10px clamp(10px, 3vw, 28px);
+        justify-content:flex-end;
     }
 
     #inicio .hero-banner .hero-text{
-        width:100%;
-        max-width:360px;
-        gap:14px;
+        width:clamp(130px, 42%, 300px);
+        max-width:none;
+        gap:clamp(6px, 1.6vw, 14px);
     }
 
+    /* logo menor */
     #inicio .hero-banner img.hero-logo-bg{
-        width:min(100%, 130px);
+        width:clamp(52px, 17vw, 140px);
+    }
+
+    /* título menor */
+    #inicio .hero-banner .hero-inner h1{
+        font-size:clamp(0.82rem, 3.6vw, 1.7rem);
+        line-height:1.15;
     }
 }
 </style>
