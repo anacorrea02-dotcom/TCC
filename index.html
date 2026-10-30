@@ -3254,210 +3254,183 @@ footer .credit{
 
 
 /* =====================================================================
-   AJUSTES PARA CELULAR (revisão geral)
-   Só valem em telas pequenas; o computador não muda.
+   BANNER INICIAL — CARROSSEL COM FADE + LOGO E TÍTULO À DIREITA
+   Logo em cima, texto embaixo, tudo no lado direito do banner.
    ===================================================================== */
 
-/* cards de curso (dentro da janela "Saiba mais"): sem margem extra no título
-   e sem espaço vazio quando não há nome de escola */
-.course-card h4{
-    margin:0;
+/* camada das fotos */
+#inicio .hero-slides{
+    position:absolute;
+    inset:0;
+    z-index:0;
 }
 
-.course-card .school:empty{
-    display:none;
+#inicio .hero-slides .hero-slide{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    opacity:0;
+    transition:opacity 1.4s ease-in-out;   /* duração do fade */
+}
+
+#inicio .hero-slides .hero-slide.active{
+    opacity:1;
+}
+
+/* camada escura à direita para o texto ficar legível sobre qualquer foto */
+#inicio .hero-banner::after{
+    display:block;
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:linear-gradient(
+        270deg,
+        rgba(14,28,64,0.78) 0%,
+        rgba(14,28,64,0.55) 35%,
+        rgba(14,28,64,0) 70%
+    );
+}
+
+/* conteúdo alinhado à direita */
+#inicio .hero-banner .hero-inner{
+    max-width:none;
+    margin:0;
+    padding:64px clamp(24px, 5vw, 72px);
+    display:flex;
+    justify-content:flex-end;
+}
+
+#inicio .hero-banner .hero-text{
+    width:min(100%, 420px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:18px;
+}
+
+/* logo: sai do posicionamento absoluto e fica em cima do texto */
+#inicio .hero-banner img.hero-logo-bg{
+    position:static;
+    inset:auto;
+    margin:0;
+    left:auto;
+    width:min(100%, 260px);
+    height:auto;
+    filter:drop-shadow(0 4px 18px rgba(14,28,64,0.55));
+}
+
+#inicio .hero-banner .hero-inner h1{
+    font-size:clamp(1.8rem, 3.2vw, 2.8rem);
 }
 
 @media (max-width:900px){
 
-    /* ---- Banner: logo no centro em cima, texto centralizado embaixo ---- */
-    #inicio .hero-banner:not(.area-banner){
-        --logo-w:clamp(150px, 46vw, 220px);
-        --logo-opacidade:1;
-        min-height:min(88vh, 560px);
-        min-height:min(88svh, 560px);
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        gap:24px;
-        padding:80px 0 44px;
-    }
-
-    #inicio .hero-banner img.hero-logo-bg{
-        position:relative;
-        inset:auto;
-        top:auto;
-        bottom:auto;
-        left:auto;
-        right:auto;
-        margin:0;
-        order:-1;
-        flex:none;
-        width:var(--logo-w);
-    }
-
-    #inicio .hero-banner .hero-inner{
-        padding:0 24px;
-        gap:0;
-        text-align:center;
-    }
-
-    #inicio .hero-banner .hero-text{
-        max-width:none;
-    }
-
-    #inicio .hero-banner .hero-inner .hero-eyebrow{
-        min-height:0;
-        justify-content:center;
-        margin-bottom:14px;
-        font-size:0.68rem;
-        letter-spacing:0.1em;
-    }
-
-    #inicio .hero-banner .hero-inner .hero-eyebrow::before{
-        display:none;
-    }
-
-    #inicio .hero-banner .hero-inner h1{
-        font-size:clamp(1.6rem, 7vw, 2.3rem);
-        line-height:1.15;
-    }
-
-
-    /* ---- Cards dos cursos: altura natural, sem espaço vazio no topo ---- */
-    #cursos .area-banner{
-        min-height:320px;
+    #inicio .hero-banner{
+        min-height:420px;
         align-items:flex-end;
     }
 
-    #cursos .area-banner .hero-eyebrow{
-        min-height:0;
+    /* no celular o escurecido vai de baixo para cima */
+    #inicio .hero-banner::after{
+        background:linear-gradient(
+            0deg,
+            rgba(14,28,64,0.88) 0%,
+            rgba(14,28,64,0.55) 55%,
+            rgba(14,28,64,0.15) 100%
+        );
     }
 
-    /* ---- Páginas internas: imagem logo abaixo do título, sem ocupar a tela toda ---- */
-    .page-grid{
-        gap:24px;
+    #inicio .hero-banner .hero-inner{
+        padding:32px 22px;
+        justify-content:center;
     }
 
-    .page-media{
-        order:-1;
-        max-width:none;
-        border-radius:20px;
+    #inicio .hero-banner .hero-text{
+        gap:14px;
     }
 
-    .page-media img{
-        max-height:230px;
-        object-fit:cover;
+    #inicio .hero-banner img.hero-logo-bg{
+        width:min(100%, 150px);
+        top:auto;
+        margin:0;
     }
 
-    /* o modelo de currículo aparece inteiro, sem cortar */
-    #curriculo .page-media{
-        max-width:300px;
-        margin:0 auto;
+    #inicio .hero-banner .hero-inner h1{
+        font-size:clamp(1.5rem, 6vw, 2rem);
     }
+}
 
-    #curriculo .page-media img{
-        max-height:none;
-        object-fit:contain;
+@media (prefers-reduced-motion:reduce){
+    #inicio .hero-slides .hero-slide{
+        transition-duration:0.01s;
     }
+}
 
-    /* ---- Menu lateral (gaveta) ---- */
-    .sidebar{
-        width:min(var(--sidebar-w), 84vw);
-    }
+/* Cards das áreas: o último card (Turismo) fica alinhado à esquerda,
+   na mesma coluna dos outros, em vez de centralizado. */
+#area-conteudo{
+    justify-content:flex-start;
+}
 
-    .side-toggle{
-        top:max(12px, env(safe-area-inset-top));
-        left:max(12px, env(safe-area-inset-left));
-    }
+/* =====================================================
+   TAMANHO DOS CARDS DAS ÁREAS
+   Sem a descrição, os cards ficam mais baixos e todos com a mesma altura.
+   Para mudar a altura, altere o valor de --card-altura.
+   ===================================================== */
+#cursos{
+    --card-altura:210px;
+}
+
+#cursos .area-view > .area-banner,
+#cursos .area-banner{
+    width:100%;
+    height:var(--card-altura);
+    min-height:0;
+    align-items:flex-end;
+}
+
+#cursos .area-banner .hero-overlay{
+    padding:18px 20px 20px;
+}
+
+#cursos .area-banner .hero-overlay h1{
+    margin-bottom:14px;
+}
+
+#cursos .area-banner .hero-actions{
+    margin-top:0;
 }
 
 @media (max-width:600px){
-
-    /* ---- Cards dos cursos (página inicial) ---- */
-    .cursos-wrap{
-        padding-top:48px;
-        padding-bottom:56px;
-    }
-
-    #area-conteudo{
-        margin-top:26px;
-        gap:16px;
-    }
-
-    /* ---- Passo a passo: mais espaço para o texto ---- */
-    .step-list li{
-        padding:14px 14px 14px 58px;
-    }
-
-    .step-list li::before{
-        left:13px;
-        width:32px;
-        height:32px;
-        font-size:0.95rem;
-    }
-
-    .page-text h3,
-    .prose h3{
-        font-size:1.2rem;
-        margin-top:26px;
-    }
-
-    .view-inner{
-        padding-bottom:56px;
-    }
-
-    .example-box{
-        font-size:0.72rem;
-        padding:14px 14px;
-    }
-
-    /* ---- Janela "Saiba mais": ocupa a tela inteira ---- */
-    .saiba-dialog{
-        width:100vw;
-        max-width:100vw;
-        height:100vh;
-        height:100dvh;
-        max-height:none;
-        margin:0;
-        border-radius:0;
-    }
-
-    .saiba-head{
-        padding:10px 10px 10px 18px;
-    }
-
-    .saiba-head h2{
-        font-size:1.02rem;
-    }
-
-    .saiba-body{
-        padding:22px 18px 36px;
-    }
-
-    /* ---- Cursos dentro da janela: nome em cima, botão embaixo ---- */
-    .course-card{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:12px;
-    }
-
-    .course-card > div{
-        width:100%;
-    }
-
-    /* ---- Rodapé ---- */
-    .footer-top{
-        padding-top:44px;
-        gap:28px;
-    }
-
-    .footer-bottom{
-        flex-direction:column;
-        align-items:flex-start;
+    #cursos{
+        --card-altura:190px;
     }
 }
 
+/* Currículo: sem imagem ao lado; o modelo fica no lugar do texto de exemplo */
+#curriculo .page-grid{
+    grid-template-columns:minmax(0,1fr);
+}
+
+#curriculo .curriculo-modelo{
+    margin:16px 0 8px;
+    max-width:560px;
+}
+
+#curriculo .curriculo-modelo img{
+    display:block;
+    width:100%;
+    height:auto;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:0 8px 24px rgba(20,41,61,0.12);
+}
 </style>
 </head>
 
@@ -3502,15 +3475,25 @@ footer .credit{
     <!-- BANNER -->
     <div class="hero-banner">
 
-        <!-- LOGO atrás do texto do banner (aparece com fade in).
-             Para trocar, substitua o arquivo logo-integra.png ou mude o nome em src. -->
-        <img class="hero-logo-bg" src="logo-integra.png" alt="Logo do INTEGRA">
+        <!-- CARROSSEL DE FUNDO (fade in entre as fotos).
+             Para trocar ou adicionar fotos, edite as <img> abaixo. -->
+        <div class="hero-slides" id="hero-slides" aria-hidden="true">
+            <img class="hero-slide active" src="banner1.jpeg" alt="">
+            <img class="hero-slide" src="banner2.jpeg" alt="" loading="lazy">
+            <img class="hero-slide" src="banner3.jpeg" alt="" loading="lazy">
+            <img class="hero-slide" src="banner4.jpeg" alt="" loading="lazy">
+            <img class="hero-slide" src="banner5.jpeg" alt="" loading="lazy">
+            <img class="hero-slide" src="banner6.jpeg" alt="" loading="lazy">
+            <img class="hero-slide" src="banner7.jpeg" alt="" loading="lazy">
+        </div>
 
         <div class="hero-inner">
 
+            <!-- lado direito: logo em cima, texto embaixo -->
             <div class="hero-text">
 
-                <div class="hero-eyebrow">Orientação profissional · 9º ano</div>
+                <!-- Para trocar a logo, substitua o arquivo logo-integra.png ou mude o nome em src. -->
+                <img class="hero-logo-bg" src="logo-integra.png" alt="Logo do INTEGRA">
 
                 <h1>Orientação Profissional em um só lugar</h1>
 
@@ -3548,10 +3531,6 @@ footer .credit{
             <h1>
                 Desenvolvimento de Sistemas
             </h1>
-
-            <p class="lede">
-                Aprenda a criar sites, aplicativos e sistemas, além de cuidar de redes, bancos de dados e suporte técnico. É uma das áreas com maior demanda de profissionais no Brasil, com vagas em empresas de todos os tamanhos.
-            </p>
 
             <div class="hero-actions">
                 <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-sistemas')" aria-haspopup="dialog">Saiba mais</button>
@@ -3712,10 +3691,6 @@ footer .credit{
 
             <h1>Alimentação</h1>
 
-            <p class="lede">
-                Cozinha, confeitaria, nutrição e segurança alimentar. O curso ensina a preparar, conservar e controlar a qualidade dos alimentos, com oportunidades em restaurantes, indústrias e serviços de saúde.
-            </p>
-
             <div class="hero-actions">
                 <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-alimentacao')" aria-haspopup="dialog">Saiba mais</button>
             </div>
@@ -3874,10 +3849,6 @@ footer .credit{
             <div class="hero-eyebrow">Gestão &amp; Negócios</div>
 
             <h1>Administração</h1>
-
-            <p class="lede">
-                Rotinas administrativas, finanças, recursos humanos e empreendedorismo. Você entende como uma empresa funciona por dentro e abre portas em escritórios, bancos, comércio e no próprio negócio.
-            </p>
 
             <div class="hero-actions">
                 <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-administracao')" aria-haspopup="dialog">Saiba mais</button>
@@ -4038,10 +4009,6 @@ footer .credit{
                 Eletromecânica
             </h1>
 
-            <p class="lede">
-                Instalação e manutenção elétrica e mecânica de máquinas e equipamentos. Forma profissionais que mantêm a indústria funcionando, com atuação em fábricas, manutenção predial e empresas de energia.
-            </p>
-
             <div class="hero-actions">
                 <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-eletromecanica')" aria-haspopup="dialog">Saiba mais</button>
             </div>
@@ -4184,10 +4151,6 @@ footer .credit{
             <h1>
                 Farmácia
             </h1>
-
-            <p class="lede">
-                Dispensação de medicamentos, manipulação e cuidados com a saúde. O técnico atua ao lado do farmacêutico em drogarias, farmácias de manipulação e hospitais.
-            </p>
 
             <div class="hero-actions">
                 <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-farmacia')" aria-haspopup="dialog">Saiba mais</button>
@@ -4332,10 +4295,6 @@ footer .credit{
                 Meio Ambiente
             </h1>
 
-            <p class="lede">
-                Gestão ambiental, sustentabilidade e conservação dos recursos naturais. Você aprende a monitorar impactos, cuidar de resíduos e ajudar empresas e órgãos públicos a trabalhar de forma sustentável.
-            </p>
-
             <div class="hero-actions">
                 <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-meioambiente')" aria-haspopup="dialog">Saiba mais</button>
             </div>
@@ -4478,10 +4437,6 @@ footer .credit{
             <h1>
                 Turismo
             </h1>
-
-            <p class="lede">
-                Guiamento, hospedagem, eventos e atendimento ao viajante. O curso prepara para atuar em hotéis, agências e roteiros, unindo cultura, comunicação e serviços.
-            </p>
 
             <div class="hero-actions">
                 <button type="button" class="btn btn-gold saiba-btn" onclick="abrirSaibaMais('saiba-turismo')" aria-haspopup="dialog">Saiba mais</button>
@@ -4759,24 +4714,9 @@ footer .credit{
                 </ol>
 
                 <h3>Modelo de estrutura</h3>
-                <pre class="example-box">NOME COMPLETO
-Cidade – UF  ·  (00) 00000-0000  ·  nome.sobrenome@email.com
-
-OBJETIVO
-Buscar oportunidade como jovem aprendiz, para aprender na prática e contribuir com a equipe.
-
-FORMAÇÃO
-Colégio Estadual (nome da escola) — Ensino Médio em andamento (2026)
-Curso de (nome do curso), instituição, ano
-
-EXPERIÊNCIAS
-Projeto / trabalho voluntário — o que você fez e o resultado
-
-HABILIDADES
-Informática básica · Comunicação · Trabalho em equipe
-
-INFORMAÇÕES COMPLEMENTARES
-Idiomas, cursos livres e disponibilidade de horário</pre>
+                <figure class="curriculo-modelo">
+                    <img src="curriculo1.jpeg" alt="Modelo de currículo: Ricardo Santos, Analista de Dados">
+                </figure>
 
                 <h3>Dicas finais</h3>
                 <div class="do-dont">
@@ -4785,10 +4725,6 @@ Idiomas, cursos livres e disponibilidade de horário</pre>
                 </div>
 
             </div>
-
-            <figure class="page-media">
-                <img src="curriculo.jpg" alt="Modelo de currículo">
-            </figure>
 
         </div>
 
@@ -5083,6 +5019,39 @@ window.addEventListener('scroll', () => {
     barra.style.transform = 'scaleX(' + pct + ')';
 }, { passive:true });
 
+
+/* ---------- Carrossel do banner inicial (fade) ---------- */
+(function(){
+    var slides = document.querySelectorAll('#hero-slides .hero-slide');
+    if(slides.length < 2) return;
+
+    var INTERVALO = 5000;   // tempo de cada foto em ms
+    var atual = 0;
+    var timer = null;
+
+    function mostrar(i){
+        slides[atual].classList.remove('active');
+        atual = i % slides.length;
+        slides[atual].classList.add('active');
+    }
+
+    function iniciar(){
+        if(timer) return;
+        timer = setInterval(function(){ mostrar(atual + 1); }, INTERVALO);
+    }
+
+    function parar(){
+        clearInterval(timer);
+        timer = null;
+    }
+
+    // pausa quando a aba não está visível
+    document.addEventListener('visibilitychange', function(){
+        if(document.hidden){ parar(); } else { iniciar(); }
+    });
+
+    iniciar();
+})();
 </script>
 
 </body>
