@@ -3565,6 +3565,199 @@ footer .credit{
     color:#f5bb40 !important;
     text-shadow:0 1px 8px rgba(0,0,0,0.8) !important;
 }
+
+/* Rodapé sem a área de telefone: duas colunas (sobre + navegação) */
+.footer-top{
+    grid-template-columns:1.5fr 1fr;
+}
+
+@media (max-width:900px){
+    .footer-top{
+        grid-template-columns:minmax(0,1fr);
+    }
+}
+
+/* =====================================================================
+   COMPUTADOR: MENU NO TOPO (topbar) EM VEZ DE SIDEBAR
+   Acima de 880px as opções ficam lado a lado numa barra fixa no topo.
+   No celular e no tablet (até 880px) a sidebar continua como gaveta.
+   ===================================================================== */
+@media (min-width:881px){
+
+    :root{
+        --topbar-h:67px;     /* 64px da barra + 3px da borda dourada */
+    }
+
+    body .sidebar,
+    body.side-hidden .sidebar{
+        top:0;
+        left:0;
+        right:0;
+        bottom:auto;
+        width:100%;
+        height:var(--topbar-h);
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:24px;
+        padding:0 clamp(16px, 3vw, 40px);
+        border-right:none;
+        border-bottom:3px solid var(--gold);
+        overflow:visible;
+        transform:none;
+        box-shadow:none;
+    }
+
+    .side-brand{
+        flex:0 0 auto;
+        padding:0;
+        border-bottom:none;
+        font-size:1.4rem;
+    }
+
+    .side-nav{
+        flex-direction:row;
+        align-items:center;
+        gap:4px;
+        margin-top:0;
+    }
+
+    .side-link{
+        min-height:40px;
+        padding:8px clamp(8px, 1.2vw, 16px);
+        font-size:0.9rem;
+        white-space:nowrap;
+        border-radius:8px;
+    }
+
+    /* o item da página atual é marcado com um traço dourado embaixo */
+    .side-indicator{
+        display:none;
+    }
+
+    .side-link.active::after{
+        content:"";
+        position:absolute;
+        left:clamp(8px, 1.2vw, 16px);
+        right:clamp(8px, 1.2vw, 16px);
+        bottom:2px;
+        height:2px;
+        border-radius:2px;
+        background:var(--gold);
+    }
+
+    .side-foot,
+    .side-toggle,
+    .side-backdrop{
+        display:none;
+    }
+
+    /* a página começa abaixo da barra */
+    body .layout,
+    body.side-hidden .layout{
+        margin-left:0;
+        padding-top:var(--topbar-h);
+    }
+
+    body .scroll-progress,
+    body.side-hidden .scroll-progress{
+        left:0;
+        top:var(--topbar-h);
+    }
+}
+
+/* =====================================================================
+   FERRAMENTAS DE USO
+   ===================================================================== */
+#ferramentas{
+    min-height:100vh;
+    min-height:100svh;
+}
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:20px;
+}
+
+.tool-card{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    padding:24px 22px 22px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-top:4px solid var(--gold);
+    border-radius:14px;
+    box-shadow:0 6px 18px rgba(20,41,61,0.07);
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.tool-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 26px rgba(20,41,61,0.13);
+}
+
+.tool-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+}
+
+.tool-card h3{
+    font-size:1.4rem;
+}
+
+.tool-card p{
+    margin:0 0 6px;
+    color:var(--ink-2);
+    font-size:0.95rem;
+    line-height:1.55;
+}
+
+.tool-link{
+    margin-top:auto;
+    text-decoration:none;
+    padding:10px 18px;
+    font-size:0.88rem;
+}
+
+.tools-nota{
+    margin:28px 0 0;
+    font-size:0.85rem;
+    color:var(--sage);
+    max-width:640px;
+}
+
+@media (max-width:600px){
+    .tools-grid{
+        grid-template-columns:minmax(0,1fr);
+    }
+}
+
+/* com 6 itens, a barra do topo fica mais compacta em telas médias */
+@media (min-width:881px) and (max-width:1150px){
+    body .sidebar{
+        gap:12px;
+    }
+
+    .side-brand{
+        font-size:1.2rem;
+    }
+
+    .side-link{
+        font-size:0.8rem;
+        padding:8px 6px;
+    }
+
+    .side-link.active::after{
+        left:6px;
+        right:6px;
+    }
+}
 </style>
 </head>
 
@@ -3588,6 +3781,7 @@ footer .credit{
         <a class="side-link" href="#jovem-aprendiz" data-view="jovem-aprendiz">Jovem Aprendiz</a>
         <a class="side-link" href="#curriculo" data-view="curriculo">Currículo</a>
         <a class="side-link" href="#comportamento" data-view="comportamento">Comportamento Profissional</a>
+        <a class="side-link" href="#ferramentas" data-view="ferramentas">Ferramentas de Uso</a>
     </nav>
 
     <div class="side-foot">INTEGRA — TCC 2026</div>
@@ -4937,6 +5131,59 @@ footer .credit{
     </div>
 </section>
 
+<section class="view" id="ferramentas">
+    <div class="view-inner">
+
+        <div class="page-head">
+            <div class="section-label">Ferramentas de Uso:</div>
+            <h2 class="section-title">Sites e aplicativos para se organizar</h2>
+            <p class="section-sub">Organizar o tempo e as tarefas é uma habilidade valorizada no trabalho e nos estudos. Conheça algumas ferramentas que podem ajudar você no dia a dia.</p>
+        </div>
+
+        <div class="tools-grid">
+
+                <article class="tool-card">
+                    <span class="tool-tag">Organização geral</span>
+                    <h3>Notion</h3>
+                    <p>Um espaço único para anotações, listas de tarefas, calendários e documentos. Dá para montar páginas do seu jeito, como um caderno digital com resumos de estudo, agenda de provas e planejamento de projetos.</p>
+                    <a class="btn btn-gold tool-link" href="https://www.notion.com" target="_blank" rel="noopener noreferrer">Acessar notion.com ↗</a>
+                </article>
+
+                <article class="tool-card">
+                    <span class="tool-tag">Quadro Kanban</span>
+                    <h3>KanbanFlow</h3>
+                    <p>Organiza as tarefas em um quadro com colunas, como “A fazer”, “Fazendo” e “Feito”. Você move os cartões conforme avança e vê rapidamente o que falta. Também tem um cronômetro para trabalhar em blocos de tempo.</p>
+                    <a class="btn btn-gold tool-link" href="https://kanbanflow.com" target="_blank" rel="noopener noreferrer">Acessar kanbanflow.com ↗</a>
+                </article>
+
+                <article class="tool-card">
+                    <span class="tool-tag">Projetos e código</span>
+                    <h3>GitHub</h3>
+                    <p>Plataforma usada para guardar e compartilhar projetos de programação, com histórico de todas as alterações. Também permite acompanhar tarefas e trabalhar em equipe, e é muito útil para quem pretende seguir na área de Sistemas.</p>
+                    <a class="btn btn-gold tool-link" href="https://github.com/?locale=pt-br" target="_blank" rel="noopener noreferrer">Acessar github.com ↗</a>
+                </article>
+
+                <article class="tool-card">
+                    <span class="tool-tag">Lista de tarefas simples</span>
+                    <h3>Google Tasks</h3>
+                    <p>Lista de tarefas do Google, simples e direta. Você cria tarefas, define datas e separa tudo em listas. Funciona com a sua conta Google e se integra a serviços como o Gmail e o Google Agenda.</p>
+                    <a class="btn btn-gold tool-link" href="https://tasks.google.com/tasks/" target="_blank" rel="noopener noreferrer">Acessar tasks.google.com ↗</a>
+                </article>
+
+                <article class="tool-card">
+                    <span class="tool-tag">Lista de tarefas e rotina</span>
+                    <h3>Todoist</h3>
+                    <p>Aplicativo para listar tudo o que precisa ser feito, com prazos, prioridades e lembretes. Permite separar tarefas por projetos, como escola, curso e vida pessoal, e ajuda a criar uma rotina organizada.</p>
+                    <a class="btn btn-gold tool-link" href="https://www.todoist.com/pt-BR" target="_blank" rel="noopener noreferrer">Acessar todoist.com ↗</a>
+                </article>
+
+        </div>
+
+        <p class="tools-nota">Os links abrem em uma nova aba. Cada site tem as próprias regras e planos; confira no site oficial o que está disponível para você.</p>
+
+    </div>
+</section>
+
 </main>
 
 <footer id="contato">
@@ -4950,17 +5197,6 @@ footer .credit{
             </p>
         </div>
 
-        <!-- CONTATO: troque os números abaixo pelos reais -->
-        <div class="footer-col">
-            <h4>Contato</h4>
-            <ul class="contact-list">
-                <li><span class="rotulo">Telefone · Ceep</span><span class="valor">(41) 3284-6820</span></li>
-                <li><span class="rotulo">Telefone · Gottlieb Miller</span><span class="valor">(41) 3277-2112</span></li>
-                <li><span class="rotulo">Telefone · Polivalente</span><span class="valor">(41) 3276-1970</span></li>
-                <li><span class="rotulo">Telefone · Euzébio da Mota</span><span class="valor">(41) 3276-4234</span></li>
-            </ul>
-        </div>
-
         <div class="footer-col">
             <h4>Navegue</h4>
             <ul class="footer-links">
@@ -4969,6 +5205,7 @@ footer .credit{
                 <li><a href="#jovem-aprendiz">Jovem Aprendiz</a></li>
                 <li><a href="#curriculo">Currículo</a></li>
                 <li><a href="#comportamento">Comportamento Profissional</a></li>
+                <li><a href="#ferramentas">Ferramentas de Uso</a></li>
             </ul>
         </div>
 
