@@ -3529,9 +3529,12 @@ footer .credit{
         gap:clamp(6px, 1.6vw, 14px);
     }
 
-    /* logo menor */
+    /* logo: maior que antes, mas limitada para nunca sair do banner */
     #inicio .hero-banner img.hero-logo-bg{
-        width:clamp(52px, 17vw, 140px);
+        width:clamp(70px, 26vw, 190px);
+        max-width:100%;
+        max-height:28vw;
+        object-fit:contain;
     }
 
     /* título menor */
