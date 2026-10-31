@@ -3543,6 +3543,28 @@ footer .credit{
         line-height:1.15;
     }
 }
+
+/* =====================================================
+   CARDS DAS ÁREAS — SEM DEGRADÊ
+   A camada de degradê sobre a foto foi removida de todos os cards.
+   Como a foto agora aparece pura, o texto fica branco com sombra
+   para continuar legível.
+   ===================================================== */
+#cursos .area-banner::after,
+#cursos .area-view .area-banner::after{
+    display:none !important;
+    background:none !important;
+}
+
+#cursos .area-view .area-banner .hero-overlay h1{
+    color:#ffffff !important;
+    text-shadow:0 2px 12px rgba(0,0,0,0.75) !important;
+}
+
+#cursos .area-view .area-banner .hero-overlay .hero-eyebrow{
+    color:#f5bb40 !important;
+    text-shadow:0 1px 8px rgba(0,0,0,0.8) !important;
+}
 </style>
 </head>
 
