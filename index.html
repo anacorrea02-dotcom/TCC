@@ -3747,6 +3747,17 @@ footer .credit{
         right:6px;
     }
 }
+
+/* Rodapé sem o texto sobre o INTEGRA: duas colunas (contato + navegação) */
+.footer-top{
+    grid-template-columns:1fr 1fr;
+}
+
+@media (max-width:900px){
+    .footer-top{
+        grid-template-columns:minmax(0,1fr);
+    }
+}
 </style>
 </head>
 
@@ -5185,13 +5196,6 @@ footer .credit{
 <footer id="contato">
 
     <div class="footer-top">
-
-        <div class="footer-col footer-about">
-            <div class="footer-brand">INTEGRA</div>
-            <p>
-                O INTEGRA é um projeto de estudantes do Colégio Estadual Euzébio da Mota que reúne, em um só lugar, informações sobre cursos, profissões e oportunidades para ajudar jovens do nono ano a decidir seus próximos passos com mais segurança.
-            </p>
-        </div>
 
         <!-- CONTATO -->
         <div class="footer-col">
