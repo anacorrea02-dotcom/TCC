@@ -3802,9 +3802,10 @@ footer .credit{
     margin-bottom:4px;
 }
 
-/* Jovem Aprendiz × Estágio: fundo branco com degradê azul decorativo
+/* Cards de Jovem Aprendiz × Estágio e de Comportamento Profissional: fundo branco com degradê azul decorativo
    (mesmo tom dos cards de profissões) clareando de baixo para cima. */
-#jovem-aprendiz .info-card{
+#jovem-aprendiz .info-card,
+#comportamento .info-card{
     position:relative;
     overflow:hidden;
     background:linear-gradient(
@@ -3819,7 +3820,8 @@ footer .credit{
 }
 
 /* faixa azul na base do card */
-#jovem-aprendiz .info-card::after{
+#jovem-aprendiz .info-card::after,
+#comportamento .info-card::after{
     content:"";
     position:absolute;
     left:0;
@@ -3833,13 +3835,15 @@ footer .credit{
     );
 }
 
-#jovem-aprendiz .info-card h4{
+#jovem-aprendiz .info-card h4,
+#comportamento .info-card h4{
     color:var(--ink);
     font-size:1.2rem;
     margin-bottom:8px;
 }
 
-#jovem-aprendiz .info-card p{
+#jovem-aprendiz .info-card p,
+#comportamento .info-card p{
     color:inherit;
 }
 </style>
