@@ -3789,6 +3789,40 @@ footer .credit{
 .footer-top{
     grid-template-columns:minmax(0,1fr);
 }
+
+/* Logo de cada ferramenta */
+.tool-logo{
+    display:block;
+    width:64px;
+    height:64px;
+    object-fit:cover;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:var(--white);
+    margin-bottom:4px;
+}
+
+/* Jovem Aprendiz × Estágio: cards com degradê azul, no mesmo tom dos cards de profissões */
+#jovem-aprendiz .info-card{
+    background:linear-gradient(
+        180deg,
+        rgb(6,24,100) 0%,
+        rgb(8,40,150) 100%
+    );
+    border:none;
+    box-shadow:0 8px 22px rgba(8,30,120,0.28);
+    padding:22px 24px 24px;
+}
+
+#jovem-aprendiz .info-card h4{
+    color:#ffffff;
+    font-size:1.2rem;
+    margin-bottom:8px;
+}
+
+#jovem-aprendiz .info-card p{
+    color:rgba(255,255,255,0.92);
+}
 </style>
 </head>
 
@@ -5174,6 +5208,7 @@ footer .credit{
         <div class="tools-grid">
 
                 <article class="tool-card">
+                    <img class="tool-logo" src="nseiesse.jpeg" alt="Logo do Notion" width="64" height="64" loading="lazy">
                     <span class="tool-tag">Organização geral</span>
                     <h3>Notion</h3>
                     <p>Um espaço único para anotações, listas de tarefas, calendários e documentos. Dá para montar páginas do seu jeito, como um caderno digital com resumos de estudo, agenda de provas e planejamento de projetos.</p>
@@ -5181,6 +5216,7 @@ footer .credit{
                 </article>
 
                 <article class="tool-card">
+                    <img class="tool-logo" src="kanban.jpeg" alt="Logo do KanbanFlow" width="64" height="64" loading="lazy">
                     <span class="tool-tag">Quadro Kanban</span>
                     <h3>KanbanFlow</h3>
                     <p>Organiza as tarefas em um quadro com colunas, como “A fazer”, “Fazendo” e “Feito”. Você move os cartões conforme avança e vê rapidamente o que falta. Também tem um cronômetro para trabalhar em blocos de tempo.</p>
@@ -5188,6 +5224,7 @@ footer .credit{
                 </article>
 
                 <article class="tool-card">
+                    <img class="tool-logo" src="github.jpeg" alt="Logo do GitHub" width="64" height="64" loading="lazy">
                     <span class="tool-tag">Projetos e código</span>
                     <h3>GitHub</h3>
                     <p>Plataforma usada para guardar e compartilhar projetos de programação, com histórico de todas as alterações. Também permite acompanhar tarefas e trabalhar em equipe, e é muito útil para quem pretende seguir na área de Sistemas.</p>
@@ -5195,6 +5232,7 @@ footer .credit{
                 </article>
 
                 <article class="tool-card">
+                    <img class="tool-logo" src="googletasks.jpeg" alt="Logo do Google Tasks" width="64" height="64" loading="lazy">
                     <span class="tool-tag">Lista de tarefas simples</span>
                     <h3>Google Tasks</h3>
                     <p>Lista de tarefas do Google, simples e direta. Você cria tarefas, define datas e separa tudo em listas. Funciona com a sua conta Google e se integra a serviços como o Gmail e o Google Agenda.</p>
@@ -5202,6 +5240,7 @@ footer .credit{
                 </article>
 
                 <article class="tool-card">
+                    <img class="tool-logo" src="nseiesse2.jpeg" alt="Logo do Todoist" width="64" height="64" loading="lazy">
                     <span class="tool-tag">Lista de tarefas e rotina</span>
                     <h3>Todoist</h3>
                     <p>Aplicativo para listar tudo o que precisa ser feito, com prazos, prioridades e lembretes. Permite separar tarefas por projetos, como escola, curso e vida pessoal, e ajuda a criar uma rotina organizada.</p>
@@ -5209,6 +5248,7 @@ footer .credit{
                 </article>
 
                 <article class="tool-card">
+                    <img class="tool-logo" src="trello.jpeg" alt="Logo do Trello" width="64" height="64" loading="lazy">
                     <span class="tool-tag">Trabalho em equipe</span>
                     <h3>Trello</h3>
                     <p>Organiza o trabalho em quadros com listas e cartões que você arrasta de uma etapa para outra. Cada cartão pode ter prazo, checklist e responsáveis, o que facilita dividir tarefas em trabalhos de grupo e acompanhar o andamento.</p>
