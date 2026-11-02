@@ -3561,9 +3561,23 @@ footer .credit{
     text-shadow:0 2px 12px rgba(0,0,0,0.75) !important;
 }
 
+/* Categoria acima do nome (ex.: "Viagens & Hospitalidade"):
+   texto branco sobre uma etiqueta azul escura, para ficar legível em todas
+   as fotos, tanto nas escuras quanto nas claras. */
 #cursos .area-view .area-banner .hero-overlay .hero-eyebrow{
+    display:inline-flex !important;
+    align-self:flex-start;
+    width:fit-content;
+    padding:5px 12px !important;
+    border-radius:999px;
+    background:rgba(14,28,64,0.88) !important;
     color:#ffffff !important;
-    text-shadow:0 1px 8px rgba(0,0,0,0.8) !important;
+    text-shadow:none !important;
+    box-shadow:0 2px 8px rgba(0,0,0,0.25);
+}
+
+#cursos .area-view .area-banner .hero-overlay .hero-eyebrow::before{
+    display:none !important;
 }
 
 /* =====================================================================
