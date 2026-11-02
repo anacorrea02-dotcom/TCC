@@ -3545,45 +3545,57 @@ footer .credit{
 }
 
 /* =====================================================
-   CARDS DAS ÁREAS — SEM DEGRADÊ
-   A camada de degradê sobre a foto foi removida de todos os cards.
-   Como a foto agora aparece pura, o texto fica branco com sombra
-   para continuar legível.
+   CARDS DAS ÁREAS — DEGRADÊ AZUL EMBAIXO
+   A foto aparece limpa na parte de cima e vai escurecendo para azul
+   embaixo, onde ficam a frase pequena e o nome do curso (em branco).
+   Para mudar a altura do degradê, ajuste as porcentagens (38% / 66%).
    ===================================================== */
 #cursos .area-banner::after,
 #cursos .area-view .area-banner::after{
-    display:none !important;
-    background:none !important;
+    content:"" !important;
+    display:block !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1 !important;
+    pointer-events:none !important;
+    /* foto em cima, azul em baixo (como no exemplo) */
+    background:linear-gradient(
+        180deg,
+        rgba(8,30,120,0) 0%,
+        rgba(8,30,120,0) 38%,
+        rgba(6,24,100,0.78) 66%,
+        rgba(8,40,150,0.97) 100%
+    ) !important;
 }
 
-/* Nome do curso: texto branco sobre faixa azul escura, legível em todas as fotos. */
+#cursos .area-banner .hero-overlay{
+    position:relative;
+    z-index:2;
+}
+
+/* Nome do curso: texto branco, sem destaque atrás (o degradê garante a leitura). */
 #cursos .area-view .area-banner .hero-overlay h1{
     display:block;
-    align-self:flex-start;
-    width:fit-content;
-    max-width:100%;
-    padding:8px 16px 9px !important;
-    border-radius:12px;
-    background:rgba(14,28,64,0.88) !important;
+    width:auto;
+    padding:0 !important;
+    border-radius:0;
+    background:none !important;
+    box-shadow:none;
     color:#ffffff !important;
-    text-shadow:none !important;
-    box-shadow:0 2px 10px rgba(0,0,0,0.25);
+    text-shadow:0 2px 10px rgba(0,20,80,0.55) !important;
     line-height:1.15 !important;
 }
 
-/* Categoria acima do nome (ex.: "Viagens & Hospitalidade"):
-   texto branco sobre uma etiqueta azul escura, para ficar legível em todas
-   as fotos, tanto nas escuras quanto nas claras. */
+/* Frase pequena acima do nome: texto branco, sem destaque atrás. */
 #cursos .area-view .area-banner .hero-overlay .hero-eyebrow{
-    display:inline-flex !important;
-    align-self:flex-start;
-    width:fit-content;
-    padding:5px 12px !important;
-    border-radius:999px;
-    background:rgba(14,28,64,0.88) !important;
+    display:flex !important;
+    width:auto;
+    padding:0 !important;
+    border-radius:0;
+    background:none !important;
+    box-shadow:none;
     color:#ffffff !important;
-    text-shadow:none !important;
-    box-shadow:0 2px 8px rgba(0,0,0,0.25);
+    text-shadow:0 1px 8px rgba(0,20,80,0.6) !important;
 }
 
 #cursos .area-view .area-banner .hero-overlay .hero-eyebrow::before{
