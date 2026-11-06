@@ -3846,6 +3846,36 @@ footer .credit{
 #comportamento .info-card p{
     color:inherit;
 }
+
+/* =====================================================================
+   BIBLIOTECA DE CURSOS NO CELULAR
+   Em telas pequenas o botão do link (Presencial / Online) fica sempre
+   embaixo do texto do curso, em todas as áreas, sem exceção.
+   ===================================================================== */
+@media (max-width:760px){
+
+    .saiba-dialog .course-card,
+    .course-card{
+        flex-direction:column;
+        flex-wrap:nowrap;
+        align-items:flex-start;
+        justify-content:flex-start;
+        gap:12px;
+    }
+
+    .saiba-dialog .course-card > div,
+    .course-card > div{
+        width:100%;
+        min-width:0;
+    }
+
+    .saiba-dialog .course-card .course-badge,
+    .course-card .course-badge,
+    .course-card a.course-link{
+        align-self:flex-start;
+        margin:0;
+    }
+}
 </style>
 </head>
 
