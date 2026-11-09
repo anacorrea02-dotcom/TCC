@@ -4131,7 +4131,7 @@ img{
 /* "Voltar ao topo" sempre no canto direito do rodapé (celular, tablet e desktop).
    Se faltar espaço ao lado das informações da equipe, ele desce para a linha de baixo,
    mas continua alinhado à direita. */
-.footer-bottom a[href="#inicio"]{
+.footer-bottom a.voltar-topo{
     margin-left:auto;
     justify-content:flex-end;
     text-align:right;
@@ -4144,7 +4144,7 @@ img{
         gap:4px;
     }
 
-    .footer-bottom a[href="#inicio"]{
+    .footer-bottom a.voltar-topo{
         align-self:flex-end;
         margin-left:0;
     }
@@ -5636,7 +5636,7 @@ img{
             <div class="credit">Miguel · Ana Carolina · Lucca · Thauane · Anthony · Nicolas</div>
             <div class="credit">Orientadora - Naelly Pereira Brito</div>
         </div>
-        <a href="#inicio">Voltar ao topo ↑</a>
+        <a class="voltar-topo" href="#conteudo">Voltar ao topo ↑</a>
     </div>
 
 </footer>
@@ -5791,6 +5791,14 @@ document.addEventListener('click', e => {
     if(!a) return;
 
     e.preventDefault();
+
+    // "Voltar ao topo": sobe até o começo da página em que o usuário está
+    // (Jovem Aprendiz, Currículo, Comportamento...), sem trocar de página.
+    if(a.classList.contains('voltar-topo')){
+        const reduzir = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top:0, left:0, behavior: reduzir ? 'auto' : 'smooth' });
+        return;
+    }
 
     const destino = a.getAttribute('href').slice(1);
 
