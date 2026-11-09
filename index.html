@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INTEGRA — Orientação Profissional</title>
+<meta name="description" content="INTEGRA: orientação profissional para jovens do 9º ano. Conheça áreas, cursos, trilhas de desenvolvimento, Jovem Aprendiz, currículo, comportamento profissional e ferramentas de organização.">
+<meta name="theme-color" content="#2e3a5c">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="INTEGRA — Orientação Profissional">
+<meta property="og:description" content="Orientação profissional em um só lugar: áreas, cursos, Jovem Aprendiz, currículo e ferramentas para se organizar.">
+<meta property="og:image" content="banner1.jpeg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232e3a5c'/%3E%3Ctext x='32' y='45' font-size='38' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%23f5bb40'%3EI%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3329,7 +3337,7 @@ footer .credit{
     font-size:clamp(1.8rem, 3.2vw, 2.8rem);
 }
 
-@media (max-width:900px){
+@media (max-width:880px){
 
     #inicio .hero-banner{
         min-height:420px;
@@ -3489,7 +3497,7 @@ footer .credit{
 /* Celular e tablet: a foto continua inteira (16:9) e a logo e o título
    ficam no lado direito, por cima da foto — logo em cima, título embaixo.
    Logo e texto são menores para caberem na tela. */
-@media (max-width:900px){
+@media (max-width:880px){
 
     #inicio .hero-banner{
         aspect-ratio:16 / 9;
@@ -3604,11 +3612,11 @@ footer .credit{
 }
 
 /* =====================================================================
-   COMPUTADOR: MENU NO TOPO (topbar) EM VEZ DE SIDEBAR
-   Acima de 880px as opções ficam lado a lado numa barra fixa no topo.
-   No celular e no tablet (até 880px) a sidebar continua como gaveta.
+   MENU NO TOPO (topbar) EM TODOS OS DISPOSITIVOS
+   As opções ficam lado a lado numa barra fixa no topo, no computador, no tablet
+   e no celular (no celular a barra rola para o lado).
    ===================================================================== */
-@media (min-width:881px){
+@media all{
 
     :root{
         --topbar-h:67px;     /* 64px da barra + 3px da borda dourada */
@@ -3765,7 +3773,7 @@ footer .credit{
 }
 
 /* com 6 itens, a barra do topo fica mais compacta em telas médias */
-@media (min-width:881px) and (max-width:1150px){
+@media (max-width:1150px){
     body .sidebar{
         gap:12px;
     }
@@ -3876,10 +3884,255 @@ footer .credit{
         margin:0;
     }
 }
+
+/* =====================================================================
+   MELHORIAS GERAIS (acessibilidade e acabamento)
+   ===================================================================== */
+html{
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+}
+
+body{
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+}
+
+::selection{
+    background:var(--gold);
+    color:var(--ink);
+}
+
+/* link "pular para o conteúdo": aparece só com o teclado */
+.skip-link{
+    position:fixed;
+    top:-60px;
+    left:12px;
+    z-index:1000;
+    padding:10px 16px;
+    border-radius:8px;
+    background:var(--gold);
+    color:var(--ink);
+    font-weight:600;
+    text-decoration:none;
+    transition:top .2s ease;
+}
+
+.skip-link:focus{
+    top:12px;
+}
+
+main:focus{
+    outline:none;
+}
+
+/* foco visível para quem navega pelo teclado */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:3px;
+    border-radius:6px;
+}
+
+/* imagens nunca estouram a largura da tela */
+img{
+    max-width:100%;
+}
+
+/* respeita quem prefere menos movimento */
+@media (prefers-reduced-motion:reduce){
+    html{
+        scroll-behavior:auto;
+    }
+
+    .tool-card,
+    .tool-card:hover{
+        transition:none;
+        transform:none;
+    }
+}
+
+/* =====================================================================
+   SOBRE: PROPOSTA E OBJETIVO EM CARDS LADO A LADO
+   (mesmo estilo dos cards de Jovem Aprendiz e Comportamento)
+   ===================================================================== */
+#sobre .view-inner.view-narrow{
+    max-width:1000px;
+}
+
+.sobre-duo{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:24px;
+    align-items:stretch;
+}
+
+.sobre-col{
+    display:flex;
+    flex-direction:column;
+}
+
+.sobre-card{
+    position:relative;
+    overflow:hidden;
+    flex:1;
+    background:linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #ffffff 38%,
+        rgba(8,40,150,0.30) 100%
+    );
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:0 6px 18px rgba(8,30,120,0.10);
+    padding:22px 24px 34px;
+}
+
+.sobre-card::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:9px;
+    background:linear-gradient(90deg, rgb(6,24,100) 0%, rgb(8,40,150) 100%);
+}
+
+.sobre-card p{
+    margin:0;
+}
+
+@media (max-width:760px){
+    .sobre-duo{
+        grid-template-columns:minmax(0,1fr);
+        gap:0;
+    }
+}
+
+/* cards das profissões: o card inteiro é clicável */
+#cursos .area-clicavel{
+    cursor:pointer;
+}
+
+#cursos .area-clicavel:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 30px rgba(8,30,120,0.25);
+}
+
+@media (prefers-reduced-motion:reduce){
+    #cursos .area-clicavel:hover{
+        transform:none;
+    }
+}
+
+/* Celular e tablet: a mesma barra do computador, mais baixa.
+   Se as opções não couberem, a barra rola para o lado. */
+@media (max-width:880px){
+
+    :root{
+        --topbar-h:58px;     /* 55px da barra + 3px da borda dourada */
+    }
+
+    body .sidebar,
+    body.side-hidden .sidebar{
+        max-width:none;
+        justify-content:flex-start;
+        gap:6px;
+        padding:0 8px 0 14px;
+    }
+
+    .side-brand{
+        font-size:1.15rem;
+    }
+
+    .side-nav{
+        position:relative;
+        flex:1 1 auto;
+        min-width:0;
+        justify-content:flex-start;
+        overflow-x:auto;
+        overflow-y:hidden;
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+        overscroll-behavior-x:contain;
+    }
+
+    .side-nav::-webkit-scrollbar{
+        display:none;
+    }
+
+    .side-link{
+        flex:0 0 auto;
+        font-size:0.84rem;
+        padding:8px 11px;
+    }
+
+    .side-link.active::after{
+        left:11px;
+        right:11px;
+    }
+
+    /* a barra já ocupa o topo: menos espaço extra acima do conteúdo */
+    .view-inner{
+        padding-top:44px;
+    }
+}
+
+/* =====================================================
+   Jovem Aprendiz e Comportamento Profissional:
+   imagem ao lado do texto de introdução ("O que é"),
+   sem sticky — ela rola junto com o texto e nunca
+   acompanha o usuário nem aparece lá embaixo.
+   ===================================================== */
+#jovem-aprendiz .page-grid,
+#comportamento .page-grid{
+    grid-template-columns:minmax(0,1fr);
+    gap:0;
+}
+
+#jovem-aprendiz .page-intro,
+#comportamento .page-intro{
+    display:grid;
+    grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+    gap:44px;
+    align-items:center;
+}
+
+#jovem-aprendiz .page-intro .page-media,
+#comportamento .page-intro .page-media{
+    position:static;
+    top:auto;
+    width:100%;
+    max-width:none;
+}
+
+#jovem-aprendiz .page-intro + .page-text,
+#comportamento .page-intro + .page-text{
+    margin-top:34px;
+    max-width:820px;
+}
+
+@media (max-width:1100px){
+    #jovem-aprendiz .page-intro,
+    #comportamento .page-intro{
+        grid-template-columns:minmax(0,1fr);
+        gap:24px;
+    }
+
+    #jovem-aprendiz .page-intro .page-media,
+    #comportamento .page-intro .page-media{
+        max-width:520px;
+    }
+}
 </style>
 </head>
 
 <body>
+
+<a class="skip-link" href="#conteudo" onclick="event.preventDefault();event.stopPropagation();var m=document.getElementById('conteudo');m.focus();m.scrollIntoView();">Pular para o conteúdo</a>
 
 <!-- ===================== SIDEBAR ===================== -->
 <aside class="sidebar" id="sidebar" aria-label="Menu principal">
@@ -3914,7 +4167,7 @@ footer .credit{
 
 <div class="layout">
 
-<main>
+<main id="conteudo" tabindex="-1">
 
 <section class="view active" id="inicio">
 
@@ -3924,13 +4177,13 @@ footer .credit{
         <!-- CARROSSEL DE FUNDO (fade in entre as fotos).
              Para trocar ou adicionar fotos, edite as <img> abaixo. -->
         <div class="hero-slides" id="hero-slides" aria-hidden="true">
-            <img class="hero-slide active" src="banner1.jpeg" alt="">
-            <img class="hero-slide" src="banner2.jpeg" alt="" loading="lazy">
-            <img class="hero-slide" src="banner3.jpeg" alt="" loading="lazy">
-            <img class="hero-slide" src="banner4.jpeg" alt="" loading="lazy">
-            <img class="hero-slide" src="banner5.jpeg" alt="" loading="lazy">
-            <img class="hero-slide" src="banner6.jpeg" alt="" loading="lazy">
-            <img class="hero-slide" src="banner7.jpeg" alt="" loading="lazy">
+            <img class="hero-slide active" src="banner1.jpeg" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+            <img class="hero-slide" src="banner2.jpeg" alt="" width="1600" height="900" loading="lazy" decoding="async">
+            <img class="hero-slide" src="banner3.jpeg" alt="" width="1600" height="900" loading="lazy" decoding="async">
+            <img class="hero-slide" src="banner4.jpeg" alt="" width="1600" height="900" loading="lazy" decoding="async">
+            <img class="hero-slide" src="banner5.jpeg" alt="" width="1600" height="900" loading="lazy" decoding="async">
+            <img class="hero-slide" src="banner6.jpeg" alt="" width="1600" height="900" loading="lazy" decoding="async">
+            <img class="hero-slide" src="banner7.jpeg" alt="" width="1600" height="900" loading="lazy" decoding="async">
         </div>
 
         <div class="hero-inner">
@@ -3939,7 +4192,7 @@ footer .credit{
             <div class="hero-text">
 
                 <!-- Para trocar a logo, substitua o arquivo logo-integra.png ou mude o nome em src. -->
-                <img class="hero-logo-bg" src="logo-integra.png" alt="Logo do INTEGRA">
+                <img class="hero-logo-bg" src="logo-integra.png" alt="Logo do INTEGRA" decoding="async" onerror="this.style.display='none'">
 
                 <h1>Orientação Profissional em um só lugar</h1>
 
@@ -3964,11 +4217,11 @@ footer .credit{
 
 <section class="area-view active" id="view-sistemas">
 
-    <div class="hero-banner area-banner">
+    <div class="hero-banner area-banner area-clicavel" role="button" tabindex="0">
 
         <img
-            src="img informatica.jpeg"
-            alt="Desenvolvimento de Sistemas">
+            src="img%20informatica.jpeg"
+            alt="Desenvolvimento de Sistemas" loading="lazy" decoding="async">
 
         <div class="hero-overlay">
 
@@ -4125,11 +4378,11 @@ footer .credit{
 
 <section class="area-view" id="view-alimentacao">
 
-    <div class="hero-banner area-banner">
+    <div class="hero-banner area-banner area-clicavel" role="button" tabindex="0">
 
         <img
-            src="img alimentos.jpeg"
-            alt="Alimentação">
+            src="img%20alimentos.jpeg"
+            alt="Alimentação" loading="lazy" decoding="async">
 
         <div class="hero-overlay">
 
@@ -4284,11 +4537,11 @@ footer .credit{
 
 <section class="area-view" id="view-administracao">
 
-    <div class="hero-banner area-banner">
+    <div class="hero-banner area-banner area-clicavel" role="button" tabindex="0">
 
         <img
-            src="img administração.jpeg"
-            alt="Administração">
+            src="img%20administração.jpeg"
+            alt="Administração" loading="lazy" decoding="async">
 
         <div class="hero-overlay">
 
@@ -4441,11 +4694,11 @@ footer .credit{
 
 <section class="area-view" id="view-eletromecanica">
 
-    <div class="hero-banner area-banner">
+    <div class="hero-banner area-banner area-clicavel" role="button" tabindex="0">
 
         <img
-            src="img engenharia.jpeg"
-            alt="Eletromecânica">
+            src="img%20engenharia.jpeg"
+            alt="Eletromecânica" loading="lazy" decoding="async">
 
         <div class="hero-overlay">
 
@@ -4584,11 +4837,11 @@ footer .credit{
 
 <section class="area-view" id="view-farmacia">
 
-    <div class="hero-banner area-banner">
+    <div class="hero-banner area-banner area-clicavel" role="button" tabindex="0">
 
         <img
-            src="img farmacia.jpeg"
-            alt="Farmácia">
+            src="img%20farmacia.jpeg"
+            alt="Farmácia" loading="lazy" decoding="async">
 
         <div class="hero-overlay">
 
@@ -4727,11 +4980,11 @@ footer .credit{
 
 <section class="area-view" id="view-meioambiente">
 
-    <div class="hero-banner area-banner">
+    <div class="hero-banner area-banner area-clicavel" role="button" tabindex="0">
 
         <img
-            src="img meio ambiente.jpeg"
-            alt="Meio Ambiente">
+            src="img%20meio%20ambiente.jpeg"
+            alt="Meio Ambiente" loading="lazy" decoding="async">
 
         <div class="hero-overlay">
 
@@ -4870,11 +5123,11 @@ footer .credit{
 
 <section class="area-view" id="view-turismo">
 
-    <div class="hero-banner area-banner">
+    <div class="hero-banner area-banner area-clicavel" role="button" tabindex="0">
 
         <img
-            src="img turismo.jpeg"
-            alt="Turismo">
+            src="img%20turismo.jpeg"
+            alt="Turismo" loading="lazy" decoding="async">
 
         <div class="hero-overlay">
 
@@ -5023,19 +5276,31 @@ footer .credit{
                 A passagem do Ensino Fundamental para o Ensino Médio é um momento importante na vida do estudante. Ela traz novas responsabilidades, decisões sobre a vida acadêmica e muitas dúvidas sobre o futuro profissional. Por isso, ter acesso a informações claras e fáceis de entender faz toda a diferença na hora de decidir.
             </p>
 
-            <h3>A proposta do INTEGRA</h3>
-            <p>
-                O INTEGRA nasceu para tornar esse processo mais simples. Em uma única plataforma, reunimos informações sobre as escolas da região, as trilhas de formação, o planejamento de carreira, a elaboração de currículo e o programa Jovem Aprendiz.
-            </p>
+            <div class="sobre-duo">
 
-            <h3>Nosso objetivo</h3>
-            <p>
-                Com conteúdos simples e acessíveis, queremos ampliar o acesso à informação e incentivar a autonomia dos estudantes, ajudando cada jovem a fazer escolhas mais conscientes sobre sua trajetória educacional e profissional.
-            </p>
+                <div class="sobre-col">
+                    <h3>A proposta do INTEGRA</h3>
+                    <div class="sobre-card">
+                        <p>
+                            O INTEGRA nasceu para tornar esse processo mais simples. Em uma única plataforma, reunimos informações sobre as escolas da região, as trilhas de formação, o planejamento de carreira, a elaboração de currículo e o programa Jovem Aprendiz.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="sobre-col">
+                    <h3>Nosso objetivo</h3>
+                    <div class="sobre-card">
+                        <p>
+                            Com conteúdos simples e acessíveis, queremos ampliar o acesso à informação e incentivar a autonomia dos estudantes, ajudando cada jovem a fazer escolhas mais conscientes sobre sua trajetória educacional e profissional.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
 
             <h3>Quem faz o INTEGRA</h3>
             <p>
-                Projeto desenvolvido por estudantes do Colégio Estadual Euzébio da Mota (TCC 2026): Miguel, Ana Carolina, Lucca, Thauane, Anthony e Nicolas.
+                Projeto desenvolvido por estudantes do Colégio Estadual Euzébio da Mota (TCC 2026): Miguel, Ana Carolina, Lucca, Thauane, Anthony e Nicolas, com a orientação da professora Naelly Pereira Brito.
             </p>
 
         </div>
@@ -5054,7 +5319,8 @@ footer .credit{
 
         <div class="page-grid">
 
-            <div class="page-text">
+            <div class="page-intro">
+              <div class="page-text">
 
                 <h3>O que é</h3>
                 <p>
@@ -5063,6 +5329,15 @@ footer .credit{
                 <p>
                     Para muitos jovens, é a porta de entrada para o primeiro emprego: você ganha experiência, recebe salário e ainda constrói um currículo.
                 </p>
+
+              </div>
+
+              <figure class="page-media">
+                <img src="img%20aprendiz.jpeg" alt="Jovem Aprendiz" loading="lazy" decoding="async">
+              </figure>
+            </div>
+
+            <div class="page-text">
 
                 <h3>Quem pode participar</h3>
                 <ul class="check-list">
@@ -5118,10 +5393,6 @@ footer .credit{
                 <div class="page-fonte">Fonte: Lei nº 10.097/2000 (Lei da Aprendizagem)</div>
 
             </div>
-
-            <figure class="page-media">
-                <img src="img aprendiz.jpeg" alt="Jovem Aprendiz">
-            </figure>
 
         </div>
 
@@ -5191,7 +5462,8 @@ footer .credit{
 
         <div class="page-grid">
 
-            <div class="page-text">
+            <div class="page-intro">
+              <div class="page-text">
 
                 <h3>O que é</h3>
                 <p>
@@ -5200,6 +5472,15 @@ footer .credit{
                 <p>
                     As empresas valorizam isso tanto quanto o conhecimento técnico, principalmente em quem está começando. Um jovem educado, pontual e disposto a aprender costuma ser escolhido mesmo sem ter trabalhado antes.
                 </p>
+
+              </div>
+
+              <figure class="page-media">
+                <img src="img%20comportamento.jpg" alt="Comportamento Profissional" loading="lazy" decoding="async">
+              </figure>
+            </div>
+
+            <div class="page-text">
 
                 <h3>As atitudes que mais contam</h3>
                 <div class="info-cards">
@@ -5239,10 +5520,6 @@ footer .credit{
                 </ul>
 
             </div>
-
-            <figure class="page-media">
-                <img src="img comportamento.jpg" alt="Comportamento Profissional">
-            </figure>
 
         </div>
 
@@ -5335,6 +5612,7 @@ footer .credit{
         <div class="footer-info">
             <span>INTEGRA — TCC 2026</span>
             <div class="credit">Miguel · Ana Carolina · Lucca · Thauane · Anthony · Nicolas</div>
+            <div class="credit">Orientadora - Naelly Pereira Brito</div>
         </div>
         <a href="#inicio">Voltar ao topo ↑</a>
     </div>
@@ -5529,8 +5807,10 @@ window.addEventListener('scroll', () => {
         slides[atual].classList.add('active');
     }
 
+    var reduzir = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     function iniciar(){
-        if(timer) return;
+        if(timer || reduzir) return;   // sem troca automática para quem prefere menos movimento
         timer = setInterval(function(){ mostrar(atual + 1); }, INTERVALO);
     }
 
@@ -5544,7 +5824,61 @@ window.addEventListener('scroll', () => {
         if(document.hidden){ parar(); } else { iniciar(); }
     });
 
+    // pausa enquanto o mouse está sobre o banner (computador)
+    var banner = document.querySelector('#inicio .hero-banner');
+    if(banner){
+        banner.addEventListener('mouseenter', parar);
+        banner.addEventListener('mouseleave', iniciar);
+    }
+
     iniciar();
+})();
+
+/* ---------- Cards de profissões clicáveis ----------
+   O card inteiro faz o mesmo que o botão "Saiba mais" dele. */
+(function(){
+    document.querySelectorAll('#cursos .area-clicavel').forEach(function(card){
+        var btn = card.querySelector('.saiba-btn');
+        if(!btn) return;
+
+        var nome = card.querySelector('h1');
+        if(nome) card.setAttribute('aria-label', 'Saiba mais sobre ' + nome.textContent.trim());
+
+        function abrir(){ btn.click(); }
+
+        card.addEventListener('click', function(e){
+            if(e.target.closest('.saiba-btn')) return;   // o próprio botão já abre
+            abrir();
+        });
+
+        card.addEventListener('keydown', function(e){
+            if(e.target !== card) return;
+            if(e.key === 'Enter' || e.key === ' '){
+                e.preventDefault();
+                abrir();
+            }
+        });
+    });
+})();
+
+/* ---------- Barra do topo: mantém a opção ativa visível (celular) ---------- */
+(function(){
+    var nav = document.getElementById('side-nav');
+    if(!nav) return;
+
+    function centralizar(){
+        var ativo = nav.querySelector('.side-link.active');
+        if(!ativo || nav.scrollWidth <= nav.clientWidth) return;
+        var alvo = ativo.offsetLeft - (nav.clientWidth - ativo.offsetWidth) / 2;
+        nav.scrollTo({ left: alvo, behavior: 'smooth' });
+    }
+
+    nav.querySelectorAll('.side-link').forEach(function(l){
+        new MutationObserver(centralizar).observe(l, { attributes:true, attributeFilter:['class'] });
+    });
+
+    window.addEventListener('load', centralizar);
+    window.addEventListener('resize', centralizar);
 })();
 </script>
 
