@@ -4127,6 +4127,28 @@ img{
         max-width:520px;
     }
 }
+
+/* "Voltar ao topo" sempre no canto direito do rodapé (celular, tablet e desktop).
+   Se faltar espaço ao lado das informações da equipe, ele desce para a linha de baixo,
+   mas continua alinhado à direita. */
+.footer-bottom a[href="#inicio"]{
+    margin-left:auto;
+    justify-content:flex-end;
+    text-align:right;
+}
+
+@media (max-width:760px){
+    .footer-bottom{
+        flex-direction:column;
+        align-items:stretch;
+        gap:4px;
+    }
+
+    .footer-bottom a[href="#inicio"]{
+        align-self:flex-end;
+        margin-left:0;
+    }
+}
 </style>
 </head>
 
