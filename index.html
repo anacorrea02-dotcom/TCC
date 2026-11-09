@@ -5643,6 +5643,16 @@ img{
 
 </div><!-- /layout -->
 
+<!-- ===================== VLIBRAS (tradutor de Libras do Governo Federal) =====================
+     Widget oficial: https://vlibras.gov.br — o usuário clica no ícone, seleciona um texto
+     e o avatar traduz para Libras. Para tirar, apague este bloco e o <script> do VLibras no fim da página. -->
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+
 <script>
 // ================== SAIBA MAIS ==================
 // Abre a janela com os detalhes da área (Esc, botão ✕ ou clique fora fecham).
@@ -5910,6 +5920,12 @@ window.addEventListener('scroll', () => {
     window.addEventListener('load', centralizar);
     window.addEventListener('resize', centralizar);
 })();
+</script>
+
+<!-- VLibras: carrega o plugin oficial do governo -->
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    if(window.VLibras){ new window.VLibras.Widget('https://vlibras.gov.br/app'); }
 </script>
 
 </body>
