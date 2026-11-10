@@ -3440,6 +3440,83 @@ footer .credit{
     box-shadow:0 8px 24px rgba(20,41,61,0.12);
 }
 
+#curriculo .curriculo-carrossel{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    max-width:620px;
+    margin:16px auto 6px;
+}
+
+#curriculo .car-viewport{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    border-radius:var(--radius);
+    touch-action:pan-y;
+}
+
+#curriculo .car-track{
+    display:flex;
+    transition:transform .4s ease;
+}
+
+#curriculo .car-slide{
+    flex:0 0 100%;
+    margin:0;
+    padding:0 2px;
+    box-sizing:border-box;
+}
+
+#curriculo .car-slide a{ display:block; }
+
+#curriculo .car-slide img{
+    display:block;
+    width:100%;
+    height:auto;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:0 8px 24px rgba(20,41,61,0.12);
+}
+
+#curriculo .car-btn{
+    flex:0 0 auto;
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:50%;
+    background:var(--ink);
+    color:#fff;
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(20,41,61,0.25);
+    transition:background .2s, transform .2s, opacity .2s;
+}
+
+#curriculo .car-btn:hover{ background:var(--gold); color:var(--ink); transform:scale(1.06); }
+#curriculo .car-btn:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+
+#curriculo .car-counter{
+    text-align:center;
+    margin:0 0 8px;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--ink);
+}
+
+@media (max-width:600px){
+    #curriculo .curriculo-carrossel{ gap:6px; }
+    #curriculo .car-btn{ width:36px; height:36px; font-size:0.95rem; }
+}
+
+#curriculo .curriculo-dica-texto{
+    margin:0 0 4px;
+    font-size:0.9rem;
+    color:var(--sage);
+}
+
 /* Currículo: ajustes para celular e tablet */
 #curriculo .curriculo-modelo a{
     display:block;
@@ -5452,13 +5529,42 @@ img{
                     <li><strong>Revisão final</strong><span>Releia tudo, confira a ortografia, use letra legível (como Arial ou Calibri, tamanho 11 ou 12) e salve em PDF. Peça para alguém conferir.</span></li>
                 </ol>
 
-                <h3>Modelo de estrutura</h3>
-                <figure class="curriculo-modelo">
-                    <a href="curriculonovo.jpeg" target="_blank" rel="noopener" aria-label="Abrir o modelo de currículo em tamanho grande">
-                        <img src="curriculonovo.jpeg" width="1024" height="1432" loading="lazy" alt="Modelo de currículo em branco, com foto, objetivo, experiência, formação, qualificações e informações adicionais">
-                    </a>
-                    <figcaption class="curriculo-dica">Toque na imagem para ampliar</figcaption>
-                </figure>
+                <h3>Exemplos de currículo</h3>
+                <p class="curriculo-dica-texto">Veja diferentes estilos de currículo e escolha o que combina mais com você. Toque na imagem para ampliar.</p>
+                <div class="curriculo-carrossel" role="region" aria-roledescription="carrossel" aria-label="Exemplos de currículo">
+                    <button type="button" class="car-btn car-prev" aria-label="Exemplo anterior">&#10094;</button>
+                    <div class="car-viewport">
+                        <div class="car-track">
+                            <figure class="car-slide" role="group" aria-roledescription="slide" aria-label="Exemplo 1 de 5">
+                                <a href="curriculoexemplo1.jpeg" target="_blank" rel="noopener" aria-label="Abrir o exemplo de currículo 1 em tamanho grande">
+                                    <img src="curriculoexemplo1.jpeg" width="931" height="1305" loading="lazy" alt="Exemplo de currículo 1">
+                                </a>
+                            </figure>
+                            <figure class="car-slide" role="group" aria-roledescription="slide" aria-label="Exemplo 2 de 5">
+                                <a href="curriculoexemplo2.jpeg" target="_blank" rel="noopener" aria-label="Abrir o exemplo de currículo 2 em tamanho grande">
+                                    <img src="curriculoexemplo2.jpeg" width="1025" height="1425" loading="lazy" alt="Exemplo de currículo 2">
+                                </a>
+                            </figure>
+                            <figure class="car-slide" role="group" aria-roledescription="slide" aria-label="Exemplo 3 de 5">
+                                <a href="curriculoexemplo3.jpeg" target="_blank" rel="noopener" aria-label="Abrir o exemplo de currículo 3 em tamanho grande">
+                                    <img src="curriculoexemplo3.jpeg" width="1002" height="1421" loading="lazy" alt="Exemplo de currículo 3">
+                                </a>
+                            </figure>
+                            <figure class="car-slide" role="group" aria-roledescription="slide" aria-label="Exemplo 4 de 5">
+                                <a href="curriculoexemplo4.jpeg" target="_blank" rel="noopener" aria-label="Abrir o exemplo de currículo 4 em tamanho grande">
+                                    <img src="curriculoexemplo4.jpeg" width="1013" height="1423" loading="lazy" alt="Exemplo de currículo 4">
+                                </a>
+                            </figure>
+                            <figure class="car-slide" role="group" aria-roledescription="slide" aria-label="Exemplo 5 de 5">
+                                <a href="curriculoexemplo5.jpeg" target="_blank" rel="noopener" aria-label="Abrir o exemplo de currículo 5 em tamanho grande">
+                                    <img src="curriculoexemplo5.jpeg" width="1131" height="1600" loading="lazy" alt="Exemplo de currículo 5">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                    <button type="button" class="car-btn car-next" aria-label="Próximo exemplo">&#10095;</button>
+                </div>
+                <div class="car-counter" aria-live="polite">1 / 5</div>
 
                 <h3>Dicas finais</h3>
                 <div class="do-dont">
@@ -5919,6 +6025,36 @@ window.addEventListener('scroll', () => {
 
     window.addEventListener('load', centralizar);
     window.addEventListener('resize', centralizar);
+})();
+
+// Carrossel de exemplos de currículo (troca só ao clicar nas setas, sem passar sozinho)
+(function(){
+    var box=document.querySelector('#curriculo .curriculo-carrossel');
+    if(!box) return;
+    var track=box.querySelector('.car-track');
+    var total=box.querySelectorAll('.car-slide').length;
+    var counter=document.querySelector('#curriculo .car-counter');
+    var viewport=box.querySelector('.car-viewport');
+    var atual=0;
+    function ir(n){
+        atual=(n+total)%total;
+        track.style.transform='translateX(-'+(atual*100)+'%)';
+        if(counter) counter.textContent=(atual+1)+' / '+total;
+    }
+    box.querySelector('.car-prev').addEventListener('click',function(){ ir(atual-1); });
+    box.querySelector('.car-next').addEventListener('click',function(){ ir(atual+1); });
+    box.addEventListener('keydown',function(e){
+        if(e.key==='ArrowLeft') ir(atual-1);
+        if(e.key==='ArrowRight') ir(atual+1);
+    });
+    var x0=null;
+    viewport.addEventListener('touchstart',function(e){ x0=e.touches[0].clientX; },{passive:true});
+    viewport.addEventListener('touchend',function(e){
+        if(x0===null) return;
+        var dx=e.changedTouches[0].clientX-x0; x0=null;
+        if(Math.abs(dx)>50) ir(dx<0?atual+1:atual-1);
+    });
+    ir(0);
 })();
 </script>
 
