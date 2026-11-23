@@ -3463,7 +3463,12 @@ footer .credit{
 
 #curriculo .car-track{
     display:flex;
-    transition:transform .4s ease;
+    transition:transform .25s cubic-bezier(.4,0,.2,1);
+    will-change:transform;
+}
+
+@media (prefers-reduced-motion:reduce){
+    #curriculo .car-track{ transition:none; }
 }
 
 #curriculo .car-slide{
@@ -6252,6 +6257,15 @@ window.addEventListener('scroll', () => {
         var dx=e.changedTouches[0].clientX-x0; x0=null;
         if(Math.abs(dx)>50) ir(dx<0?atual+1:atual-1);
     });
+    // Carrega os outros exemplos em segundo plano (depois que a página abriu),
+    // para a troca ser imediata ao clicar nas setas
+    function preparar(){
+        box.querySelectorAll('.car-slide img').forEach(function(img){ img.loading='eager'; img.decoding='async'; });
+    }
+    if(document.readyState==='complete') setTimeout(preparar,300);
+    else window.addEventListener('load',function(){ setTimeout(preparar,300); });
+    box.addEventListener('pointerenter',preparar,{once:true});
+    box.addEventListener('touchstart',preparar,{once:true,passive:true});
     ir(0);
 })();
 </script>
