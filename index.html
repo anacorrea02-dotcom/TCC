@@ -4252,6 +4252,170 @@ img{
     }
 }
 
+/* ---------- Grade curricular (janela "Saiba mais") ---------- */
+
+.grade-intro{
+    margin:0 0 20px;
+    max-width:680px;
+    font-size:0.95rem;
+    color:var(--ink-2);
+}
+
+.grade-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px;
+}
+
+.grade-col{
+    border:1px solid var(--line);
+    border-top:3px solid var(--gold);
+    border-radius:var(--radius);
+    background:var(--white);
+    padding:18px 20px;
+}
+
+.grade-col h4{
+    margin:0 0 10px;
+    font-size:1rem;
+}
+
+.grade-col ul{
+    margin:0;
+    padding-left:18px;
+    list-style:disc;
+    display:grid;
+    gap:6px;
+    font-size:0.92rem;
+    color:var(--ink-2);
+}
+
+.grade-nota{
+    margin:16px 0 0;
+    font-size:0.8rem;
+    color:var(--sage);
+}
+
+.grade-grid{ align-items:start; }
+
+.grade-col summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    font-weight:600;
+    font-size:1rem;
+    color:var(--ink);
+}
+
+.grade-col summary::-webkit-details-marker{ display:none; }
+
+.grade-col summary::after{
+    content:"+";
+    flex:0 0 auto;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+    line-height:1;
+    color:var(--ink-2);
+}
+
+.grade-col[open] summary::after{ content:"\2212"; }
+
+.grade-col summary:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:3px;
+    border-radius:var(--radius);
+}
+
+.grade-tit{ flex:1; }
+
+.grade-count{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem;
+    font-weight:400;
+    color:var(--sage);
+    white-space:nowrap;
+}
+
+.grade-col ul{ margin-top:12px; }
+
+@media (max-width:900px){
+    .grade-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width:600px){
+    .grade-grid{ grid-template-columns:minmax(0,1fr); }
+}
+
+/* ---------- Teste vocacional (faixa abaixo do banner) ---------- */
+
+.teste-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px 32px 0;
+}
+
+.teste-vocacional{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:28px;
+    padding:24px 28px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-left:4px solid var(--gold);
+    border-radius:var(--radius);
+}
+
+.teste-texto{ flex:1; min-width:0; }
+
+.teste-vocacional h2{
+    margin:0 0 6px;
+    font-size:clamp(1.15rem,2.2vw,1.45rem);
+    line-height:1.25;
+}
+
+.teste-vocacional p{
+    margin:0;
+    max-width:62ch;
+    font-size:0.95rem;
+    color:var(--ink-2);
+}
+
+.teste-acao{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+}
+
+.teste-nota{
+    font-size:0.72rem;
+    color:var(--sage);
+}
+
+@media (max-width:700px){
+    .teste-wrap{ padding:28px 20px 0; }
+    .teste-vocacional{
+        flex-direction:column;
+        align-items:stretch;
+        gap:16px;
+        padding:20px;
+    }
+    .teste-acao{ align-items:stretch; text-align:center; }
+    .teste-acao .btn{ justify-content:center; }
+}
+
+
 /* Rodapé: áreas do site (links) ao lado do contato */
 .footer-areas .footer-links{
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -4485,6 +4649,21 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
 
     </div>
 
+    <!-- TESTE VOCACIONAL (faixa logo abaixo do banner) -->
+    <div class="teste-wrap">
+        <aside class="teste-vocacional" aria-labelledby="teste-titulo">
+            <div class="teste-texto">
+                <div class="section-label">Teste vocacional:</div>
+                <h2 id="teste-titulo">Ainda em dúvida sobre qual carreira seguir?</h2>
+                <p>Faça o teste vocacional gratuito do Educa Mais Brasil, baseado na Teoria das Inteligências Múltiplas de Howard Gardner. São 21 questões, cerca de 5 minutos, e o resultado sai na hora.</p>
+            </div>
+            <div class="teste-acao">
+                <a class="btn btn-gold" href="https://www.educamaisbrasil.com.br/teste/vocacional" target="_blank" rel="noopener noreferrer" aria-label="Acesse aqui: teste vocacional do Educa Mais Brasil (abre em outra aba)">Acesse aqui <span aria-hidden="true">&#8599;</span></a>
+                <span class="teste-nota">Site externo · Educa Mais Brasil</span>
+            </div>
+        </aside>
+    </div>
+
     <!-- CURSOS (cards) -->
 <!-- ===================== ÁREAS PROFISSIONAIS ===================== -->
 
@@ -4606,9 +4785,64 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
     </div>
 
 
+    <div class="area-panel" id="sistemas-grade">
+
+        <h3 class="panel-title"><span class="mono">03</span> Grade Curricular</h3>
+
+        <p class="grade-intro">
+            Base das matérias mais comuns nos cursos de <strong>Técnico em Desenvolvimento de Sistemas</strong>. Use como referência para saber o que você vai estudar.
+        </p>
+
+        <div class="grade-grid">
+
+            <details class="grade-col" open>
+                <summary><span class="grade-tit">Base da informática</span><span class="grade-count">6 matérias</span></summary>
+                <ul>
+                    <li>Fundamentos da Informática</li>
+                    <li>Lógica de Programação e Algoritmos</li>
+                    <li>Sistemas Operacionais</li>
+                    <li>Banco de Dados (modelagem e SQL)</li>
+                    <li>Inglês Instrumental</li>
+                    <li>Comunicação Oral e Escrita</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Formação técnica</span><span class="grade-count">8 matérias</span></summary>
+                <ul>
+                    <li>Linguagens de Programação (Java, Python, C#)</li>
+                    <li>Desenvolvimento Web (HTML, CSS e JavaScript)</li>
+                    <li>Desenvolvimento Mobile</li>
+                    <li>Modelagem e Análise de Sistemas</li>
+                    <li>Engenharia de Software e metodologias ágeis</li>
+                    <li>Redes de Computadores</li>
+                    <li>Segurança da Informação</li>
+                    <li>Computação em Nuvem e Internet das Coisas</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Prática e conclusão</span><span class="grade-count">4 matérias</span></summary>
+                <ul>
+                    <li>Gestão de Projetos</li>
+                    <li>Empreendedorismo e Ética Profissional</li>
+                    <li>Projeto Integrador</li>
+                    <li>Estágio Supervisionado</li>
+                </ul>
+            </details>
+
+        </div>
+
+        <p class="grade-nota">
+            A grade muda de uma escola para outra: confira a da instituição que você escolher. Referências: Educa Mais Brasil, Quero Bolsa e projetos pedagógicos de institutos federais e colégios técnicos.
+        </p>
+
+    </div>
+
+
     <div class="area-panel" id="sistemas-trilha">
 
-        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -4765,9 +4999,65 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
     </div>
 
 
+    <div class="area-panel" id="alimentacao-grade">
+
+        <h3 class="panel-title"><span class="mono">03</span> Grade Curricular</h3>
+
+        <p class="grade-intro">
+            Base das matérias mais comuns nos cursos de <strong>Técnico em Cozinha e Técnico em Nutrição e Dietética</strong>. Use como referência para saber o que você vai estudar.
+        </p>
+
+        <div class="grade-grid">
+
+            <details class="grade-col" open>
+                <summary><span class="grade-tit">Base e saúde</span><span class="grade-count">6 matérias</span></summary>
+                <ul>
+                    <li>Anatomia e Fisiologia Humana</li>
+                    <li>Bioquímica e Bases Metodológicas da Nutrição</li>
+                    <li>Nutrição Normal</li>
+                    <li>Microbiologia dos Alimentos</li>
+                    <li>Noções de Primeiros Socorros</li>
+                    <li>Saúde e Segurança do Trabalho</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Cozinha e produção</span><span class="grade-count">8 matérias</span></summary>
+                <ul>
+                    <li>Habilidades Básicas de Cozinha</li>
+                    <li>Técnicas Culinárias</li>
+                    <li>Cozinha Brasileira</li>
+                    <li>Cozinha Internacional</li>
+                    <li>Cozinha Fria</li>
+                    <li>Panificação Básica</li>
+                    <li>Tecnologia dos Alimentos</li>
+                    <li>História, Arte e Cultura na Gastronomia</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Nutrição e gestão</span><span class="grade-count">5 matérias</span></summary>
+                <ul>
+                    <li>Avaliação Nutricional</li>
+                    <li>Fundamentos da Nutrição Clínica</li>
+                    <li>Técnicas de Educação Alimentar e Nutricional</li>
+                    <li>Administração e Supervisão dos Serviços de Alimentação</li>
+                    <li>Legislação Profissional</li>
+                </ul>
+            </details>
+
+        </div>
+
+        <p class="grade-nota">
+            A grade muda de uma escola para outra: confira a da instituição que você escolher. Referências: Educa Mais Brasil, Quero Bolsa e projetos pedagógicos de institutos federais e colégios técnicos.
+        </p>
+
+    </div>
+
+
     <div class="area-panel" id="alimentacao-trilha">
 
-        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -4922,9 +5212,54 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
     </div>
 
 
+    <div class="area-panel" id="administracao-grade">
+
+        <h3 class="panel-title"><span class="mono">03</span> Grade Curricular</h3>
+
+        <p class="grade-intro">
+            Base das matérias mais comuns nos cursos de <strong>Técnico em Administração</strong>. Use como referência para saber o que você vai estudar.
+        </p>
+
+        <div class="grade-grid">
+
+            <details class="grade-col" open>
+                <summary><span class="grade-tit">Base e apoio</span><span class="grade-count">3 matérias</span></summary>
+                <ul>
+                    <li>Matemática Aplicada</li>
+                    <li>Informática Aplicada</li>
+                    <li>Comunicação Empresarial</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Gestão e negócios</span><span class="grade-count">3 matérias</span></summary>
+                <ul>
+                    <li>Fundamentos de Administração</li>
+                    <li>Contabilidade Comercial</li>
+                    <li>Fundamentos de Direito Empresarial</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Pessoas e equipes</span><span class="grade-count">2 matérias</span></summary>
+                <ul>
+                    <li>Recursos Humanos</li>
+                    <li>Coordenação de Equipes</li>
+                </ul>
+            </details>
+
+        </div>
+
+        <p class="grade-nota">
+            A grade muda de uma escola para outra: confira a da instituição que você escolher. Referências: Educa Mais Brasil, Quero Bolsa e projetos pedagógicos de institutos federais e colégios técnicos.
+        </p>
+
+    </div>
+
+
     <div class="area-panel" id="administracao-trilha">
 
-        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -5065,9 +5400,62 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
     </div>
 
 
+    <div class="area-panel" id="eletromecanica-grade">
+
+        <h3 class="panel-title"><span class="mono">03</span> Grade Curricular</h3>
+
+        <p class="grade-intro">
+            Base das matérias mais comuns nos cursos de <strong>Técnico em Eletromecânica</strong>. Use como referência para saber o que você vai estudar.
+        </p>
+
+        <div class="grade-grid">
+
+            <details class="grade-col" open>
+                <summary><span class="grade-tit">Elétrica e eletrônica</span><span class="grade-count">6 matérias</span></summary>
+                <ul>
+                    <li>Eletricidade Básica</li>
+                    <li>Circuitos de Corrente Contínua</li>
+                    <li>Eletrônica Industrial</li>
+                    <li>Máquinas Elétricas</li>
+                    <li>Acionamentos Elétricos</li>
+                    <li>Sistemas Embarcados</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Mecânica e fluidos</span><span class="grade-count">6 matérias</span></summary>
+                <ul>
+                    <li>Desenho Técnico e Desenho Assistido por Computador (CAD)</li>
+                    <li>Metrologia</li>
+                    <li>Usinagem Básica</li>
+                    <li>Soldagem</li>
+                    <li>Sistemas Pneumáticos e Hidráulicos</li>
+                    <li>Sistemas Térmicos</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Manutenção e automação</span><span class="grade-count">4 matérias</span></summary>
+                <ul>
+                    <li>Introdução à Manutenção e Prática de Manutenção</li>
+                    <li>Manutenção Industrial</li>
+                    <li>Controladores Lógicos Programáveis (CLP)</li>
+                    <li>Qualidade de Vida no Trabalho</li>
+                </ul>
+            </details>
+
+        </div>
+
+        <p class="grade-nota">
+            A grade muda de uma escola para outra: confira a da instituição que você escolher. Referências: Educa Mais Brasil, Quero Bolsa e projetos pedagógicos de institutos federais e colégios técnicos.
+        </p>
+
+    </div>
+
+
     <div class="area-panel" id="eletromecanica-trilha">
 
-        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -5208,9 +5596,57 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
     </div>
 
 
+    <div class="area-panel" id="farmacia-grade">
+
+        <h3 class="panel-title"><span class="mono">03</span> Grade Curricular</h3>
+
+        <p class="grade-intro">
+            Base das matérias mais comuns nos cursos de <strong>Técnico em Farmácia</strong>. Use como referência para saber o que você vai estudar.
+        </p>
+
+        <div class="grade-grid">
+
+            <details class="grade-col" open>
+                <summary><span class="grade-tit">Base em saúde</span><span class="grade-count">4 matérias</span></summary>
+                <ul>
+                    <li>Anatomia e Fisiologia Humana</li>
+                    <li>Microbiologia</li>
+                    <li>Biossegurança</li>
+                    <li>Saúde Coletiva</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Formação técnica</span><span class="grade-count">4 matérias</span></summary>
+                <ul>
+                    <li>Farmacologia e Farmacotécnica</li>
+                    <li>Produção e Manipulação de Fármacos e Cosméticos</li>
+                    <li>Cosmetologia</li>
+                    <li>Legislação Sanitária e Farmacêutica</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Atendimento e prática</span><span class="grade-count">3 matérias</span></summary>
+                <ul>
+                    <li>Comercialização, Estoques e Atendimento ao Cliente</li>
+                    <li>Projeto Integrador</li>
+                    <li>Estágio Supervisionado</li>
+                </ul>
+            </details>
+
+        </div>
+
+        <p class="grade-nota">
+            A grade muda de uma escola para outra: confira a da instituição que você escolher. Referências: Educa Mais Brasil, Quero Bolsa e projetos pedagógicos de institutos federais e colégios técnicos.
+        </p>
+
+    </div>
+
+
     <div class="area-panel" id="farmacia-trilha">
 
-        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -5351,9 +5787,65 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
     </div>
 
 
+    <div class="area-panel" id="meioambiente-grade">
+
+        <h3 class="panel-title"><span class="mono">03</span> Grade Curricular</h3>
+
+        <p class="grade-intro">
+            Base das matérias mais comuns nos cursos de <strong>Técnico em Meio Ambiente</strong>. Use como referência para saber o que você vai estudar.
+        </p>
+
+        <div class="grade-grid">
+
+            <details class="grade-col" open>
+                <summary><span class="grade-tit">Base científica</span><span class="grade-count">6 matérias</span></summary>
+                <ul>
+                    <li>Ecologia</li>
+                    <li>Biologia</li>
+                    <li>Química Ambiental</li>
+                    <li>Geologia Ambiental</li>
+                    <li>Introdução à Estatística</li>
+                    <li>Informática Aplicada</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Gestão ambiental</span><span class="grade-count">7 matérias</span></summary>
+                <ul>
+                    <li>Gestão Ambiental</li>
+                    <li>Legislação Ambiental</li>
+                    <li>Licenciamento Ambiental</li>
+                    <li>Gestão de Resíduos Sólidos</li>
+                    <li>Gestão de Recursos Hídricos</li>
+                    <li>Saneamento Ambiental</li>
+                    <li>Recuperação de Áreas Degradadas</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Campo e sociedade</span><span class="grade-count">6 matérias</span></summary>
+                <ul>
+                    <li>Educação Ambiental</li>
+                    <li>Sociedade e Meio Ambiente</li>
+                    <li>Energia e Meio Ambiente</li>
+                    <li>Geoprocessamento e Topografia</li>
+                    <li>Higiene e Segurança do Trabalho</li>
+                    <li>Estágio Supervisionado</li>
+                </ul>
+            </details>
+
+        </div>
+
+        <p class="grade-nota">
+            A grade muda de uma escola para outra: confira a da instituição que você escolher. Referências: Educa Mais Brasil, Quero Bolsa e projetos pedagógicos de institutos federais e colégios técnicos.
+        </p>
+
+    </div>
+
+
     <div class="area-panel" id="meioambiente-trilha">
 
-        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
@@ -5486,9 +5978,62 @@ html[data-theme="dark"] .car-slide img{ box-shadow:0 6px 18px rgba(0,0,0,0.45); 
     </div>
 
 
+    <div class="area-panel" id="turismo-grade">
+
+        <h3 class="panel-title"><span class="mono">03</span> Grade Curricular</h3>
+
+        <p class="grade-intro">
+            Base das matérias mais comuns nos cursos de <strong>Técnico em Guia de Turismo</strong>. Use como referência para saber o que você vai estudar.
+        </p>
+
+        <div class="grade-grid">
+
+            <details class="grade-col" open>
+                <summary><span class="grade-tit">Fundamentos</span><span class="grade-count">5 matérias</span></summary>
+                <ul>
+                    <li>Introdução ao Turismo</li>
+                    <li>Geografia Aplicada ao Turismo</li>
+                    <li>História do Brasil e História Regional</li>
+                    <li>Patrimônio Cultural e Ambiental</li>
+                    <li>História da Arte</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Técnicas do guia</span><span class="grade-count">6 matérias</span></summary>
+                <ul>
+                    <li>Técnicas de Condução de Grupos</li>
+                    <li>Técnicas de Interpretação</li>
+                    <li>Planejamento e Elaboração de Roteiros</li>
+                    <li>Primeiros Socorros</li>
+                    <li>Legislação Turística</li>
+                    <li>Ética Profissional</li>
+                </ul>
+            </details>
+
+            <details class="grade-col">
+                <summary><span class="grade-tit">Comunicação e atendimento</span><span class="grade-count">5 matérias</span></summary>
+                <ul>
+                    <li>Técnicas de Comunicação e Oratória</li>
+                    <li>Inglês Técnico para Guiamento</li>
+                    <li>Hospitalidade e Atendimento ao Turista</li>
+                    <li>Marketing Turístico</li>
+                    <li>Informática Aplicada ao Turismo</li>
+                </ul>
+            </details>
+
+        </div>
+
+        <p class="grade-nota">
+            A grade muda de uma escola para outra: confira a da instituição que você escolher. Referências: Educa Mais Brasil, Quero Bolsa e projetos pedagógicos de institutos federais e colégios técnicos.
+        </p>
+
+    </div>
+
+
     <div class="area-panel" id="turismo-trilha">
 
-        <h3 class="panel-title"><span class="mono">03</span> Trilha de Desenvolvimento</h3>
+        <h3 class="panel-title"><span class="mono">04</span> Trilha de Desenvolvimento</h3>
 
         <div class="trilha-track">
 
